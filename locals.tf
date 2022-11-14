@@ -5,7 +5,7 @@ locals {
   tags = merge(
     {
       "source" = "terraform"
-      "module" = "terraform-azurerm-aks"
+      "module" = "amestofortytwo/terraform-azurerm-aks"
     },
     var.tags,
   )
