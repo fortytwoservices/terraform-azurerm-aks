@@ -1,3 +1,8 @@
+variable "location" {
+  description = "The location where all resources will be created"
+  type        = string
+}
+
 variable "kubernetes_version" {
   description = "Kubernetes version to use for the cluster"
   type        = string
