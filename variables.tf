@@ -62,6 +62,42 @@ variable "service_principal" {
   default = null
 }
 
+variable "network_profile" {
+  description = <<EOT
+  (Optional) The network profile block for the Kubernetes cluster.
+  If not specified, the network profile will be of type Azure.
+  EOT
+  type = object({
+    network_plugin     = string
+    network_policy     = optional(string)
+    network_mode       = optional(string)
+    vnet_subnet_id     = optional(string)
+    load_balancer_sku  = optional(string)
+    outbound_type      = optional(string)
+    dns_service_ip     = optional(string)
+    docker_bridge_cidr = optional(string)
+    service_cidr       = optional(string)
+    service_cidrs      = optional(list(string))
+    pod_cidr           = optional(string)
+    pod_cidrs          = optional(list(string))
+    ip_versions        = optional(list(string))
+  })
+  default = {
+    network_plugin = "azure"
+  }
+}
+
+variable "ingress_application_gateway" {
+  description = "Values used for deployment of the ingress application gateway"
+  type = object({
+    gateway_id   = optional(string)
+    gateway_name = optional(string)
+    subnet_cidr  = optional(string)
+    subnet_id    = optional(string)
+  })
+  default = null
+}
+
 variable "kubernetes_version" {
   description = "Kubernetes version to use for the cluster"
   type        = string
