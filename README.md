@@ -9,19 +9,39 @@ This is the repository for our Azure Kubernetes Service (AKS) Terraform module.
 |------|---------|
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >3.21.1 |
 
-## Example
+## Examples
+
+### Basic example
 
 ```hcl
 module "kubernetes" {
-  source = "../"
+  source  = "amestofortytwo/kubernetes"
+  version = "1.1.0"
 
   name                = "demo-prod-westeu"
-  resource_group_name = "rg-demo-prod-westeu"
-  location            = "westeurope"
+  resource_group_name = azurerm_resource_group.demo.name
+  location            = azurerm_resource_group.demo.location
+
+  tags = {
+    environment = "production"
+  }
+}
+```
+
+### Advanced Example
+
+```hcl
+module "kubernetes" {
+  source  = "amestofortytwo/kubernetes"
+  version = "1.1.0"
+
+  name                = "demo-prod-westeu"
+  resource_group_name = azurerm_resource_group.demo.name
+  location            = azurerm_resource_group.demo.location
 
   service_principal = {
     client_id     = "00000000-0000-0000-0000-000000000000"
-    client_secret = "value"
+    client_secret = "client_secret_value"
   }
 
   automatic_bump_kubernetes_version = {

@@ -18,10 +18,18 @@ content: |-
 
   {{ .Requirements }}
 
-  ## Example
+  ## Examples
+
+  ### Basic example
 
   ```hcl
-  {{ include "examples/main.tf" }}
+  {{ include "examples/basic/main.tf" }}
+  ```
+
+  ### Advanced Example
+
+  ```hcl
+  {{ include "examples/advanced/main.tf" }}
   ```
 
   {{ .Providers }}
