@@ -66,3 +66,26 @@ resource "azurerm_kubernetes_cluster" "main" {
 
   tags = local.tags
 }
+
+resource "azurerm_kubernetes_cluster_node_pool" "additional" {
+  for_each = { for np in var.additional_node_pools : np.name => np }
+
+  name                  = each.value.name
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.main.id
+  node_count            = each.value.node_count
+  vm_size               = each.value.vm_size == null ? var.default_node_pool.vm_size : each.value.vm_size
+  vnet_subnet_id        = var.network_profile.vnet_subnet_id
+  orchestrator_version  = each.value.orchestrator_version == null ? local.kubernetes_version : each.value.orchestrator_version
+  max_pods              = each.value.max_pods
+  node_labels           = each.value.node_labels
+  node_taints           = each.value.node_taints
+  enable_auto_scaling   = each.value.enable_auto_scaling
+  min_count             = each.value.min_count
+  max_count             = each.value.max_count
+  os_disk_size_gb       = each.value.os_disk_size_gb
+  os_disk_type          = each.value.os_disk_type
+  kubelet_disk_type     = each.value.kubelet_disk_type
+  ultra_ssd_enabled     = each.value.ultra_ssd_enabled
+  zones                 = each.value.zones
+  tags                  = merge(local.tags, each.value.tags)
+}

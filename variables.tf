@@ -39,6 +39,41 @@ variable "default_node_pool" {
   }
 }
 
+variable "additional_node_pools" {
+  description = <<EOT
+  (Optional) A list of additional node pools to add to the Kubernetes cluster.
+
+  Each node pool can have the following properties:
+  name - (Required) The name of the node pool.
+  node_count - (optional) The number of nodes in the node pool, defaults to 1.
+  vm_size - (optional) The size of the virtual machines to use for the node pool, defaults to the same as the default node pool.
+  EOT
+  type = list(object({
+    name                 = string
+    mode                 = optional(string)
+    orchestrator_version = optional(string)
+    os_type              = optional(string)
+    os_sku               = optional(string)
+    node_labels          = optional(map(string))
+    node_count           = optional(number, 1)
+    enable_auto_scaling  = optional(bool, false)
+    min_count            = optional(number, 1)
+    max_count            = optional(number, 3)
+    vm_size              = optional(string)
+    os_disk_size_gb      = optional(number)
+    os_disk_type         = optional(string)
+    vnet_subnet_id       = optional(string)
+    max_pods             = optional(number)
+    zones                = optional(list(string))
+    scale_down_mode      = optional(string)
+    ultra_ssd_enabled    = optional(bool)
+    kubelet_disk_type    = optional(string)
+    node_taints          = optional(list(string))
+    tags                 = optional(map(string))
+  }))
+  default = []
+}
+
 variable "identity" {
   description = <<EOT
   (Optional) The identity block for the Kubernetes cluster.
