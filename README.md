@@ -30,6 +30,11 @@ module "kubernetes" {
     include_preview = false
   }
 
+  additional_node_pools = [
+    { name = "pool1" },
+    { name = "pool2" }
+  ]
+
   tags = {
     environment = "production"
   }
@@ -50,6 +55,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_additional_node_pools"></a> [additional\_node\_pools](#input\_additional\_node\_pools) | (Optional) A list of additional node pools to add to the Kubernetes cluster.<br><br>  Each node pool can have the following properties:<br>  name - (Required) The name of the node pool.<br>  node\_count - (optional) The number of nodes in the node pool, defaults to 1.<br>  vm\_size - (optional) The size of the virtual machines to use for the node pool, defaults to the same as the default node pool. | <pre>list(object({<br>    name                 = string<br>    mode                 = optional(string)<br>    orchestrator_version = optional(string)<br>    os_type              = optional(string)<br>    os_sku               = optional(string)<br>    node_labels          = optional(map(string))<br>    node_count           = optional(number, 1)<br>    enable_auto_scaling  = optional(bool, false)<br>    min_count            = optional(number, 1)<br>    max_count            = optional(number, 3)<br>    vm_size              = optional(string)<br>    os_disk_size_gb      = optional(number)<br>    os_disk_type         = optional(string)<br>    vnet_subnet_id       = optional(string)<br>    max_pods             = optional(number)<br>    zones                = optional(list(string))<br>    scale_down_mode      = optional(string)<br>    ultra_ssd_enabled    = optional(bool)<br>    kubelet_disk_type    = optional(string)<br>    node_taints          = optional(list(string))<br>    tags                 = optional(map(string))<br>  }))</pre> | `[]` | no |
 | <a name="input_automatic_bump_kubernetes_version"></a> [automatic\_bump\_kubernetes\_version](#input\_automatic\_bump\_kubernetes\_version) | Automatically bump the Kubernetes version to the latest available version | <pre>object({<br>    enabled         = bool<br>    version_prefix  = string<br>    include_preview = bool<br>  })</pre> | <pre>{<br>  "enabled": false,<br>  "include_preview": false,<br>  "version_prefix": "1.23"<br>}</pre> | no |
 | <a name="input_default_node_pool"></a> [default\_node\_pool](#input\_default\_node\_pool) | (Optional) The default node pool for the Kubernetes cluster.<br>  If not specified, the default node pool will have one Standard\_d2s\_v4 node. | <pre>object({<br>    name       = string<br>    node_count = number<br>    vm_size    = string<br>  })</pre> | <pre>{<br>  "name": "default",<br>  "node_count": 1,<br>  "vm_size": "Standard_D2s_v4"<br>}</pre> | no |
 | <a name="input_identity"></a> [identity](#input\_identity) | (Optional) The identity block for the Kubernetes cluster.<br>  If not specified, the identity will be of type SystemAssigned. | <pre>object({<br>    type         = string<br>    identity_ids = optional(list(string))<br>  })</pre> | <pre>{<br>  "identity_ids": null,<br>  "type": "SystemAssigned"<br>}</pre> | no |
@@ -71,5 +77,6 @@ No outputs.
 | Name | Type |
 |------|------|
 | [azurerm_kubernetes_cluster.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) | resource |
+| [azurerm_kubernetes_cluster_node_pool.additional](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool) | resource |
 | [azurerm_kubernetes_service_versions.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_service_versions) | data source |
 <!-- END_TF_DOCS -->
