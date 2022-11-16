@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/compare/v1.0.0...v1.1.0) (2022-11-16)
+
+
+### Features
+
+* initial node pool implementation ([ea74a57](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/commit/ea74a579e48f7682a218482588b64ca4900dd87d)), closes [#2](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/issues/2)
+
+
+### Bug Fixes
+
+* removed provider block ([7547a26](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/commit/7547a26a7319cc8a908fe5b42049e2671e1ec790)), closes [#5](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/issues/5)
+
 ## 1.0.0 (2022-11-16)
 
 
