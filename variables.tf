@@ -1,5 +1,9 @@
 variable "name" {
-  description = "Name used for the resources created"
+  description = <<EOT
+  The name of the managed Kubernetes cluster.
+
+  Will prefix the name of the cluster with `aks-`.
+  EOT
   type        = string
 }
 
