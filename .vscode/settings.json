@@ -1,5 +1,8 @@
 {
   "[terraform]": {
     "editor.formatOnSave": true
-  }
+  },
+  "conventionalCommits.scopes": [
+    "network"
+  ]
 }

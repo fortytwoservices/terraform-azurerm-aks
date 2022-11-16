@@ -6,7 +6,7 @@ on:
     types: [ "opened" ]
   push:
     branches: [ "main" ]
-    paths: [ "**.tf"]
+    paths: [ "**.tf", "CHANGELOG.md"]
 
 jobs:
   project:
