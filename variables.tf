@@ -28,9 +28,63 @@ variable "default_node_pool" {
   If not specified, the default node pool will have one Standard_d2s_v4 node.
   EOT
   type = object({
-    name       = string
-    node_count = number
-    vm_size    = string
+    name    = string
+    vm_size = string
+
+    # Autoscale or manual scaling
+    node_count          = optional(number)
+    enable_auto_scaling = optional(bool)
+    autoscale = optional(object({
+      min_count = number
+      max_count = number
+    }))
+
+    # Optional settings
+    max_pods                      = optional(number)
+    capacity_reservation_group_id = optional(string)
+    enable_host_encryption        = optional(bool)
+    enable_node_public_ip         = optional(bool)
+    fips_enabled                  = optional(bool)
+    kubelet_disk_type             = optional(string)
+    message_of_the_day            = optional(string)
+    node_public_ip_prefix_id      = optional(string)
+    node_labels                   = optional(map(string))
+    only_critical_addons_enabled  = optional(bool)
+    orchestrator_version          = optional(string)
+    os_disk_size_gb               = optional(number)
+    os_disk_type                  = optional(string)
+    os_sku                        = optional(string)
+    pod_subnet_id                 = optional(string)
+    scale_down_mode               = optional(string)
+    type                          = optional(string)
+    tags                          = optional(map(string))
+    ultra_ssd_enabled             = optional(bool)
+
+    kubelet_config = optional(object(
+      {
+        cpu_manager_policy        = optional(string)
+        cpu_cfs_quota_enabled     = optional(bool)
+        cpu_cfs_quota_period      = optional(string)
+        image_gc_high_threshold   = optional(number)
+        image_gc_low_threshold    = optional(number)
+        topology_manager_policy   = optional(string)
+        allowed_unsafe_sysctls    = optional(list(string))
+        container_log_max_size_mb = optional(number)
+        container_log_max_line    = optional(number)
+        pod_max_pid               = optional(number)
+      }
+    ))
+
+    linux_os_config = optional(object({
+      # sysctl will not be implemented, until someone needs it
+      swap_file_size_mb             = optional(number)
+      transparent_huge_page_enabled = optional(bool)
+      transparent_huge_page_defrag  = optional(string)
+    }))
+
+    upgrade_settings = optional(object({
+      max_surge = optional(number)
+    }))
   })
   default = {
     name       = "default"
@@ -161,4 +215,10 @@ variable "azure_policy_enabled" {
   description = "Enable or disable Azure Policy for the cluster. Defaults to true."
   type        = bool
   default     = true
+}
+
+variable "api_server_authorized_ip_ranges" {
+  description = "(Optional) A list of authorized IP ranges to access the Kubernetes API server"
+  type        = list(string)
+  default     = null
 }

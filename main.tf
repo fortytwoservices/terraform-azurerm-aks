@@ -5,18 +5,72 @@
 */
 
 resource "azurerm_kubernetes_cluster" "main" {
-  name                 = format("aks-%s", var.name)
-  location             = var.location
-  resource_group_name  = var.resource_group_name
-  dns_prefix           = replace(var.name, "-", "")
-  kubernetes_version   = local.kubernetes_version
-  azure_policy_enabled = var.azure_policy_enabled
+  name                            = format("aks-%s", var.name)
+  location                        = var.location
+  resource_group_name             = var.resource_group_name
+  dns_prefix                      = replace(var.name, "-", "")
+  kubernetes_version              = local.kubernetes_version
+  azure_policy_enabled            = var.azure_policy_enabled
+  api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
 
   default_node_pool {
-    name           = var.default_node_pool.name
-    node_count     = var.default_node_pool.node_count
-    vm_size        = var.default_node_pool.vm_size
-    vnet_subnet_id = var.network_profile.vnet_subnet_id
+    name                 = var.default_node_pool.name
+    node_count           = var.default_node_pool.node_count
+    vm_size              = var.default_node_pool.vm_size
+    vnet_subnet_id       = var.network_profile.vnet_subnet_id
+    orchestrator_version = lookup(var.default_node_pool, "orchestration_version", false) ? var.default_node_pool.orchestration_version : local.kubernetes_version
+
+    # Optional settings
+    max_pods                      = var.default_node_pool.max_pods
+    capacity_reservation_group_id = var.default_node_pool.capacity_reservation_group_id
+    enable_host_encryption        = var.default_node_pool.enable_host_encryption
+    enable_node_public_ip         = var.default_node_pool.enable_node_public_ip
+    fips_enabled                  = var.default_node_pool.fips_enabled
+    kubelet_disk_type             = var.default_node_pool.kubelet_disk_type
+    message_of_the_day            = var.default_node_pool.message_of_the_day
+    node_public_ip_prefix_id      = var.default_node_pool.node_public_ip_prefix_id
+    node_labels                   = var.default_node_pool.node_labels
+    only_critical_addons_enabled  = var.default_node_pool.only_critical_addons_enabled
+    os_disk_size_gb               = var.default_node_pool.os_disk_size_gb
+    os_disk_type                  = var.default_node_pool.os_disk_type
+    os_sku                        = var.default_node_pool.os_sku
+    pod_subnet_id                 = var.default_node_pool.pod_subnet_id
+    scale_down_mode               = var.default_node_pool.scale_down_mode
+    type                          = var.default_node_pool.type
+    ultra_ssd_enabled             = var.default_node_pool.ultra_ssd_enabled
+
+    dynamic "kubelet_config" {
+      for_each = var.default_node_pool.kubelet_config != null ? [1] : []
+
+      content {
+        cpu_manager_policy        = var.default_node_pool.kubelet_config.cpu_manager_policy
+        cpu_cfs_quota_enabled     = var.default_node_pool.kubelet_config.cpu_cfs_quota
+        cpu_cfs_quota_period      = var.default_node_pool.kubelet_config.cpu_cfs_quota_period
+        image_gc_high_threshold   = var.default_node_pool.kubelet_config.image_gc_high_threshold
+        image_gc_low_threshold    = var.default_node_pool.kubelet_config.image_gc_low_threshold
+        topology_manager_policy   = var.default_node_pool.kubelet_config.topology_manager_policy
+        allowed_unsafe_sysctls    = var.default_node_pool.kubelet_config.allowed_unsafe_sysctls
+        container_log_max_size_mb = var.default_node_pool.kubelet_config.container_log_max_size_mb
+        container_log_max_line    = var.default_node_pool.kubelet_config.container_log_max_line
+        pod_max_pid               = var.default_node_pool.kubelet_config.pod_max_pids
+      }
+    }
+
+    dynamic "linux_os_config" {
+      for_each = var.default_node_pool.linux_os_config != null ? [1] : []
+
+      content {
+        swap_file_size_mb             = var.default_node_pool.linux_os_config.swap_file_size_mb
+        transparent_huge_page_enabled = var.default_node_pool.linux_os_config.transparent_huge_page_enabled
+        transparent_huge_page_defrag  = var.default_node_pool.linux_os_config.transparent_huge_page_defrag
+
+      }
+    }
+
+    tags = merge(
+      local.tags,
+      var.default_node_pool.tags,
+    )
   }
 
   dynamic "identity" {
