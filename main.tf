@@ -5,19 +5,18 @@
 */
 
 resource "azurerm_kubernetes_cluster" "main" {
-  name                = format("aks-%s", var.name)
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  dns_prefix          = replace(var.name, "-", "")
-  kubernetes_version  = local.kubernetes_version
+  name                 = format("aks-%s", var.name)
+  location             = var.location
+  resource_group_name  = var.resource_group_name
+  dns_prefix           = replace(var.name, "-", "")
+  kubernetes_version   = local.kubernetes_version
+  azure_policy_enabled = var.azure_policy_enabled
 
   default_node_pool {
-    name       = var.default_node_pool.name
-    node_count = var.default_node_pool.node_count
-    vm_size    = var.default_node_pool.vm_size
-
+    name           = var.default_node_pool.name
+    node_count     = var.default_node_pool.node_count
+    vm_size        = var.default_node_pool.vm_size
     vnet_subnet_id = var.network_profile.vnet_subnet_id
-
   }
 
   dynamic "identity" {

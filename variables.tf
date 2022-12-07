@@ -156,3 +156,9 @@ variable "automatic_bump_kubernetes_version" {
     include_preview = false
   }
 }
+
+variable "azure_policy_enabled" {
+  description = "Enable or disable Azure Policy for the cluster. Defaults to true."
+  type        = bool
+  default     = true
+}
