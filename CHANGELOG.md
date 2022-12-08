@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.0](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/compare/v1.1.0...v1.2.0) (2022-12-08)
+
+
+### Features
+
+* aad rbac ([c3097a2](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/commit/c3097a20e9831fd55f408df34f820c4b32fc967b)), closes [#7](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/issues/7)
+* added variable for azure policies ([d2f9f14](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/commit/d2f9f1435c55f5b4dba4c248d70ea68e253504de))
+* added various optional attributes ([f031c97](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/commit/f031c97b2ce9a93de88125c2bc19e5fa3681ed62)), closes [#8](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/issues/8)
+* added workload identity ([aa09aad](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/commit/aa09aadd1fcb57d9fc8c79decba2d9e47170ed63)), closes [#6](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/issues/6)
+
 ## [1.1.0](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/compare/v1.0.0...v1.1.0) (2022-11-16)
 
 
