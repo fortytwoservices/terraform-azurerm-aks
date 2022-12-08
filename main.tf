@@ -73,6 +73,16 @@ resource "azurerm_kubernetes_cluster" "main" {
     )
   }
 
+  azure_active_directory_role_based_access_control {
+    managed                = var.aad_rbac.managed
+    tenant_id              = var.aad_rbac.tenant_id
+    admin_group_object_ids = var.aad_rbac.admin_group_object_ids
+    azure_rbac_enabled     = var.aad_rbac.azure_rbac_enabled
+    client_app_id          = var.aad_rbac.client_app_id
+    server_app_id          = var.aad_rbac.server_app_id
+    server_app_secret      = var.aad_rbac.server_app_secret
+  }
+
   dynamic "identity" {
     # Identity block is active if the service_principal variable is not set
     for_each = var.service_principal == null ? [1] : []

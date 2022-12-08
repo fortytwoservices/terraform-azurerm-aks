@@ -143,6 +143,30 @@ variable "identity" {
   }
 }
 
+variable "aad_rbac" {
+  description = <<EOT
+  (Optional) Used to fill the azure_active_directory_role_based_access_control block for the Kubernetes cluster.
+  If nothing is specified, managed AAD RBAC will be enabled.
+
+  If managed is set to true, the admin_group_object_ids properties can be specified to a group that will have admin access to the cluster.
+  EOT
+  type = object({
+    managed                = optional(bool)
+    tenant_id              = optional(string)
+    admin_group_object_ids = optional(list(string))
+    azure_rbac_enabled     = optional(bool)
+    client_app_id          = optional(string)
+    server_app_id          = optional(string)
+    server_app_secret      = optional(string)
+  })
+  default = {
+    managed                = true
+    azure_rbac_enabled     = true
+    admin_group_object_ids = null
+  }
+
+}
+
 variable "service_principal" {
   description = <<EOT
   (Optional) The service principal block for the Kubernetes cluster.
