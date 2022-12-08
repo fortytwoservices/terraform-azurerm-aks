@@ -15,9 +15,8 @@ This is the repository for our Azure Kubernetes Service (AKS) Terraform module.
 
 ```hcl
 module "kubernetes" {
-  # source  = "amestofortytwo/kubernetes"
-  # version = "1.1.0"
-  source = "../../"
+  source  = "amestofortytwo/kubernetes"
+  version = "1.2.0"
 
   name                = "demo-prod-westeu"
   resource_group_name = azurerm_resource_group.demo.name
@@ -34,7 +33,7 @@ module "kubernetes" {
 ```hcl
 module "kubernetes" {
   source  = "amestofortytwo/kubernetes"
-  version = "1.1.0"
+  version = "1.2.0"
 
   name                = "demo-prod-westeu"
   resource_group_name = azurerm_resource_group.demo.name
