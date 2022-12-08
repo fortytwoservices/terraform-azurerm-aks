@@ -246,3 +246,9 @@ variable "api_server_authorized_ip_ranges" {
   type        = list(string)
   default     = null
 }
+
+variable "workload_identity_enabled" {
+  description = "(Optional) Enable or disable workload identity for the cluster. Enabling this also sets oidc_issuer_enabled to true."
+  type        = bool
+  default     = null
+}

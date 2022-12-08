@@ -12,6 +12,8 @@ resource "azurerm_kubernetes_cluster" "main" {
   kubernetes_version              = local.kubernetes_version
   azure_policy_enabled            = var.azure_policy_enabled
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
+  workload_identity_enabled       = var.workload_identity_enabled
+  oidc_issuer_enabled             = var.workload_identity_enabled == true ? true : null
 
   default_node_pool {
     name                 = var.default_node_pool.name
