@@ -9,15 +9,16 @@ on:
     paths: [ "**.tf", "CHANGELOG.md"]
 
 jobs:
-  project:
-    if: github.event_name == 'issues' || github.event_name == 'pull_request'
-    name: Add to project
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/add-to-project@v0.3.0
-        with:
-          project-url: https://github.com/orgs/amestofortytwo/projects/1
-          github-token: ${{ secrets.MARVIN_PAT }}
+#### Commented out to test beta functionality in projects ####
+#  project:
+#    if: github.event_name == 'issues' || github.event_name == 'pull_request'
+#    name: Add to project
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/add-to-project@v0.3.0
+#        with:
+#          project-url: https://github.com/orgs/amestofortytwo/projects/1
+#          github-token: ${{ secrets.MARVIN_PAT }}
 
   terraform:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
