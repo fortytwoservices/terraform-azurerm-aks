@@ -14,6 +14,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
   workload_identity_enabled       = var.workload_identity_enabled
   oidc_issuer_enabled             = var.workload_identity_enabled == true ? true : null
+  private_cluster_enabled         = var.private_cluster
 
   default_node_pool {
     name                 = var.default_node_pool.name

@@ -252,3 +252,9 @@ variable "workload_identity_enabled" {
   type        = bool
   default     = null
 }
+
+variable "private_cluster" {
+  description = "(Optional) Enable or disable private cluster for the cluster. Defaults to false."
+  type        = bool
+  default     = false
+}
