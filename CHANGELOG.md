@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v1.2.0...v1.3.0) (2023-03-15)
+
+
+### Features
+
+* added various exports ([e25f48c](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/e25f48c5b3bc4cdff20a407c03e07176a0908b92)), closes [#13](https://github.com/amestofortytwo/terraform-azurerm-aks/issues/13)
+* private cluster variables ([5b95223](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/5b95223535dee36d9ef911abc0a6aaa0c0a12d96)), closes [#10](https://github.com/amestofortytwo/terraform-azurerm-aks/issues/10)
+
 ## [1.2.0](https://github.com/amestofortytwo/terraform-azurerm-kubernetes/compare/v1.1.0...v1.2.0) (2022-12-08)
 
 
