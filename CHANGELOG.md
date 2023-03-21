@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v1.3.0...v1.3.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* **outputs:** wrong var reference ([bbbf729](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/bbbf7290336dc4d7a3cb3881022cceb28d53f5d4))
+
 ## [1.3.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v1.2.0...v1.3.0) (2023-03-15)
 
 
