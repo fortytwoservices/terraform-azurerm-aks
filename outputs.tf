@@ -30,5 +30,5 @@ output "kubelet_identity" {
 
 output "aks_credentials" {
   description = "The AZ CLI command to get credentials from your new cluster."
-  value       = format("az aks get-credentials --resource-group %s --name %s", var.resource_group, azurerm_kubernetes_cluster.main.name)
+  value       = format("az aks get-credentials --resource-group %s --name %s", var.resource_group_name, azurerm_kubernetes_cluster.main.name)
 }
