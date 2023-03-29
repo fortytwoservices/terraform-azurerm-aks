@@ -5,7 +5,7 @@
 */
 
 resource "azurerm_kubernetes_cluster" "main" {
-  name                            = format("aks-%s", var.name)
+  name                            = var.name
   location                        = var.location
   resource_group_name             = var.resource_group_name
   dns_prefix                      = replace(var.name, "-", "")
