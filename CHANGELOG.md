@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v1.3.1...v2.0.0) (2023-03-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **aks:** remove append aks name
+
+### Bug Fixes
+
+* **aks:** remove append aks name ([01ff382](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/01ff382fd8796396d6db019329cb31e1ce436598))
+
 ## [1.3.1](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v1.3.0...v1.3.1) (2023-03-21)
 
 
