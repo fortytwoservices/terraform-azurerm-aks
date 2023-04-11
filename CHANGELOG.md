@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v2.0.0...v2.1.0) (2023-04-11)
+
+
+### Features
+
+* **network:** added cilium related attributes ([4d32f1d](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/4d32f1d4818522dee03a5f8bfccf271016e17446)), closes [#28](https://github.com/amestofortytwo/terraform-azurerm-aks/issues/28)
+
+
+### Bug Fixes
+
+* **network:** pod sub id on additional pools ([d8595ee](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/d8595ee561ec3a0a43213a9e668741df08a10323))
+* node counts defaults ([ca90e23](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/ca90e234b70ff3d51d4a41bd9966e218844a24fa))
+
 ## [2.0.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v1.3.1...v2.0.0) (2023-03-29)
 
 
