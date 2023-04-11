@@ -106,18 +106,20 @@ resource "azurerm_kubernetes_cluster" "main" {
 
   # Network related settings
   network_profile {
-    network_plugin     = var.network_profile.network_plugin
-    network_policy     = var.network_profile.network_policy
-    load_balancer_sku  = var.network_profile.load_balancer_sku
-    outbound_type      = var.network_profile.outbound_type
-    dns_service_ip     = var.network_profile.dns_service_ip
-    docker_bridge_cidr = var.network_profile.docker_bridge_cidr
-    pod_cidr           = var.network_profile.pod_cidr
-    pod_cidrs          = var.network_profile.pod_cidrs
-    service_cidr       = var.network_profile.service_cidr
-    service_cidrs      = var.network_profile.service_cidrs
-    ip_versions        = var.network_profile.ip_versions
-    network_mode       = var.network_profile.network_mode
+    network_plugin      = var.network_profile.network_plugin
+    network_policy      = var.network_profile.network_policy
+    network_plugin_mode = var.network_profile.network_plugin_mode
+    load_balancer_sku   = var.network_profile.load_balancer_sku
+    outbound_type       = var.network_profile.outbound_type
+    dns_service_ip      = var.network_profile.dns_service_ip
+    docker_bridge_cidr  = var.network_profile.docker_bridge_cidr
+    pod_cidr            = var.network_profile.pod_cidr
+    pod_cidrs           = var.network_profile.pod_cidrs
+    service_cidr        = var.network_profile.service_cidr
+    service_cidrs       = var.network_profile.service_cidrs
+    ip_versions         = var.network_profile.ip_versions
+    network_mode        = var.network_profile.network_mode
+    ebpf_data_plane     = var.network_profile.ebpf_data_plane
   }
 
   dynamic "ingress_application_gateway" {
@@ -141,6 +143,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   node_count            = each.value.node_count
   vm_size               = each.value.vm_size == null ? var.default_node_pool.vm_size : each.value.vm_size
   vnet_subnet_id        = var.network_profile.vnet_subnet_id
+  pod_subnet_id         = var.network_profile.pod_subnet_id
   orchestrator_version  = each.value.orchestrator_version == null ? local.kubernetes_version : each.value.orchestrator_version
   max_pods              = each.value.max_pods
   node_labels           = each.value.node_labels
