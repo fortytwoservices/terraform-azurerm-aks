@@ -143,7 +143,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   node_count            = each.value.node_count
   vm_size               = each.value.vm_size == null ? var.default_node_pool.vm_size : each.value.vm_size
   vnet_subnet_id        = var.network_profile.vnet_subnet_id
-  pod_subnet_id         = var.network_profile.pod_subnet_id
+  pod_subnet_id         = each.value.pod_subnet_id
   orchestrator_version  = each.value.orchestrator_version == null ? local.kubernetes_version : each.value.orchestrator_version
   max_pods              = each.value.max_pods
   node_labels           = each.value.node_labels

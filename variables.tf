@@ -117,6 +117,7 @@ variable "additional_node_pools" {
     os_disk_size_gb      = optional(number)
     os_disk_type         = optional(string)
     vnet_subnet_id       = optional(string)
+    pod_subnet_id        = optional(string)
     max_pods             = optional(number)
     zones                = optional(list(string))
     scale_down_mode      = optional(string)
