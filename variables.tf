@@ -117,6 +117,7 @@ variable "additional_node_pools" {
     os_disk_size_gb      = optional(number)
     os_disk_type         = optional(string)
     vnet_subnet_id       = optional(string)
+    pod_subnet_id        = optional(string)
     max_pods             = optional(number)
     zones                = optional(list(string))
     scale_down_mode      = optional(string)
@@ -185,19 +186,21 @@ variable "network_profile" {
   If not specified, the network profile will be of type Azure.
   EOT
   type = object({
-    network_plugin     = string
-    network_policy     = optional(string)
-    network_mode       = optional(string)
-    vnet_subnet_id     = optional(string)
-    load_balancer_sku  = optional(string)
-    outbound_type      = optional(string)
-    dns_service_ip     = optional(string)
-    docker_bridge_cidr = optional(string)
-    service_cidr       = optional(string)
-    service_cidrs      = optional(list(string))
-    pod_cidr           = optional(string)
-    pod_cidrs          = optional(list(string))
-    ip_versions        = optional(list(string))
+    network_plugin      = string
+    network_plugin_mode = optional(string)
+    network_policy      = optional(string)
+    network_mode        = optional(string)
+    vnet_subnet_id      = optional(string)
+    load_balancer_sku   = optional(string)
+    outbound_type       = optional(string)
+    dns_service_ip      = optional(string)
+    docker_bridge_cidr  = optional(string)
+    service_cidr        = optional(string)
+    service_cidrs       = optional(list(string))
+    pod_cidr            = optional(string)
+    pod_cidrs           = optional(list(string))
+    ip_versions         = optional(list(string))
+    ebpf_data_plane     = optional(string)
   })
   default = {
     network_plugin = "azure"
