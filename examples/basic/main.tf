@@ -1,5 +1,5 @@
 module "kubernetes" {
-  source  = "amestofortytwo/aks/aurerm"
+  source  = "amestofortytwo/aks/azurerm"
   version = "2.1.0"
 
   name                = "demo-prod-westeu"
