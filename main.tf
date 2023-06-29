@@ -17,6 +17,27 @@ resource "azurerm_kubernetes_cluster" "main" {
   private_cluster_enabled         = var.private_cluster
   local_account_disabled          = var.local_account_disabled
 
+  dynamic "auto_scaler_profile" {
+    for_each = var.auto_scaler_profile != null ? [1] : []
+    content {
+      balance_similar_node_groups      = var.auto_scaler_profile.balance_similar_node_groups
+      expander                         = var.auto_scaler_profile.expander
+      max_graceful_termination_sec     = var.auto_scaler_profile.max_graceful_termination_sec
+      max_node_provisioning_time       = var.auto_scaler_profile.max_node_provisioning_time
+      max_unready_nodes                = var.auto_scaler_profile.max_unready_nodes
+      new_pod_scale_up_delay           = var.auto_scaler_profile.new_pod_scale_up_delay
+      scale_down_delay_after_add       = var.auto_scaler_profile.scale_down_delay_after_add
+      scale_down_delay_after_delete    = var.auto_scaler_profile.scale_down_delay_after_delete
+      scale_down_delay_after_failure   = var.auto_scaler_profile.scale_down_delay_after_failure
+      scale_down_unneeded              = var.auto_scaler_profile.scale_down_unneeded
+      scale_down_unready               = var.auto_scaler_profile.scale_down_unready
+      scale_down_utilization_threshold = var.auto_scaler_profile.scale_down_utilization_threshold
+      empty_bulk_delete_max            = var.auto_scaler_profile.empty_bulk_delete_max
+      skip_nodes_with_local_storage    = var.auto_scaler_profile.skip_nodes_with_local_storage
+      skip_nodes_with_system_pods      = var.auto_scaler_profile.skip_nodes_with_system_pods
+    }
+  }
+
   default_node_pool {
     name                 = var.default_node_pool.name
     node_count           = var.default_node_pool.node_count
