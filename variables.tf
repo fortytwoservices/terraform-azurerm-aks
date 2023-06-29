@@ -18,8 +18,9 @@ variable "location" {
 }
 
 variable "tags" {
-  description = "A mapping of tags to assign to the resources"
+  description = "(Optional) A mapping of tags to assign to the resources"
   type        = map(string)
+  default     = {}
 }
 
 variable "default_node_pool" {
