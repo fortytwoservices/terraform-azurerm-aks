@@ -303,3 +303,14 @@ variable "local_account_disabled" {
   type        = bool
   default     = true
 }
+
+variable "sku_tier" {
+  description = "(Optional) The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, and Standard (which includes the Uptime SLA). Defaults to Free."
+  type        = string
+  default     = "Free"
+
+  validation {
+    condition     = contains(["Free", "Standard"], var.sku_tier)
+    error_message = "Value must be either Free or Standard"
+  }
+}
