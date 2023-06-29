@@ -262,3 +262,9 @@ variable "private_cluster" {
   type        = bool
   default     = false
 }
+
+variable "local_account_disabled" {
+  description = "(Optional) Enable or disable local account for the cluster. Defaults to true."
+  type        = bool
+  default     = true
+}

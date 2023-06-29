@@ -15,6 +15,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   workload_identity_enabled       = var.workload_identity_enabled
   oidc_issuer_enabled             = var.workload_identity_enabled == true ? true : null
   private_cluster_enabled         = var.private_cluster
+  local_account_disabled          = var.local_account_disabled
 
   default_node_pool {
     name                 = var.default_node_pool.name
@@ -129,6 +130,16 @@ resource "azurerm_kubernetes_cluster" "main" {
       gateway_id   = var.ingress_application_gateway.gateway_id
       subnet_cidr  = var.ingress_application_gateway.subnet_cidr
       subnet_id    = var.ingress_application_gateway.subnet_id
+    }
+  }
+
+  lifecycle {
+    precondition {
+      condition     = (!(var.local_account_disabled == true && var.aad_rbac.managed == false))
+      error_message = <<EOF
+If local_account_disabled is set to true, it is required to enable Kubernetes RBAC and AKS-managed Azure AD integration. 
+See the documentation for more information (https://docs.microsoft.com/azure/aks/managed-aad#azure-ad-authentication-overview).
+      EOF
     }
   }
 
