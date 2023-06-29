@@ -16,6 +16,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   oidc_issuer_enabled             = var.workload_identity_enabled == true ? true : null
   private_cluster_enabled         = var.private_cluster
   local_account_disabled          = var.local_account_disabled
+  sku_tier                        = var.sku_tier
 
   dynamic "auto_scaler_profile" {
     for_each = var.auto_scaler_profile != null ? [1] : []
