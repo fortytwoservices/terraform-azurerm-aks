@@ -144,6 +144,18 @@ resource "azurerm_kubernetes_cluster" "main" {
     ebpf_data_plane     = var.network_profile.ebpf_data_plane
   }
 
+  # Storage related settings
+  dynamic "storage_profile" {
+    for_each = var.storage_profile != null ? [1] : []
+    content {
+      blob_driver_enabled         = var.storage_profile.blob_driver_enabled
+      disk_driver_enabled         = var.storage_profile.disk_driver_enabled
+      disk_driver_version         = var.storage_profile.disk_driver_version
+      file_driver_enabled         = var.storage_profile.file_driver_enabled
+      snapshot_controller_enabled = var.storage_profile.snapshot_controller_enabled
+    }
+  }
+
   dynamic "ingress_application_gateway" {
     for_each = var.ingress_application_gateway != null ? [1] : []
     content {
