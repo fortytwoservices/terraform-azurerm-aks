@@ -1,9 +1,5 @@
 variable "name" {
-  description = <<EOT
-  The name of the managed Kubernetes cluster.
-
-  Will prefix the name of the cluster with `aks-`.
-  EOT
+  description = "The name of the managed Kubernetes cluster."
   type        = string
 }
 
