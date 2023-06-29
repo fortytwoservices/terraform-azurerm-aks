@@ -1,3 +1,8 @@
+output "aks_id" {
+  description = "The Kubernetes Managed Cluster ID."
+  value       = azurerm_kubernetes_cluster.main.id
+}
+
 output "host" {
   description = "The Kubernetes cluster server host."
   value       = var.local_account_disabled ? null : try(azurerm_kubernetes_cluster.main.kube_config[0].host, null)
