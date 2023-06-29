@@ -226,6 +226,23 @@ variable "network_profile" {
   }
 }
 
+variable "storage_profile" {
+  description = "(Optional) The storage profile block for the Kubernetes cluster."
+  type = object({
+    blob_driver_enabled         = optional(bool)
+    disk_driver_enabled         = optional(bool)
+    disk_driver_version         = optional(string)
+    file_driver_enabled         = optional(bool)
+    snapshot_controller_enabled = optional(bool)
+  })
+  default = null
+
+  validation {
+    condition     = var.storage_profile == null || can(regex("^(v1|v2)$", var.storage_profile.disk_driver_version))
+    error_message = "Value can only be 'v1' or 'v2'."
+  }
+}
+
 variable "ingress_application_gateway" {
   description = "Values used for deployment of the ingress application gateway"
   type = object({
