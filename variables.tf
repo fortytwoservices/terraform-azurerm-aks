@@ -238,7 +238,7 @@ variable "storage_profile" {
   default = null
 
   validation {
-    condition     = var.storage_profile == null || can(regex("^(v1|v2)$", var.storage_profile.disk_driver_version))
+    condition     = var.storage_profile == null || var.storage_profile.disk_driver_version == null || can(regex("^(v1|v2)$", var.storage_profile.disk_driver_version))
     error_message = "Value can only be 'v1' or 'v2'."
   }
 }
