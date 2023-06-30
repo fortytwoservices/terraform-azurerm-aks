@@ -342,15 +342,15 @@ variable "microsoft_defender" {
 
 variable "azure_monitor" {
   description = <<EOF
-  (Optional) Enable or disable Azure Monitor for the cluster. Defaults to false.
+  (Optional) Enable or disable Azure Monitor for the cluster. Defaults to true.
   If neither azure_monitor.log_analytics_workspace_id nor default_log_analytics_workspace_id is specified, a new Log Analytics Workspace will be created with the same name as the AKS cluster and in the same resource group.
   EOF
   type = object({
-    enabled                    = optional(bool, false)
+    enabled                    = optional(bool, true)
     log_analytics_workspace_id = optional(string, null)
   })
   default = {
-    enabled                    = false
+    enabled                    = true
     log_analytics_workspace_id = null
   }
 }
