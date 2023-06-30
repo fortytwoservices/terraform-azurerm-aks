@@ -4,6 +4,15 @@
 * This is the repository for our Azure Kubernetes Service (AKS) Terraform module.
 */
 
+resource "azurerm_log_analytics_workspace" "main" {
+  count               = (var.azure_monitor.enabled && null == var.azure_monitor.log_analytics_workspace_id && null == var.default_log_analytics_workspace_id) || (var.microsoft_defender.enabled && null == var.microsoft_defender.log_analytics_workspace_id && null == var.default_log_analytics_workspace_id) ? 1 : 0
+  name                = var.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
 resource "azurerm_kubernetes_cluster" "main" {
   name                            = var.name
   location                        = var.location
@@ -154,6 +163,20 @@ resource "azurerm_kubernetes_cluster" "main" {
       disk_driver_version         = var.storage_profile.disk_driver_version
       file_driver_enabled         = var.storage_profile.file_driver_enabled
       snapshot_controller_enabled = var.storage_profile.snapshot_controller_enabled
+    }
+  }
+
+  dynamic "microsoft_defender" {
+    for_each = var.microsoft_defender.enabled ? [1] : []
+    content {
+      log_analytics_workspace_id = var.microsoft_defender.log_analytics_workspace_id != null ? var.microsoft_defender.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main.0.id
+    }
+  }
+
+  dynamic "oms_agent" {
+    for_each = var.azure_monitor.enabled ? [1] : []
+    content {
+      log_analytics_workspace_id = var.azure_monitor.log_analytics_workspace_id != null ? var.azure_monitor.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main.0.id
     }
   }
 

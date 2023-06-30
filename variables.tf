@@ -314,3 +314,43 @@ variable "sku_tier" {
     error_message = "Value must be either Free or Standard"
   }
 }
+
+variable "default_log_analytics_workspace_id" {
+  description = <<EOF
+  (Optional) The id of the Log Analytics Workspace to use as default for Defender and Azure Monitor.
+  Each of these services can be configured to use a different Log Analytics Workspace, which will override this setting.
+  If neither this nor the service spesific variable is specified, and the services are enabled, a new Log Analytics Workspace will be created.
+  EOF
+  type        = string
+  default     = null
+}
+
+variable "microsoft_defender" {
+  description = <<EOF
+  (Optional) Enable or disable Microsoft Defender (Security profile) for the cluster. Defaults to false.
+  If neither microsoft_defender.log_analytics_workspace_id nor default_log_analytics_workspace_id is specified, a new Log Analytics Workspace will be created with the same name as the AKS cluster and in the same resource group.
+  EOF
+  type = object({
+    enabled                    = optional(bool, false)
+    log_analytics_workspace_id = optional(string, null)
+  })
+  default = {
+    enabled                    = false
+    log_analytics_workspace_id = null
+  }
+}
+
+variable "azure_monitor" {
+  description = <<EOF
+  (Optional) Enable or disable Azure Monitor for the cluster. Defaults to false.
+  If neither azure_monitor.log_analytics_workspace_id nor default_log_analytics_workspace_id is specified, a new Log Analytics Workspace will be created with the same name as the AKS cluster and in the same resource group.
+  EOF
+  type = object({
+    enabled                    = optional(bool, false)
+    log_analytics_workspace_id = optional(string, null)
+  })
+  default = {
+    enabled                    = false
+    log_analytics_workspace_id = null
+  }
+}
