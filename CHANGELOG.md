@@ -1,5 +1,29 @@
 # Changelog
 
+## [3.0.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v2.1.0...v3.0.0) (2023-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* local_account_disabled defaults to true, which might cause issues for existing clusters
+
+### Features
+
+* add auto scaler profile ([7159113](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/7159113aeb5f6336950aa9f96ea54be8d405699a))
+* add storage profile ([14930e9](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/14930e98d415aefb6e880b602e121a7034350168))
+* add support for defender and azure monitor enabling ([53b558e](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/53b558e002eae443e0addb472257602e865672ad))
+* Add support for local_account_disabled ([e61064c](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/e61064cac992c965cec24dd98ddb4564bab07e5a))
+* add the option to specify sku_tier ([38f130d](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/38f130d27e7841fe3b7259b550fead16db3b6338))
+* Adds new output aks_id ([0012e83](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/0012e83dd5062619593d90a1d40bb6327ffad8c9))
+* set azure monitor to default true ([d0b1799](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/d0b179907ec92a4456615349c52b5c77d9662402))
+* tag should be optional ([54989dd](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/54989dd98ac60806e2806ac649851f3d22635141))
+
+
+### Bug Fixes
+
+* fix issue with validation of storage_profile ([7f86a8e](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/7f86a8eb0b75318be68881f39542c69f934a9379))
+* validation fails if other storage_profile options than disk_driver_version is set ([8a0c927](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/8a0c927a8133006f66cbaf8bfa388ca695bdec12))
+
 ## [2.1.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v2.0.0...v2.1.0) (2023-04-11)
 
 
