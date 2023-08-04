@@ -37,3 +37,8 @@ output "aks_credentials" {
   description = "The AZ CLI command to get credentials from your new cluster."
   value       = format("az aks get-credentials --resource-group %s --name %s", var.resource_group_name, azurerm_kubernetes_cluster.main.name)
 }
+
+output "identity" {
+  description = "Block of the parameters from the Managed Service Identity."
+  value       = var.service_principal == null ? azurerm_kubernetes_cluster.main.identity : null
+}
