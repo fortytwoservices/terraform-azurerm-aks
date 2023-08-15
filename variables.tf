@@ -315,6 +315,17 @@ variable "sku_tier" {
   }
 }
 
+variable "automatic_channel_upgrade" {
+  description = "(Optional) The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable. Omitting this field sets this value to none."
+  type        = string
+  default     = "none"
+
+  validation {
+    condition     = contains(["patch", "rapid", "none", "stable", "node-image"], var.automatic_channel_upgrade)
+    error_message = "Value must be either patch, rapid, none, stable, or node-image"
+  }
+}
+
 variable "default_log_analytics_workspace_id" {
   description = <<EOF
   (Optional) The id of the Log Analytics Workspace to use as default for Defender and Azure Monitor.
