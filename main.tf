@@ -65,6 +65,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     message_of_the_day            = var.default_node_pool.message_of_the_day
     node_public_ip_prefix_id      = var.default_node_pool.node_public_ip_prefix_id
     node_labels                   = var.default_node_pool.node_labels
+    node_taints                   = var.default_node_pool.node_taints
     only_critical_addons_enabled  = var.default_node_pool.only_critical_addons_enabled
     os_disk_size_gb               = var.default_node_pool.os_disk_size_gb
     os_disk_type                  = var.default_node_pool.os_disk_type
@@ -216,6 +217,9 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   max_pods              = each.value.max_pods
   node_labels           = each.value.node_labels
   node_taints           = each.value.node_taints
+  priority              = each.value.priority
+  spot_max_price        = each.value.spot_max_price
+  eviction_policy       = each.value.eviction_policy
   enable_auto_scaling   = each.value.enable_auto_scaling
   min_count             = each.value.min_count
   max_count             = each.value.max_count
