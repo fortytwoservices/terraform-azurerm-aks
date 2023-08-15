@@ -51,6 +51,9 @@ resource "azurerm_kubernetes_cluster" "main" {
   default_node_pool {
     name                 = var.default_node_pool.name
     node_count           = var.default_node_pool.node_count
+    enable_auto_scaling  = var.default_node_pool.enable_auto_scaling
+    min_count            = var.default_node_pool.autoscale != null ? var.default_node_pool.autoscale.min_count : null
+    max_count            = var.default_node_pool.autoscale != null ? var.default_node_pool.autoscale.max_count : null
     vm_size              = var.default_node_pool.vm_size
     vnet_subnet_id       = var.network_profile.vnet_subnet_id
     orchestrator_version = lookup(var.default_node_pool, "orchestration_version", false) ? var.default_node_pool.orchestration_version : local.kubernetes_version
