@@ -122,6 +122,16 @@ variable "additional_node_pools" {
     kubelet_disk_type    = optional(string)
     node_taints          = optional(list(string))
     tags                 = optional(map(string))
+
+    linux_os_config = optional(object({
+      swap_file_size_mb             = optional(number)
+      transparent_huge_page_enabled = optional(bool)
+      transparent_huge_page_defrag  = optional(string)
+
+      sysctl_config = optional(object({
+        vm_max_map_count = optional(number)
+      }))
+    }))
   }))
   default = []
 }

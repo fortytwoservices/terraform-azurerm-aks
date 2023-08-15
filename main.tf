@@ -224,5 +224,24 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   kubelet_disk_type     = each.value.kubelet_disk_type
   ultra_ssd_enabled     = each.value.ultra_ssd_enabled
   zones                 = each.value.zones
-  tags                  = merge(local.tags, each.value.tags)
+
+  dynamic "linux_os_config" {
+    for_each = each.value.linux_os_config != null ? [1] : []
+
+    content {
+      swap_file_size_mb             = each.value.linux_os_config.swap_file_size_mb
+      transparent_huge_page_enabled = each.value.linux_os_config.transparent_huge_page_enabled
+      transparent_huge_page_defrag  = each.value.linux_os_config.transparent_huge_page_defrag
+
+      dynamic "sysctl_config" {
+        for_each = each.value.linux_os_config.sysctl_config != null ? [1] : []
+
+        content {
+          vm_max_map_count = each.value.linux_os_config.sysctl_config.vm_max_map_count
+        }
+      }
+    }
+  }
+
+  tags = merge(local.tags, each.value.tags)
 }
