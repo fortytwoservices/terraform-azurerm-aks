@@ -315,6 +315,30 @@ variable "sku_tier" {
   }
 }
 
+variable "kms_enabled" {
+  type        = bool
+  default     = false
+  description = "(Optional) Enable Azure Key Vault Key Management Service."
+  nullable    = false
+}
+
+variable "kms_key_vault_key_id" {
+  type        = string
+  default     = null
+  description = "(Optional) Identifier of Azure Key Vault key. When Azure Key Vault key management service is enabled, this field is required and must be a valid key identifier."
+}
+
+variable "kms_key_vault_network_access" {
+  type        = string
+  default     = "Private"
+  description = "(Optional) Network Access of Azure Key Vault. Possible values are: 'Private' and 'Public'. The default value is 'Private'."
+
+  validation {
+    condition     = contains(["Private", "Public"], var.kms_key_vault_network_access)
+    error_message = "Possible values are 'Private' and 'Public'"
+  }
+}
+
 variable "default_log_analytics_workspace_id" {
   description = <<EOF
   (Optional) The id of the Log Analytics Workspace to use as default for Defender and Azure Monitor.

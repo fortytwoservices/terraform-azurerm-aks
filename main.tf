@@ -136,6 +136,16 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
+  dynamic "key_management_service" {
+    for_each = var.kms_enabled ? ["key_management_service"] : []
+
+    content {
+      key_vault_key_id         = var.kms_key_vault_key_id
+      key_vault_network_access = var.kms_key_vault_network_access
+    }
+  }
+
+
   # Network related settings
   network_profile {
     network_plugin      = var.network_profile.network_plugin
