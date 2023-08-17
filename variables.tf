@@ -315,6 +315,12 @@ variable "sku_tier" {
   }
 }
 
+variable "disk_encryption_set_id" {
+  type        = string
+  default     = null
+  description = "(Optional) The ID of the Disk Encryption Set which should be used for the Nodes and Volumes. More information [can be found in the documentation](https://docs.microsoft.com/azure/aks/azure-disk-customer-managed-keys). Changing this forces a new resource to be created."
+}
+
 variable "default_log_analytics_workspace_id" {
   description = <<EOF
   (Optional) The id of the Log Analytics Workspace to use as default for Defender and Azure Monitor.
