@@ -46,6 +46,7 @@ variable "default_node_pool" {
     message_of_the_day            = optional(string)
     node_public_ip_prefix_id      = optional(string)
     node_labels                   = optional(map(string))
+    node_taints                   = optional(list(string))
     only_critical_addons_enabled  = optional(bool)
     orchestrator_version          = optional(string)
     os_disk_size_gb               = optional(number)
@@ -122,6 +123,9 @@ variable "additional_node_pools" {
     kubelet_disk_type    = optional(string)
     node_taints          = optional(list(string))
     tags                 = optional(map(string))
+    priority             = optional(string)
+    spot_max_price       = optional(string)
+    eviction_policy      = optional(string)
   }))
   default = []
 }
