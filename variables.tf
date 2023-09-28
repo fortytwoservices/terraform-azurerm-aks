@@ -46,6 +46,7 @@ variable "default_node_pool" {
     message_of_the_day            = optional(string)
     node_public_ip_prefix_id      = optional(string)
     node_labels                   = optional(map(string))
+    node_taints                   = optional(list(string))
     only_critical_addons_enabled  = optional(bool)
     orchestrator_version          = optional(string)
     os_disk_size_gb               = optional(number)
@@ -122,7 +123,10 @@ variable "additional_node_pools" {
     kubelet_disk_type    = optional(string)
     node_taints          = optional(list(string))
     tags                 = optional(map(string))
-
+    priority             = optional(string)
+    spot_max_price       = optional(string)
+    eviction_policy      = optional(string)
+    
     linux_os_config = optional(object({
       swap_file_size_mb             = optional(number)
       transparent_huge_page_enabled = optional(bool)
@@ -333,6 +337,16 @@ variable "default_log_analytics_workspace_id" {
   EOF
   type        = string
   default     = null
+}
+
+variable "key_vault_secrets_provider" {
+  description = "(Optional) Enable or disable Azure Key Vault Secret Providers for the cluster. Defaults to false."
+  type = object({
+    enabled                  = optional(bool, false)
+    secret_rotation_enabled  = optional(bool, false)
+    secret_rotation_interval = optional(string, null)
+  })
+  default = {}
 }
 
 variable "microsoft_defender" {
