@@ -222,6 +222,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   for_each = { for np in var.additional_node_pools : np.name => np }
 
   name                  = each.value.name
+  os_type               = each.value.os_type
+  os_sku                = each.value.os_sku
   kubernetes_cluster_id = azurerm_kubernetes_cluster.main.id
   node_count            = each.value.node_count
   vm_size               = each.value.vm_size == null ? var.default_node_pool.vm_size : each.value.vm_size
