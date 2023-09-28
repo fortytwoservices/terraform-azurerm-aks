@@ -3,6 +3,11 @@ output "aks_id" {
   value       = azurerm_kubernetes_cluster.main.id
 }
 
+output "oidc_issuer_url" {
+  description = "The OIDC issuer URL that is associated with the cluster."
+  value       = azurerm_kubernetes_cluster.main.oidc_issuer_url
+}
+
 output "host" {
   description = "The Kubernetes cluster server host."
   value       = var.local_account_disabled ? null : try(azurerm_kubernetes_cluster.main.kube_config[0].host, null)
