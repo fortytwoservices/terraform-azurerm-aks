@@ -43,6 +43,11 @@ output "aks_credentials" {
   value       = format("az aks get-credentials --resource-group %s --name %s", var.resource_group_name, azurerm_kubernetes_cluster.main.name)
 }
 
+output "secret_identity" {
+  description = "Block of the parameters from the Key Vault Secrets Provider."
+  value       = var.key_vault_secrets_provider.enabled ? azurerm_kubernetes_cluster.main.key_vault_secrets_provider[0].secret_identity[0] : null
+}
+
 output "identity" {
   description = "Block of the parameters from the Managed Service Identity."
   value       = var.service_principal == null ? azurerm_kubernetes_cluster.main.identity : null

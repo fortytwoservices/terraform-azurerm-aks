@@ -325,6 +325,16 @@ variable "default_log_analytics_workspace_id" {
   default     = null
 }
 
+variable "key_vault_secrets_provider" {
+  description = "(Optional) Enable or disable Azure Key Vault Secret Providers for the cluster. Defaults to false."
+  type = object({
+    enabled                  = optional(bool, false)
+    secret_rotation_enabled  = optional(bool, false)
+    secret_rotation_interval = optional(string, null)
+  })
+  default = {}
+}
+
 variable "microsoft_defender" {
   description = <<EOF
   (Optional) Enable or disable Microsoft Defender (Security profile) for the cluster. Defaults to false.

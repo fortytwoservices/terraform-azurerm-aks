@@ -166,6 +166,14 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
+  dynamic "key_vault_secrets_provider" {
+    for_each = var.key_vault_secrets_provider.enabled ? [1] : []
+    content {
+      secret_rotation_enabled  = var.key_vault_secrets_provider.secret_rotation_enabled
+      secret_rotation_interval = var.key_vault_secrets_provider.secret_rotation_interval != null ? var.key_vault_secrets_provider.secret_rotation_interval : "2m"
+    }
+  }
+
   dynamic "microsoft_defender" {
     for_each = var.microsoft_defender.enabled ? [1] : []
     content {
