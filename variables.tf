@@ -126,7 +126,7 @@ variable "additional_node_pools" {
     priority             = optional(string)
     spot_max_price       = optional(string)
     eviction_policy      = optional(string)
-    
+
     linux_os_config = optional(object({
       swap_file_size_mb             = optional(number)
       transparent_huge_page_enabled = optional(bool)
