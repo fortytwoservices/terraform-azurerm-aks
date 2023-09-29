@@ -11,6 +11,8 @@ resource "azurerm_log_analytics_workspace" "main" {
   resource_group_name = var.resource_group_name
   sku                 = "PerGB2018"
   retention_in_days   = 30
+
+  tags = local.tags
 }
 
 resource "azurerm_kubernetes_cluster" "main" {
@@ -26,6 +28,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   private_cluster_enabled         = var.private_cluster
   local_account_disabled          = var.local_account_disabled
   sku_tier                        = var.sku_tier
+  automatic_channel_upgrade       = var.automatic_channel_upgrade
   disk_encryption_set_id          = var.disk_encryption_set_id
 
   dynamic "auto_scaler_profile" {
@@ -52,6 +55,9 @@ resource "azurerm_kubernetes_cluster" "main" {
   default_node_pool {
     name                 = var.default_node_pool.name
     node_count           = var.default_node_pool.node_count
+    enable_auto_scaling  = var.default_node_pool.enable_auto_scaling
+    min_count            = var.default_node_pool.autoscale != null ? var.default_node_pool.autoscale.min_count : null
+    max_count            = var.default_node_pool.autoscale != null ? var.default_node_pool.autoscale.max_count : null
     vm_size              = var.default_node_pool.vm_size
     vnet_subnet_id       = var.network_profile.vnet_subnet_id
     orchestrator_version = lookup(var.default_node_pool, "orchestration_version", false) ? var.default_node_pool.orchestration_version : local.kubernetes_version
@@ -66,6 +72,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     message_of_the_day            = var.default_node_pool.message_of_the_day
     node_public_ip_prefix_id      = var.default_node_pool.node_public_ip_prefix_id
     node_labels                   = var.default_node_pool.node_labels
+    node_taints                   = var.default_node_pool.node_taints
     only_critical_addons_enabled  = var.default_node_pool.only_critical_addons_enabled
     os_disk_size_gb               = var.default_node_pool.os_disk_size_gb
     os_disk_type                  = var.default_node_pool.os_disk_type
@@ -137,6 +144,16 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
+  dynamic "key_management_service" {
+    for_each = var.kms_enabled ? ["key_management_service"] : []
+
+    content {
+      key_vault_key_id         = var.kms_key_vault_key_id
+      key_vault_network_access = var.kms_key_vault_network_access
+    }
+  }
+
+
   # Network related settings
   network_profile {
     network_plugin      = var.network_profile.network_plugin
@@ -164,6 +181,14 @@ resource "azurerm_kubernetes_cluster" "main" {
       disk_driver_version         = var.storage_profile.disk_driver_version
       file_driver_enabled         = var.storage_profile.file_driver_enabled
       snapshot_controller_enabled = var.storage_profile.snapshot_controller_enabled
+    }
+  }
+
+  dynamic "key_vault_secrets_provider" {
+    for_each = var.key_vault_secrets_provider.enabled ? [1] : []
+    content {
+      secret_rotation_enabled  = var.key_vault_secrets_provider.secret_rotation_enabled
+      secret_rotation_interval = var.key_vault_secrets_provider.secret_rotation_interval != null ? var.key_vault_secrets_provider.secret_rotation_interval : "2m"
     }
   }
 
@@ -208,6 +233,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   for_each = { for np in var.additional_node_pools : np.name => np }
 
   name                  = each.value.name
+  os_type               = each.value.os_type
+  os_sku                = each.value.os_sku
   kubernetes_cluster_id = azurerm_kubernetes_cluster.main.id
   node_count            = each.value.node_count
   vm_size               = each.value.vm_size == null ? var.default_node_pool.vm_size : each.value.vm_size
@@ -217,6 +244,9 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   max_pods              = each.value.max_pods
   node_labels           = each.value.node_labels
   node_taints           = each.value.node_taints
+  priority              = each.value.priority
+  spot_max_price        = each.value.spot_max_price
+  eviction_policy       = each.value.eviction_policy
   enable_auto_scaling   = each.value.enable_auto_scaling
   min_count             = each.value.min_count
   max_count             = each.value.max_count
@@ -225,5 +255,24 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   kubelet_disk_type     = each.value.kubelet_disk_type
   ultra_ssd_enabled     = each.value.ultra_ssd_enabled
   zones                 = each.value.zones
-  tags                  = merge(local.tags, each.value.tags)
+
+  dynamic "linux_os_config" {
+    for_each = each.value.linux_os_config != null ? [1] : []
+
+    content {
+      swap_file_size_mb             = each.value.linux_os_config.swap_file_size_mb
+      transparent_huge_page_enabled = each.value.linux_os_config.transparent_huge_page_enabled
+      transparent_huge_page_defrag  = each.value.linux_os_config.transparent_huge_page_defrag
+
+      dynamic "sysctl_config" {
+        for_each = each.value.linux_os_config.sysctl_config != null ? [1] : []
+
+        content {
+          vm_max_map_count = each.value.linux_os_config.sysctl_config.vm_max_map_count
+        }
+      }
+    }
+  }
+
+  tags = merge(local.tags, each.value.tags)
 }

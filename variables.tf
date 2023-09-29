@@ -46,6 +46,7 @@ variable "default_node_pool" {
     message_of_the_day            = optional(string)
     node_public_ip_prefix_id      = optional(string)
     node_labels                   = optional(map(string))
+    node_taints                   = optional(list(string))
     only_critical_addons_enabled  = optional(bool)
     orchestrator_version          = optional(string)
     os_disk_size_gb               = optional(number)
@@ -122,6 +123,19 @@ variable "additional_node_pools" {
     kubelet_disk_type    = optional(string)
     node_taints          = optional(list(string))
     tags                 = optional(map(string))
+    priority             = optional(string)
+    spot_max_price       = optional(string)
+    eviction_policy      = optional(string)
+
+    linux_os_config = optional(object({
+      swap_file_size_mb             = optional(number)
+      transparent_huge_page_enabled = optional(bool)
+      transparent_huge_page_defrag  = optional(string)
+
+      sysctl_config = optional(object({
+        vm_max_map_count = optional(number)
+      }))
+    }))
   }))
   default = []
 }
@@ -304,6 +318,36 @@ variable "local_account_disabled" {
   default     = true
 }
 
+variable "disk_encryption_set_id" {
+  type        = string
+  default     = null
+  description = "(Optional) The ID of the Disk Encryption Set which should be used for the Nodes and Volumes. More information [can be found in the documentation](https://docs.microsoft.com/azure/aks/azure-disk-customer-managed-keys). Changing this forces a new resource to be created."
+}
+
+variable "kms_enabled" {
+  type        = bool
+  default     = false
+  description = "(Optional) Enable Azure Key Vault Key Management Service."
+  nullable    = false
+}
+
+variable "kms_key_vault_key_id" {
+  type        = string
+  default     = null
+  description = "(Optional) Identifier of Azure Key Vault key. When Azure Key Vault key management service is enabled, this field is required and must be a valid key identifier."
+}
+
+variable "kms_key_vault_network_access" {
+  type        = string
+  default     = "Private"
+  description = "(Optional) Network Access of Azure Key Vault. Possible values are: 'Private' and 'Public'. The default value is 'Private'."
+
+  validation {
+    condition     = contains(["Private", "Public"], var.kms_key_vault_network_access)
+    error_message = "Possible values are 'Private' and 'Public'"
+  }
+}
+
 variable "sku_tier" {
   description = "(Optional) The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, and Standard (which includes the Uptime SLA). Defaults to Free."
   type        = string
@@ -315,10 +359,15 @@ variable "sku_tier" {
   }
 }
 
-variable "disk_encryption_set_id" {
+variable "automatic_channel_upgrade" {
+  description = "(Optional) The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable. Omitting this field sets this value to none."
   type        = string
-  default     = null
-  description = "(Optional) The ID of the Disk Encryption Set which should be used for the Nodes and Volumes. More information [can be found in the documentation](https://docs.microsoft.com/azure/aks/azure-disk-customer-managed-keys). Changing this forces a new resource to be created."
+  default     = "none"
+
+  validation {
+    condition     = contains(["patch", "rapid", "none", "stable", "node-image"], var.automatic_channel_upgrade)
+    error_message = "Value must be either patch, rapid, none, stable, or node-image"
+  }
 }
 
 variable "default_log_analytics_workspace_id" {
@@ -329,6 +378,16 @@ variable "default_log_analytics_workspace_id" {
   EOF
   type        = string
   default     = null
+}
+
+variable "key_vault_secrets_provider" {
+  description = "(Optional) Enable or disable Azure Key Vault Secret Providers for the cluster. Defaults to false."
+  type = object({
+    enabled                  = optional(bool, false)
+    secret_rotation_enabled  = optional(bool, false)
+    secret_rotation_interval = optional(string, null)
+  })
+  default = {}
 }
 
 variable "microsoft_defender" {

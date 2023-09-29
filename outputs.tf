@@ -3,6 +3,11 @@ output "aks_id" {
   value       = azurerm_kubernetes_cluster.main.id
 }
 
+output "oidc_issuer_url" {
+  description = "The OIDC issuer URL that is associated with the cluster."
+  value       = azurerm_kubernetes_cluster.main.oidc_issuer_url
+}
+
 output "host" {
   description = "The Kubernetes cluster server host."
   value       = var.local_account_disabled ? null : try(azurerm_kubernetes_cluster.main.kube_config[0].host, null)
@@ -36,6 +41,11 @@ output "kubelet_identity" {
 output "aks_credentials" {
   description = "The AZ CLI command to get credentials from your new cluster."
   value       = format("az aks get-credentials --resource-group %s --name %s", var.resource_group_name, azurerm_kubernetes_cluster.main.name)
+}
+
+output "secret_identity" {
+  description = "Block of the parameters from the Key Vault Secrets Provider."
+  value       = var.key_vault_secrets_provider.enabled ? azurerm_kubernetes_cluster.main.key_vault_secrets_provider[0].secret_identity[0] : null
 }
 
 output "identity" {
