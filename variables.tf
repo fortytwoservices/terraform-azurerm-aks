@@ -318,6 +318,30 @@ variable "local_account_disabled" {
   default     = true
 }
 
+variable "kms_enabled" {
+  type        = bool
+  default     = false
+  description = "(Optional) Enable Azure Key Vault Key Management Service."
+  nullable    = false
+}
+
+variable "kms_key_vault_key_id" {
+  type        = string
+  default     = null
+  description = "(Optional) Identifier of Azure Key Vault key. When Azure Key Vault key management service is enabled, this field is required and must be a valid key identifier."
+}
+
+variable "kms_key_vault_network_access" {
+  type        = string
+  default     = "Private"
+  description = "(Optional) Network Access of Azure Key Vault. Possible values are: 'Private' and 'Public'. The default value is 'Private'."
+
+  validation {
+    condition     = contains(["Private", "Public"], var.kms_key_vault_network_access)
+    error_message = "Possible values are 'Private' and 'Public'"
+  }
+}
+
 variable "sku_tier" {
   description = "(Optional) The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, and Standard (which includes the Uptime SLA). Defaults to Free."
   type        = string
