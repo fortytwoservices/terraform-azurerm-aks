@@ -1,5 +1,26 @@
 # Changelog
 
+## [3.1.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.0.0...v3.1.0) (2023-09-29)
+
+
+### Features
+
+* add output for managed identity block ([8185de7](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/8185de705064ba7bd60b09c50d1e232267b16c33))
+* add support for auto scaling of default node pool ([4b34c76](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/4b34c765b7030579006eac88bc83d1f96942940a))
+* add support for automatic_channel_upgrade ([1b6e3ef](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/1b6e3efe6c0fe629470425af5c1fc17da4c90f16))
+* add support for des and encryption-at-rest with cmk ([d2802f7](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/d2802f7124b6464ed4ca0a8394e4a9690eb9ae6b))
+* add support for enabling key vault secrets provider ([a3240b5](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/a3240b56675be5565c0521ab3d5c497c9af0a996))
+* add support for os config on additional node pool ([73b4aa3](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/73b4aa3f60833d6fb8fff011d4fa7e81ad6cf18a))
+* add support for os_sku on additnl node pool ([c0220c7](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/c0220c76975c4fc4324d51bec6d4dee8a9ddb1b3))
+* add support for spot nodes on additional node pool ([d9962d1](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/d9962d1e23456dfe353106b564f43de876a9eebc))
+* output oidc issuer url ([cd0fc63](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/cd0fc6370d458634e38ff492f60d28d1018635d0))
+* support etcd encryption-at-rest ([86bd7c5](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/86bd7c507b436b78a4113ebdcb4de0d36407c5d0))
+
+
+### Bug Fixes
+
+* add default tags to law ([43b1662](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/43b16624b6f79b2f90c755d7189b1c208587f1c6))
+
 ## [3.0.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v2.1.0...v3.0.0) (2023-06-30)
 
 
