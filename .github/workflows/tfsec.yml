@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Clone repo
-        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v.3.5.3
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v.4.1.0
 
       - name: Run tfsec
         uses: aquasecurity/tfsec-sarif-action@21ded20e8ca120cd9d3d6ab04ef746477542a608 # v0.1.4
@@ -30,7 +30,7 @@ jobs:
           sarif_file: tfsec.sarif
 
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@a09933a12a80f87b87005513f0abb1494c27a716 # v2.21.4
+        uses: github/codeql-action/upload-sarif@ddccb873888234080b77e9bc2d4764d5ccaaccf9 # v2.21.9
         with:
           # Path to SARIF file relative to the root of the repository
           sarif_file: tfsec.sarif
