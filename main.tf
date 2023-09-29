@@ -29,6 +29,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   local_account_disabled          = var.local_account_disabled
   sku_tier                        = var.sku_tier
   automatic_channel_upgrade       = var.automatic_channel_upgrade
+  disk_encryption_set_id          = var.disk_encryption_set_id
 
   dynamic "auto_scaler_profile" {
     for_each = var.auto_scaler_profile != null ? [1] : []
