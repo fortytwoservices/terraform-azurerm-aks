@@ -81,6 +81,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     scale_down_mode               = var.default_node_pool.scale_down_mode
     type                          = var.default_node_pool.type
     ultra_ssd_enabled             = var.default_node_pool.ultra_ssd_enabled
+    zones                         = var.default_node_pool.zones
 
     dynamic "kubelet_config" {
       for_each = var.default_node_pool.kubelet_config != null ? [1] : []
