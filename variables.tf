@@ -57,7 +57,7 @@ variable "default_node_pool" {
     type                          = optional(string)
     tags                          = optional(map(string))
     ultra_ssd_enabled             = optional(bool)
-    zones                         = optional(list(number))
+    zones                         = optional(list(string))
 
     kubelet_config = optional(object(
       {
