@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.2.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.1.0...v3.2.0) (2023-12-12)
+
+
+### Features
+
+* added input parameter for availability zones in default node pool ([3f5711b](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/3f5711b186dd7643c537b27f6a86362e6dd9950d))
+* changed input to string instead of number ([d81796c](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/d81796c367e4acc68d77c64a71d17ee9bb83bed6))
+
 ## [3.1.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.0.0...v3.1.0) (2023-09-29)
 
 
