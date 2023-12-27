@@ -372,8 +372,8 @@ variable "automatic_channel_upgrade" {
   default     = "none"
 
   validation {
-    condition     = contains(["patch", "rapid", "none", "stable", "node-image"], var.automatic_channel_upgrade)
-    error_message = "Value must be either patch, rapid, none, stable, or node-image"
+    condition     = var.automatic_channel_upgrade == null ? true : contains(["patch", "rapid", "none", "stable", "node-image"], var.automatic_channel_upgrade)
+    error_message = "Value must be either patch, rapid, none, stable, node-image, or not defined (null)"
   }
 }
 
