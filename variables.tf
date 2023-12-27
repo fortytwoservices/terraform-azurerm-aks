@@ -426,3 +426,9 @@ variable "azure_monitor" {
     log_analytics_workspace_id = null
   }
 }
+
+variable "run_command_enabled" {
+  description = "(Optional) Enable or disable Run Command for the cluster. Defaults to false."
+  type        = bool
+  default     = false
+}
