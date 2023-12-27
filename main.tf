@@ -30,6 +30,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   sku_tier                        = var.sku_tier
   automatic_channel_upgrade       = var.automatic_channel_upgrade
   disk_encryption_set_id          = var.disk_encryption_set_id
+  run_command_enabled             = var.run_command_enabled
 
   dynamic "auto_scaler_profile" {
     for_each = var.auto_scaler_profile != null ? [1] : []
