@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.3.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.2.0...v3.3.0) (2023-12-27)
+
+
+### Features
+
+* add private_dns_zone_id ([3b8d25d](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/3b8d25db1c8d92280e44aadbd0ad3293d2c79b0f))
+* add run_command_enabled variable ([3354b4e](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/3354b4e4003a2a296cd78feac4d6a1b309a9c062))
+
+
+### Bug Fixes
+
+* correct none for automatic_channel_upgrade ([eb8e3e3](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/eb8e3e37d9f675756861c6f18757c88c779784ce))
+
 ## [3.2.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.1.0...v3.2.0) (2023-12-12)
 
 
