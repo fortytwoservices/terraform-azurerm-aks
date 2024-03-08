@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.3.1](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.3.0...v3.3.1) (2024-03-08)
+
+
+### Bug Fixes
+
+* correct permissions ([2972b81](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/2972b813e3b01926159936b4d4699632508f6c4f))
+* Merge pull request [#141](https://github.com/amestofortytwo/terraform-azurerm-aks/issues/141) from amestofortytwo/fix/fix-kube-config-outputs ([600b099](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/600b099d45426a24e29ad2d905edf2d53f877f29))
+* try to correct ([e6c212a](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/e6c212a47c8035c6dfe03aee6f29d8b348ecdc43))
+* updated output for host and client_ca_certificate to not check if local account is disabled, and to output from kube_config and not kube_admin_config ([600b099](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/600b099d45426a24e29ad2d905edf2d53f877f29))
+* updated output for host and client_ca_certificate to not check if local account is disabled, and to output from kube_config and not kube_admin_config ([040c26b](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/040c26bb4b900956038e4bdb0579d35bd386405e))
+
 ## [3.3.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.2.0...v3.3.0) (2023-12-27)
 
 
