@@ -10,7 +10,7 @@ output "oidc_issuer_url" {
 
 output "host" {
   description = "The Kubernetes cluster server host."
-  value       = var.local_account_disabled ? null : try(azurerm_kubernetes_cluster.main.kube_config[0].host, null)
+  value       = try(azurerm_kubernetes_cluster.main.kube_config[0].host, null)
 }
 
 output "client_certificate" {
@@ -25,7 +25,7 @@ output "client_key" {
 
 output "cluster_ca_certificate" {
   description = "Base64 encoded public CA certificate used as the root of trust for the Kubernetes cluster."
-  value       = var.local_account_disabled ? null : try(azurerm_kubernetes_cluster.main.kube_admin_config[0].cluster_ca_certificate, null)
+  value       = try(azurerm_kubernetes_cluster.main.kube_config[0].cluster_ca_certificate, null)
 }
 
 output "kube_admin_config_raw" {
