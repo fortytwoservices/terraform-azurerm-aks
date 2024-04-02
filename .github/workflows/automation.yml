@@ -1,21 +1,17 @@
 name: Automation
 on:
-  issues:
-    types: [ "opened" ]
   pull_request:
-    types: [ "opened" ]
+    paths: [ "**.tf", "**.md"]
   push:
     branches: [ "main" ]
-    paths: [ "**.tf", "CHANGELOG.md"]
+    paths: [ "**.tf", "**.md"]
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: read-all
 
 jobs:
-  update-readme:
+  check-tfdocs:
     if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
-    name: Update README for changed modules
+    name: Check README with Terraform Docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,11 +23,8 @@ jobs:
         uses: terraform-docs/gh-actions@7a62208a0090636af2df1b739da46d27fd90bdc6 # v1.1.0
         with:
           working-dir: .
-          git-push: "true"
-          git-push-sign-off: "true"
           config-file: ".terraform-docs.yml"
-          git-push-user-email: "41898282+github-actions[bot]@users.noreply.github.com"
-          git-push-user-name: "github-actions[bot]"
+          fail-on-diff: true
 
   terraform:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.actor != 'dependabot[bot]')
@@ -46,7 +39,12 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
-    needs: terraform
+    needs: 
+      - terraform
+      - check-tfdocs
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: google-github-actions/release-please-action@a37ac6e4f6449ce8b3f7607e4d97d0146028dc0b # v4.1.0
         with:
