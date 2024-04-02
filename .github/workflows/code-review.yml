@@ -26,7 +26,6 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_GITHUB_ACTIONS: true
-          VALIDATE_MARKDOWN: false
           VALIDATE_TERRAFORM_TFLINT: true
           VALIDATE_YAML: true
           ERROR_ON_MISSING_EXEC_BIT: true
