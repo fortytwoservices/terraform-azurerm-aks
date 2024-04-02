@@ -113,6 +113,13 @@ resource "azurerm_kubernetes_cluster" "main" {
       }
     }
 
+    dynamic "upgrade_settings" {
+      for_each = var.default_node_pool.upgrade_settings != null ? ["upgrade_settings"] : []
+      content {
+        max_surge = var.default_node_pool.upgrade_settings.max_surge
+      }
+    }
+
     tags = merge(
       local.tags,
       var.default_node_pool.tags,
