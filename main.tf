@@ -22,7 +22,6 @@ resource "azurerm_kubernetes_cluster" "main" {
   dns_prefix                      = replace(var.name, "-", "")
   kubernetes_version              = local.kubernetes_version
   azure_policy_enabled            = var.azure_policy_enabled
-  api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
   workload_identity_enabled       = var.workload_identity_enabled
   oidc_issuer_enabled             = var.workload_identity_enabled == true ? true : null
   private_cluster_enabled         = var.private_cluster
@@ -32,6 +31,13 @@ resource "azurerm_kubernetes_cluster" "main" {
   automatic_channel_upgrade       = var.automatic_channel_upgrade == "none" ? null : var.automatic_channel_upgrade
   disk_encryption_set_id          = var.disk_encryption_set_id
   run_command_enabled             = var.run_command_enabled
+
+  dynamic "api_server_access_profile" {
+    for_each = var.api_server_authorized_ip_ranges != null ? [1] : []
+    content {
+      authorized_ip_ranges = var.api_server_authorized_ip_ranges
+    }
+  }
 
   dynamic "auto_scaler_profile" {
     for_each = var.auto_scaler_profile != null ? [1] : []
