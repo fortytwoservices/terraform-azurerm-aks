@@ -204,14 +204,14 @@ resource "azurerm_kubernetes_cluster" "main" {
   dynamic "microsoft_defender" {
     for_each = var.microsoft_defender.enabled ? [1] : []
     content {
-      log_analytics_workspace_id = var.microsoft_defender.log_analytics_workspace_id != null ? var.microsoft_defender.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main.0.id
+      log_analytics_workspace_id = var.microsoft_defender.log_analytics_workspace_id != null ? var.microsoft_defender.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main[0].id
     }
   }
 
   dynamic "oms_agent" {
     for_each = var.azure_monitor.enabled ? [1] : []
     content {
-      log_analytics_workspace_id = var.azure_monitor.log_analytics_workspace_id != null ? var.azure_monitor.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main.0.id
+      log_analytics_workspace_id = var.azure_monitor.log_analytics_workspace_id != null ? var.azure_monitor.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main[0].id
     }
   }
 
