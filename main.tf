@@ -16,22 +16,28 @@ resource "azurerm_log_analytics_workspace" "main" {
 }
 
 resource "azurerm_kubernetes_cluster" "main" {
-  name                            = var.name
-  location                        = var.location
-  resource_group_name             = var.resource_group_name
-  dns_prefix                      = replace(var.name, "-", "")
-  kubernetes_version              = local.kubernetes_version
-  azure_policy_enabled            = var.azure_policy_enabled
-  api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
-  workload_identity_enabled       = var.workload_identity_enabled
-  oidc_issuer_enabled             = var.workload_identity_enabled == true ? true : null
-  private_cluster_enabled         = var.private_cluster
-  private_dns_zone_id             = var.private_dns_zone_id
-  local_account_disabled          = var.local_account_disabled
-  sku_tier                        = var.sku_tier
-  automatic_channel_upgrade       = var.automatic_channel_upgrade == "none" ? null : var.automatic_channel_upgrade
-  disk_encryption_set_id          = var.disk_encryption_set_id
-  run_command_enabled             = var.run_command_enabled
+  name                      = var.name
+  location                  = var.location
+  resource_group_name       = var.resource_group_name
+  dns_prefix                = replace(var.name, "-", "")
+  kubernetes_version        = local.kubernetes_version
+  azure_policy_enabled      = var.azure_policy_enabled
+  workload_identity_enabled = var.workload_identity_enabled
+  oidc_issuer_enabled       = var.workload_identity_enabled == true ? true : null
+  private_cluster_enabled   = var.private_cluster
+  private_dns_zone_id       = var.private_dns_zone_id
+  local_account_disabled    = var.local_account_disabled
+  sku_tier                  = var.sku_tier
+  automatic_channel_upgrade = var.automatic_channel_upgrade == "none" ? null : var.automatic_channel_upgrade
+  disk_encryption_set_id    = var.disk_encryption_set_id
+  run_command_enabled       = var.run_command_enabled
+
+  dynamic "api_server_access_profile" {
+    for_each = var.api_server_authorized_ip_ranges != null ? [1] : []
+    content {
+      authorized_ip_ranges = var.api_server_authorized_ip_ranges
+    }
+  }
 
   dynamic "auto_scaler_profile" {
     for_each = var.auto_scaler_profile != null ? [1] : []
@@ -205,14 +211,14 @@ resource "azurerm_kubernetes_cluster" "main" {
   dynamic "microsoft_defender" {
     for_each = var.microsoft_defender.enabled ? [1] : []
     content {
-      log_analytics_workspace_id = var.microsoft_defender.log_analytics_workspace_id != null ? var.microsoft_defender.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main.0.id
+      log_analytics_workspace_id = var.microsoft_defender.log_analytics_workspace_id != null ? var.microsoft_defender.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main[0].id
     }
   }
 
   dynamic "oms_agent" {
     for_each = var.azure_monitor.enabled ? [1] : []
     content {
-      log_analytics_workspace_id = var.azure_monitor.log_analytics_workspace_id != null ? var.azure_monitor.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main.0.id
+      log_analytics_workspace_id = var.azure_monitor.log_analytics_workspace_id != null ? var.azure_monitor.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main[0].id
     }
   }
 
