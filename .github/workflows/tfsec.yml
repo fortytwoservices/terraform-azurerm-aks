@@ -12,8 +12,8 @@ permissions:
   contents: read
 
 jobs:
-  tfsec:
-    name: Run tfsec sarif report
+  trivy:
+    name: Run Trivy sarif report
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -24,13 +24,15 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v.4.1.2
 
-      - name: Run tfsec
-        uses: aquasecurity/tfsec-sarif-action@21ded20e8ca120cd9d3d6ab04ef746477542a608 # v0.1.4
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@d710430a6722f083d3b36b8339ff66b32f22ee55 # v0.19.0
         with:
-          sarif_file: tfsec.sarif
-
-      - name: Upload SARIF file
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+  
+      - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3.24.9
         with:
-          # Path to SARIF file relative to the root of the repository
-          sarif_file: tfsec.sarif
+          sarif_file: 'trivy-results.sarif'
