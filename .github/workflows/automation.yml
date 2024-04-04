@@ -39,9 +39,7 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
-    needs: 
-      - terraform
-      - check-tfdocs
+    needs: terraform
     permissions:
       contents: write
       pull-requests: write
