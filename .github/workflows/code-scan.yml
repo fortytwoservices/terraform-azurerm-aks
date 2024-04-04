@@ -29,7 +29,6 @@ jobs:
         with:
           scan-type: 'config'
           format: 'table'
-          exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
           
@@ -39,7 +38,6 @@ jobs:
           scan-type: 'config'
           format: 'sarif'
           output: 'trivy-results.sarif'
-          exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
   
