@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.4.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.3.1...v3.4.0) (2024-04-04)
+
+
+### Features
+
+* add new block api_server_access_profile ([0ba27a8](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/0ba27a87a1f24a9d40639f7931d65147416c642d))
+* add upgrade_settings ([8f1de9c](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/8f1de9c1eb89a4cb3d293417d09a95ee778001db))
+
+
+### Bug Fixes
+
+* correct linting ([bcfa3ec](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/bcfa3ec37cf41ea1c6139458a3d3f985cd5e4914))
+* linting ([b1bf4df](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/b1bf4dfb6e11945293ca911dba4750990d7196ee))
+* update linting and docs ([0fbf041](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/0fbf0419b4a0fd676569261e9f2934923d5d237c))
+
 ## [3.3.1](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.3.0...v3.3.1) (2024-03-08)
 
 
