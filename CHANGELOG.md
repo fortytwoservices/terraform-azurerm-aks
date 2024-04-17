@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.4.1](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.4.0...v3.4.1) (2024-04-17)
+
+
+### Bug Fixes
+
+* correct automatic_channel_upgrade default value ([20683c4](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/20683c4446f1bb094fc0849b4bf937a8921b2a84))
+* update type of max_surge to string ([1590b4b](https://github.com/amestofortytwo/terraform-azurerm-aks/commit/1590b4b6cea1a1ecbc675909da0ce641dee9072f))
+
 ## [3.4.0](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.3.1...v3.4.0) (2024-04-04)
 
 
