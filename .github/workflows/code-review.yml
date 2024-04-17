@@ -28,6 +28,7 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_ACTIONS_COMMAND_ARGS: -shellcheck=
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MARKDOWN_CONFIG_FILE: .github/.markdownlint.yaml
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_MARKDOWN: true
