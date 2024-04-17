@@ -1,17 +1,20 @@
 ---
-name: Code Review
+name: Status - Code Review
 
 # yamllint disable-line rule:truthy
 on:
   pull_request:
 
-# Declare default permissions as read only.
-permissions: read-all   
+permissions: { }
     
 jobs:
   build:
     name: Lint code base
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
 
     steps:
       - name: Checkout code
@@ -22,10 +25,12 @@ jobs:
       - name: Lint Code Base
         uses: super-linter/super-linter@9d8128f17796a16326ceed5a607d5639a47feb82 # v6.4.0
         env:
-          VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
+          GITHUB_ACTIONS_COMMAND_ARGS: -shellcheck=
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
           VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_MARKDOWN: true
           VALIDATE_TERRAFORM_TFLINT: true
           VALIDATE_YAML: true
-          ERROR_ON_MISSING_EXEC_BIT: true
+  
