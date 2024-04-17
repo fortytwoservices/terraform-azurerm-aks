@@ -17,7 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
         with:
-          fetch-depth: 2
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Render terraform docs and push changes back to PR
         uses: terraform-docs/gh-actions@7a62208a0090636af2df1b739da46d27fd90bdc6 # v1.1.0
@@ -25,6 +24,8 @@ jobs:
           working-dir: .
           config-file: ".terraform-docs.yml"
           fail-on-diff: true
+          output-method: ""
+          template: ""
 
   terraform:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.actor != 'dependabot[bot]')
