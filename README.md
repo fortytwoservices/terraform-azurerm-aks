@@ -1,5 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
+# Azure Kubernetes Service
 
+This is the repository for our Azure Kubernetes Service (AKS) Terraform module.
 
 ## Requirements
 
@@ -246,7 +248,7 @@ Description: (Optional) The upgrade channel for this Kubernetes Cluster. Possibl
 
 Type: `string`
 
-Default: `"none"`
+Default: `null`
 
 ### <a name="input_azure_monitor"></a> [azure\_monitor](#input\_azure\_monitor)
 
@@ -355,7 +357,7 @@ object({
     }))
 
     upgrade_settings = optional(object({
-      max_surge = optional(number)
+      max_surge = optional(string)
     }))
   })
 ```

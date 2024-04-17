@@ -82,7 +82,7 @@ variable "default_node_pool" {
     }))
 
     upgrade_settings = optional(object({
-      max_surge = optional(number)
+      max_surge = optional(string)
     }))
   })
   default = {

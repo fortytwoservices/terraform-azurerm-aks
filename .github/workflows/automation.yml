@@ -24,6 +24,7 @@ jobs:
           working-dir: .
           config-file: ".terraform-docs.yml"
           fail-on-diff: true
+          output-format: ""
           output-method: ""
           template: ""
 
