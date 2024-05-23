@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v.4.1.6
 
       - name: Run Trivy vulnerability scanner (Table)
-        uses: aquasecurity/trivy-action@b2933f565dbc598b29947660e66259e3c7bc8561 # v0.20.0
+        uses: aquasecurity/trivy-action@fd25fed6972e341ff0007ddb61f77e88103953c2 # v0.21.0
         with:
           scan-type: 'config'
           format: 'table'
@@ -33,7 +33,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
           
       - name: Run Trivy vulnerability scanner (Sarif)
-        uses: aquasecurity/trivy-action@b2933f565dbc598b29947660e66259e3c7bc8561 # v0.20.0
+        uses: aquasecurity/trivy-action@fd25fed6972e341ff0007ddb61f77e88103953c2 # v0.21.0
         with:
           scan-type: 'config'
           format: 'sarif'
