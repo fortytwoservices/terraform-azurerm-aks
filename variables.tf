@@ -436,3 +436,16 @@ variable "run_command_enabled" {
   type        = bool
   default     = false
 }
+
+variable "image_cleaner_enabled" {
+  description = "(Optional) Enable or disable Image Cleaner for the cluster. Defaults to false."
+  type        = bool
+  default     = false
+}
+
+variable "image_cleaner_interval_hours" {
+  description = "(Optional) Specifies the interval in hours when images should be cleaned up. Defaults to 48."
+  type        = number
+  default     = 48
+
+}
