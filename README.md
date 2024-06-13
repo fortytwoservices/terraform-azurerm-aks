@@ -413,6 +413,22 @@ Default:
 }
 ```
 
+### image\_cleaner\_enabled
+
+Description: (Optional) Enable or disable Image Cleaner for the cluster. Defaults to false.
+
+Type: `bool`
+
+Default: `false`
+
+### image\_cleaner\_interval\_hours
+
+Description: (Optional) Specifies the interval in hours when images should be cleaned up. Defaults to 48.
+
+Type: `number`
+
+Default: `48`
+
 ### ingress\_application\_gateway
 
 Description: Values used for deployment of the ingress application gateway
