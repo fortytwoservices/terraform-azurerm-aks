@@ -50,4 +50,3 @@ jobs:
         with:
           token: ${{ secrets.MARVIN_PAT }}
           release-type: terraform-module
-          config-file: .github/release-please-config.json
