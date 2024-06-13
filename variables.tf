@@ -137,7 +137,7 @@ variable "additional_node_pools" {
         vm_max_map_count = optional(number)
       }))
     }))
-    
+
     upgrade_settings = optional(object({
       max_surge = optional(string)
     }))
