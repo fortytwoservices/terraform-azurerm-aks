@@ -447,5 +447,4 @@ variable "image_cleaner_interval_hours" {
   description = "(Optional) Specifies the interval in hours when images should be cleaned up. Defaults to 48."
   type        = number
   default     = 48
-
 }
