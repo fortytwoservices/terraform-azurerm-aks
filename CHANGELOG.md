@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.5.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.4.1...v3.5.0) (2024-06-13)
+
+
+### Features
+
+* add support for image_cleaner ([#191](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/191)) ([403ba01](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/403ba01d7f84a3988439e2975673dde234419df2))
+* add upgrade_settings on additional node pool ([#189](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/189)) ([587ef67](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/587ef6707939c457313d2d7bfb4f68e81486bb19))
+
 ## [3.4.1](https://github.com/amestofortytwo/terraform-azurerm-aks/compare/v3.4.0...v3.4.1) (2024-04-17)
 
 
