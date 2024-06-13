@@ -3,6 +3,7 @@
 
 This is the repository for our Azure Kubernetes Service (AKS) Terraform module.
 
+<!-- markdownlint-disable MD033 -->
 ## Requirements
 
 The following requirements are needed by this module:
@@ -67,9 +68,14 @@ The following providers are used by this module:
 
 - azurerm (>3.97.0)
 
-## Modules
+## Resources
 
-No modules.
+The following resources are used by this module:
+
+- [azurerm_kubernetes_cluster.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) (resource)
+- [azurerm_kubernetes_cluster_node_pool.additional](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool) (resource)
+- [azurerm_log_analytics_workspace.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace) (resource)
+- [azurerm_kubernetes_service_versions.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_service_versions) (data source)
 
 <!-- markdownlint-disable MD013 -->
 ## Required Inputs
@@ -668,13 +674,9 @@ Description: The OIDC issuer URL that is associated with the cluster.
 
 Description: Block of the parameters from the Key Vault Secrets Provider.
 
-<!-- markdownlint-enable -->
-## Resources
 
-The following resources are used by this module:
+## Modules
 
-- [azurerm_kubernetes_cluster.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) (resource)
-- [azurerm_kubernetes_cluster_node_pool.additional](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool) (resource)
-- [azurerm_log_analytics_workspace.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace) (resource)
-- [azurerm_kubernetes_service_versions.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_service_versions) (data source)
+No modules.
+
 <!-- END_TF_DOCS -->

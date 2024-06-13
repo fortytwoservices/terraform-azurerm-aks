@@ -12,6 +12,7 @@ sections:
 content: |-
   {{ .Header }}
 
+  <!-- markdownlint-disable MD033 -->
   {{ .Requirements }}
 
   ## Examples
@@ -29,16 +30,18 @@ content: |-
   ```
 
   {{ .Providers }}
-  
-  {{ .Modules }}
+
+  {{ .Resources }}
 
   <!-- markdownlint-disable MD013 -->
   {{ .Inputs }}
   
   {{ .Outputs }}
-  
-  <!-- markdownlint-enable -->
-  {{ .Resources }}
+
+
+  {{ .Modules }}
+
+  {{ .Footer }}
 
 output:
   file: "README.md"
