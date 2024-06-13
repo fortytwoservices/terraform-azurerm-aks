@@ -290,5 +290,12 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
     }
   }
 
+  dynamic "upgrade_settings" {
+    for_each = each.value.upgrade_settings != null ? ["upgrade_settings"] : []
+    content {
+      max_surge = each.value.upgrade_settings.max_surge
+    }
+  }
+
   tags = merge(local.tags, each.value.tags)
 }
