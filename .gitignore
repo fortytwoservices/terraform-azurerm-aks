@@ -29,3 +29,13 @@ override.tf.json
 # example: *tfplan*
 
 .terraform.lock.hcl
+*.md.tmp
+*.tfvars
+*.tfvars.json
+*tfplan*
+.DS_Store
+.idea
+.terraformrc
+README-generated.md
+crash.*.log
+terraform.rc
