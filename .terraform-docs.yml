@@ -1,47 +1,38 @@
 version: ">= 0.15.0"
 
-formatter: "markdown document"
+formatter: markdown
 
-header-from: "_README_header.md"
-footer-from: "_README_footer.md"
+header-from: main.tf
+footer-from: ""
 
 sections:
   hide: []
   show: []
+  
+
+  hide-all: false
+  show-all: true
 
 content: |-
   {{ .Header }}
 
-  <!-- markdownlint-disable MD033 -->
   {{ .Requirements }}
 
-  ## Examples
-
-  ### Basic example
+  ## Example
 
   ```hcl
-  {{ include "examples/basic/main.tf" }}
-  ```
-
-  ### Advanced Example
-
-  ```hcl
-  {{ include "examples/advanced/main.tf" }}
+  {{ include "examples/main.tf" }}
   ```
 
   {{ .Providers }}
+  
+  {{ .Modules }}
 
-  {{ .Resources }}
-
-  <!-- markdownlint-disable MD013 -->
   {{ .Inputs }}
   
   {{ .Outputs }}
-
-
-  {{ .Modules }}
-
-  {{ .Footer }}
+  
+  {{ .Resources }}
 
 output:
   file: "README.md"
@@ -57,19 +48,18 @@ output-values:
 
 sort:
   enabled: true
-  by: required
+  by: name
 
 settings:
-  anchor: false
+  anchor: true
   color: true
   default: true
   description: false
   escape: true
   hide-empty: false
-  html: false
+  html: true
   indent: 2
   lockfile: true
-  read-comments: true
   required: true
   sensitive: true
   type: true
