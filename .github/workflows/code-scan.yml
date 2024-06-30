@@ -28,7 +28,7 @@ jobs:
         uses: aquasecurity/trivy-action@7c2007bcb556501da015201bcba5aa14069b74e2 # v0.23.0
         with:
           scan-type: 'fs'
-          scanners: 'vuln,secret,misconfig'
+          scanners: 'vuln,secret,misconfig,config'
           severity: 'MEDIUM,CRITICAL,HIGH'
           trivy-config: .github/trivy.yml
           hide-progress: true
