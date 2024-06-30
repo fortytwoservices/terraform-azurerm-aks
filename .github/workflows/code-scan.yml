@@ -29,9 +29,10 @@ jobs:
         with:
           scan-type: 'config'
           severity: 'MEDIUM,CRITICAL,HIGH'
-          trivy-config: .github/trivy.yml
+          trivy-config: '.github/trivy.yml'
+          format: table
           hide-progress: true
-          output: trivy.txt
+          output: 'trivy.txt'
           
       - name: Run Trivy vulnerability scanner (Sarif)
         uses: aquasecurity/trivy-action@7c2007bcb556501da015201bcba5aa14069b74e2 # v0.23.0
@@ -50,6 +51,7 @@ jobs:
 
       - name: Publish Trivy Output to Summary
         run: |
+          echo "test"
           if [[ -s trivy.txt ]]; then
             {
               echo "### Security Output"
