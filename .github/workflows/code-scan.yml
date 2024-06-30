@@ -30,7 +30,7 @@ jobs:
           scan-type: 'fs'
           scanners: 'vuln,secret,misconfig'
           severity: 'MEDIUM,CRITICAL,HIGH'
-          trivyignores: '.trivyigniore'
+          trivy-config: .github/trivy.yml
           hide-progress: true
           output: trivy.txt
           
@@ -40,7 +40,7 @@ jobs:
           scan-type: 'fs'
           scanners: 'vuln,secret,misconfig'
           severity: 'MEDIUM,CRITICAL,HIGH'
-          trivyignores: '.trivyigniore'
+          trivy-config: .github/trivy.yml
           format: 'sarif'
           output: 'trivy-results.sarif'
           ignore-unfixed: true
