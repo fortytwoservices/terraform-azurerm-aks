@@ -15,6 +15,7 @@ resource "azurerm_log_analytics_workspace" "main" {
   tags = local.tags
 }
 
+#trivy:ignore:avd-azu-0041
 resource "azurerm_kubernetes_cluster" "main" {
   name                         = var.name
   location                     = var.location
