@@ -1,4 +1,4 @@
-ignorefile: linters/.trivyignore
+ignorefile: .github/.trivyignore
 format: table
 output: trivy.txt
 ignore-unfixed: true
