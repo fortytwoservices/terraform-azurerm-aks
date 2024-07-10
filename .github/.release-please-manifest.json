@@ -1,9 +1,3 @@
 {
-  ".": "3.5.0",
-  "packages": {
-    ".": {
-      "release-type": "terraform-module",
-      "signoff": "Marvin <117985362+4t2-marvin@users.noreply.github.com>"
-    }
-  }
+  ".": "3.5.0"
 }
