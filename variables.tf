@@ -1,3 +1,5 @@
+# Variables for the AKS module
+
 variable "name" {
   description = "The name of the managed Kubernetes cluster."
   type        = string
