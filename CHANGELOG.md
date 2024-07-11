@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.6.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.5.0...v3.6.0) (2024-07-11)
+
+
+### Features
+
+* update build files ([#194](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/194)) ([521201b](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/521201bb20ee8523a91482a2aef347fef70c2e9f))
+
+
+### Bug Fixes
+
+* grept apply ([#196](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/196)) ([36906a8](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/36906a83963bf199b7c76f5ef1c8c557efd543d8))
+* grept apply ([#197](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/197)) ([6c132ae](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/6c132ae97dc151f97b674e8e5753361cd23b6012))
+* grept apply ([#198](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/198)) ([a846e09](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/a846e09b7054564944f49e59d3e3cbbc0dfd0212))
+* grept apply ([#200](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/200)) ([92b359a](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/92b359a7bfa1742fd302d5d1abb2cfaf6ecd414a))
+* grept apply ([#207](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/207)) ([1f2292e](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/1f2292e410022490b7f4a4cbf1b7307c50689e8e))
+* grept apply ([#208](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/208)) ([a9b47e6](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/a9b47e63276e998a6a78f747432051e6063f91e6))
+
 ## [3.5.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.4.1...v3.5.0) (2024-06-13)
 
 
