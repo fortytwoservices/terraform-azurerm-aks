@@ -15,9 +15,10 @@ The following requirements are needed by this module:
 ### Basic example
 
 ```hcl
+#trivy:ignore:avd-azu-0041
 module "kubernetes" {
-  source  = "amestofortytwo/aks/azurerm"
-  version = "3.0.0"
+  source  = "fortytwoservices/aks/azurerm"
+  version = "3.5.0"
 
   name                = "demo-prod-westeu"
   resource_group_name = azurerm_resource_group.demo.name
@@ -32,9 +33,10 @@ module "kubernetes" {
 ### Advanced Example
 
 ```hcl
+#trivy:ignore:avd-azu-0041
 module "kubernetes" {
-  source  = "amestofortytwo/aks/azurerm"
-  version = "3.0.0"
+  source  = "fortytwoservices/aks/azurerm"
+  version = "3.5.0"
 
   name                = "demo-prod-westeu"
   resource_group_name = azurerm_resource_group.demo.name
