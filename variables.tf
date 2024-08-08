@@ -527,4 +527,5 @@ variable "api_server_access_profile" {
     vnet_integration_enabled = optional(bool)
   })
   default = null
+  description = "(Optional) Should API Server VNet Integration be enabled and how should it be configured?"
 }
