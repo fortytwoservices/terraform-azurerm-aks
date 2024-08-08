@@ -301,6 +301,15 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
+  dynamic "api_server_access_profile" {
+    for_each = var.api_server_access_profile != null ? [1] : []
+    content {
+      authorized_ip_ranges     = var.api_server_access_profile.authorized_ip_ranges
+      subnet_id                = var.api_server_access_profile.subnet_id
+      vnet_integration_enabled = var.api_server_access_profile.vnet_integration_enabled
+    }
+  }
+
   lifecycle {
     precondition {
       condition     = (!(var.local_account_disabled == true && var.aad_rbac.managed == false))
