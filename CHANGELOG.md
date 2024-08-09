@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.2](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.7.1...v3.7.2) (2024-08-09)
+
+
+### Bug Fixes
+
+* correct ignore on defender changes ([#238](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/238)) ([21f12a9](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/21f12a957a7978b48dbdca0723995eebd4dbc1bd))
+
 ## [3.7.1](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.7.0...v3.7.1) (2024-08-09)
 
 
