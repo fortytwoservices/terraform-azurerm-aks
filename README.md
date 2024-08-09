@@ -194,14 +194,6 @@ list(object({
 
 Default: `[]`
 
-### <a name="input_aks_ignore_changes"></a> [aks\_ignore\_changes](#input\_aks\_ignore\_changes)
-
-Description: (Optional) List of values to ignore on the azurerm\_kubernetes\_cluster resource.
-
-Type: `list(string)`
-
-Default: `[]`
-
 ### <a name="input_api_server_access_profile"></a> [api\_server\_access\_profile](#input\_api\_server\_access\_profile)
 
 Description: n/a

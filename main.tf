@@ -304,7 +304,9 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 
   lifecycle {
-    ignore_changes = var.aks_ignore_changes
+    ignore_changes = [
+      microsoft_defender.log_analytics_workspace_id # Allow Azure Policy to control this value in an Enterprise-Scale setup
+    ]
 
     precondition {
       condition     = (!(var.local_account_disabled == true && var.aad_rbac.managed == false))

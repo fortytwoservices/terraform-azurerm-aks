@@ -523,9 +523,3 @@ variable "maintenance_window_node_os" {
   default     = null
   description = "(Optional) Maintenance window for auto upgrade of the managed AKS cluster nodes OS."
 }
-
-variable "aks_ignore_changes" {
-  type        = list(string)
-  description = "(Optional) List of values to ignore on the azurerm_kubernetes_cluster resource."
-  default     = []
-}
