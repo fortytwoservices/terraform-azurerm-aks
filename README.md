@@ -194,6 +194,30 @@ list(object({
 
 Default: `[]`
 
+### <a name="input_aks_ignore_changes"></a> [aks\_ignore\_changes](#input\_aks\_ignore\_changes)
+
+Description: (Optional) List of values to ignore on the azurerm\_kubernetes\_cluster resource.
+
+Type: `list(string)`
+
+Default: `[]`
+
+### <a name="input_api_server_access_profile"></a> [api\_server\_access\_profile](#input\_api\_server\_access\_profile)
+
+Description: n/a
+
+Type:
+
+```hcl
+object({
+    authorized_ip_ranges     = optional(list(string))
+    subnet_id                = optional(string)
+    vnet_integration_enabled = optional(bool)
+  })
+```
+
+Default: `null`
+
 ### <a name="input_api_server_authorized_ip_ranges"></a> [api\_server\_authorized\_ip\_ranges](#input\_api\_server\_authorized\_ip\_ranges)
 
 Description: (Optional) A list of authorized IP ranges to access the Kubernetes API server

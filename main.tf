@@ -36,9 +36,11 @@ resource "azurerm_kubernetes_cluster" "main" {
   node_os_channel_upgrade      = var.node_os_channel_upgrade
 
   dynamic "api_server_access_profile" {
-    for_each = var.api_server_authorized_ip_ranges != null ? [1] : []
+    for_each = var.api_server_authorized_ip_ranges != null || var.api_server_access_profile != null ? [1] : []
     content {
-      authorized_ip_ranges = var.api_server_authorized_ip_ranges
+      authorized_ip_ranges     = var.api_server_authorized_ip_ranges != null ? var.api_server_authorized_ip_ranges : var.api_server_access_profile.authorized_ip_ranges
+      subnet_id                = var.api_server_access_profile.subnet_id
+      vnet_integration_enabled = var.api_server_access_profile.vnet_integration_enabled
     }
   }
 
@@ -298,15 +300,6 @@ resource "azurerm_kubernetes_cluster" "main" {
           start = not_allowed.value.start
         }
       }
-    }
-  }
-
-  dynamic "api_server_access_profile" {
-    for_each = var.api_server_access_profile != null ? [1] : []
-    content {
-      authorized_ip_ranges     = var.api_server_access_profile.authorized_ip_ranges
-      subnet_id                = var.api_server_access_profile.subnet_id
-      vnet_integration_enabled = var.api_server_access_profile.vnet_integration_enabled
     }
   }
 
