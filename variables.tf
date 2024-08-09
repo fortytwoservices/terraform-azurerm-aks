@@ -464,11 +464,6 @@ variable "node_os_channel_upgrade" {
   description = " (Optional) The upgrade channel for this Kubernetes Cluster Nodes' OS Image. Possible values are `Unmanaged`, `SecurityPatch`, `NodeImage` and `None`. Defaults to `NodeImage`."
 
   validation {
-    condition     = var.automatic_channel_upgrade == "node-image" && var.automatic_channel_upgrade != var.node_os_channel_upgrade
-    error_message = "`node_os_channel_upgrade` must be set to `NodeImage` when `automatic_channel_upgrade` is set to `node-image`."
-  }
-
-  validation {
     condition     = contains(["Unmanaged", "SecurityPatch", "NodeImage", "None"], var.node_os_channel_upgrade)
     error_message = "`node_os_channel_upgrade` value must be either Unmanaged, SecurityPatch, NodeImage, or None"
   }
