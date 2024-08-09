@@ -520,12 +520,8 @@ variable "maintenance_window_node_os" {
   description = "(Optional) Maintenance window for auto upgrade of the managed AKS cluster nodes OS."
 }
 
-variable "api_server_access_profile" {
-  type = object({
-    authorized_ip_ranges     = optional(list(string))
-    subnet_id                = optional(string)
-    vnet_integration_enabled = optional(bool)
-  })
-  default = null
-  description = "(Optional) Should API Server VNet Integration be enabled and how should it be configured?"
+variable "aks_ignore_changes" {
+  type        = list(string)
+  description = "(Optional) List of values to ignore on the azurerm_kubernetes_cluster resource."
+  default     = []
 }

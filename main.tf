@@ -311,6 +311,8 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 
   lifecycle {
+    ignore_changes = var.aks_ignore_changes
+
     precondition {
       condition     = (!(var.local_account_disabled == true && var.aad_rbac.managed == false))
       error_message = <<EOF
