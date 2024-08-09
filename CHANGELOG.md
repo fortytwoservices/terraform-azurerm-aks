@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.7.1](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.7.0...v3.7.1) (2024-08-09)
+
+
+### Bug Fixes
+
+* correct ignore_changes on defender law ([#237](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/237)) ([c239900](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/c239900f36f1bef128e56c6838b75d5ef7209846))
+* issue with node_os_channel_upgrade condition ([#235](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/235)) ([8df5363](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/8df5363dc8bbdb78f8a4fd474b95ffa0d7e3347d))
+
 ## [3.7.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.6.0...v3.7.0) (2024-08-09)
 
 
