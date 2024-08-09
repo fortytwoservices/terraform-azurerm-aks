@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.7.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.6.0...v3.7.0) (2024-08-09)
+
+
+### Features
+
+* add support for api_server_access_profile ([3e5f3b9](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/3e5f3b9bc1d39f7b62495be50803dbea32fb5949))
+* add variable for ignore_changes on aks resource ([#232](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/232)) ([f4fc69f](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/f4fc69f9b2fd5a734e93b955a524070d32e81ded))
+* use existing api_server_access_profile block and add new parameters ([b29f4fa](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/b29f4fa8d9a4ca5ed25736048a78ef7f990a64b2))
+
 ## [3.6.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.5.0...v3.6.0) (2024-07-29)
 
 
