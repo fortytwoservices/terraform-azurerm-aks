@@ -305,6 +305,15 @@ variable "api_server_authorized_ip_ranges" {
   default     = null
 }
 
+variable "api_server_access_profile" {
+  type = object({
+    authorized_ip_ranges     = optional(list(string))
+    subnet_id                = optional(string)
+    vnet_integration_enabled = optional(bool)
+  })
+  default = null
+}
+
 variable "workload_identity_enabled" {
   description = "(Optional) Enable or disable workload identity for the cluster. Enabling this also sets oidc_issuer_enabled to true."
   type        = bool
