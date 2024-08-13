@@ -431,12 +431,14 @@ variable "azure_monitor" {
   If neither azure_monitor.log_analytics_workspace_id nor default_log_analytics_workspace_id is specified, a new Log Analytics Workspace will be created with the same name as the AKS cluster and in the same resource group.
   EOF
   type = object({
-    enabled                    = optional(bool, true)
-    log_analytics_workspace_id = optional(string, null)
+    enabled                         = optional(bool, true)
+    log_analytics_workspace_id      = optional(string, null)
+    msi_auth_for_monitoring_enabled = optional(bool, false)
   })
   default = {
-    enabled                    = true
-    log_analytics_workspace_id = null
+    enabled                         = true
+    log_analytics_workspace_id      = null
+    msi_auth_for_monitoring_enabled = false
   }
 }
 

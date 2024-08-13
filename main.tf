@@ -222,7 +222,8 @@ resource "azurerm_kubernetes_cluster" "main" {
   dynamic "oms_agent" {
     for_each = var.azure_monitor.enabled ? [1] : []
     content {
-      log_analytics_workspace_id = var.azure_monitor.log_analytics_workspace_id != null ? var.azure_monitor.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main[0].id
+      log_analytics_workspace_id      = var.azure_monitor.log_analytics_workspace_id != null ? var.azure_monitor.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main[0].id
+      msi_auth_for_monitoring_enabled = var.azure_monitor.msi_auth_for_monitoring_enabled
     }
   }
 
