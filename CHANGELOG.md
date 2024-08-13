@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.8.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.7.2...v3.8.0) (2024-08-13)
+
+
+### Features
+
+* support msi_auth_for_monitoring_enabled in oms_agent ([#243](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/243)) ([803782f](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/803782f54ad39748c92dd1cc99c4c6918918820f))
+
+
+### Bug Fixes
+
+* correct defender ignore changes ([#240](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/240)) ([4b153ca](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/4b153ca39c27e991cc1fcaaa9381f8d130a915a1))
+
 ## [3.7.2](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.7.1...v3.7.2) (2024-08-09)
 
 
