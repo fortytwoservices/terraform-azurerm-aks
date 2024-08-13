@@ -287,8 +287,9 @@ Type:
 
 ```hcl
 object({
-    enabled                    = optional(bool, true)
-    log_analytics_workspace_id = optional(string, null)
+    enabled                         = optional(bool, true)
+    log_analytics_workspace_id      = optional(string, null)
+    msi_auth_for_monitoring_enabled = optional(bool, false)
   })
 ```
 
@@ -297,7 +298,8 @@ Default:
 ```json
 {
   "enabled": true,
-  "log_analytics_workspace_id": null
+  "log_analytics_workspace_id": null,
+  "msi_auth_for_monitoring_enabled": false
 }
 ```
 
