@@ -305,7 +305,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 
   lifecycle {
     ignore_changes = [
-      microsoft_defender[0].log_analytics_workspace_id # Allow Azure Policy to control this value in an Enterprise-Scale setup
+      microsoft_defender # Allow Azure Policy to control this value in an Enterprise-Scale setup
     ]
 
     precondition {
