@@ -182,6 +182,19 @@ variable "identity" {
   }
 }
 
+variable "kubelet_identity" {
+  type = object({
+    client_id                 = optional(string)
+    object_id                 = optional(string)
+    user_assigned_identity_id = optional(string)
+  })
+  default = {
+    client_id                 = null
+    object_id                 = null
+    user_assigned_identity_id = null
+  }
+}
+
 variable "aad_rbac" {
   description = <<EOT
   (Optional) Used to fill the azure_active_directory_role_based_access_control block for the Kubernetes cluster.

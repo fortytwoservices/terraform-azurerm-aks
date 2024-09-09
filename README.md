@@ -506,6 +506,30 @@ Type: `string`
 
 Default: `"Private"`
 
+### <a name="input_kubelet_identity"></a> [kubelet\_identity](#input\_kubelet\_identity)
+
+Description: n/a
+
+Type:
+
+```hcl
+object({
+    client_id                 = optional(string)
+    object_id                 = optional(string)
+    user_assigned_identity_id = optional(string)
+  })
+```
+
+Default:
+
+```json
+{
+  "client_id": null,
+  "object_id": null,
+  "user_assigned_identity_id": null
+}
+```
+
 ### <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version)
 
 Description: Kubernetes version to use for the cluster
