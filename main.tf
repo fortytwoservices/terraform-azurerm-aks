@@ -156,6 +156,15 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
+  dynamic "kubelet_identity" {
+    for_each = var.kubelet_identity.client_id != null && var.kubelet_identity.object_id != null && var.kubelet_identity.user_assigned_identity_id != null ? [1] : []
+    content {
+      client_id                 = var.kubelet_identity.client_id
+      object_id                 = var.kubelet_identity.object_id
+      user_assigned_identity_id = var.kubelet_identity.user_assigned_identity_id
+    }
+  }
+
   dynamic "service_principal" {
     # Service principal block is active if the service_principal variable is set
     for_each = var.service_principal != null ? [1] : []
