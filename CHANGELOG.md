@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.9.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.8.0...v3.9.0) (2024-09-11)
+
+
+### Features
+
+* added support for specifying kubelet identity ([#257](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/257)) ([4584874](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/45848745e34f267a1a51f36c681da4d6f8a7eaa7))
+
 ## [3.8.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.7.2...v3.8.0) (2024-08-13)
 
 
