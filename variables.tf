@@ -203,7 +203,7 @@ variable "aad_rbac" {
   type = object({
     tenant_id              = optional(string)
     admin_group_object_ids = optional(list(string))
-    azure_rbac_enabled     = optional(bool)
+    azure_rbac_enabled     = optional(bool, true)
   })
   default = {
     azure_rbac_enabled     = true
