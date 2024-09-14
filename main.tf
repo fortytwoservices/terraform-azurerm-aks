@@ -28,19 +28,17 @@ resource "azurerm_kubernetes_cluster" "main" {
   private_dns_zone_id          = var.private_dns_zone_id
   local_account_disabled       = var.local_account_disabled
   sku_tier                     = var.sku_tier
-  automatic_channel_upgrade    = var.automatic_channel_upgrade
+  automatic_upgrade_channel    = var.automatic_upgrade_channel
   disk_encryption_set_id       = var.disk_encryption_set_id
   run_command_enabled          = var.run_command_enabled
   image_cleaner_enabled        = var.image_cleaner_enabled
   image_cleaner_interval_hours = var.image_cleaner_interval_hours
-  node_os_channel_upgrade      = var.node_os_channel_upgrade
+  node_os_upgrade_channel      = var.node_os_upgrade_channel
 
   dynamic "api_server_access_profile" {
     for_each = var.api_server_authorized_ip_ranges != null || var.api_server_access_profile != null ? [1] : []
     content {
-      authorized_ip_ranges     = var.api_server_authorized_ip_ranges != null ? var.api_server_authorized_ip_ranges : var.api_server_access_profile.authorized_ip_ranges
-      subnet_id                = var.api_server_access_profile.subnet_id
-      vnet_integration_enabled = var.api_server_access_profile.vnet_integration_enabled
+      authorized_ip_ranges = var.api_server_authorized_ip_ranges != null ? var.api_server_authorized_ip_ranges : var.api_server_access_profile.authorized_ip_ranges
     }
   }
 
@@ -68,7 +66,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   default_node_pool {
     name                 = var.default_node_pool.name
     node_count           = var.default_node_pool.node_count
-    enable_auto_scaling  = var.default_node_pool.enable_auto_scaling
+    auto_scaling_enabled = var.default_node_pool.auto_scaling_enabled
     min_count            = var.default_node_pool.autoscale != null ? var.default_node_pool.autoscale.min_count : null
     max_count            = var.default_node_pool.autoscale != null ? var.default_node_pool.autoscale.max_count : null
     vm_size              = var.default_node_pool.vm_size
@@ -78,14 +76,12 @@ resource "azurerm_kubernetes_cluster" "main" {
     # Optional settings
     max_pods                      = var.default_node_pool.max_pods
     capacity_reservation_group_id = var.default_node_pool.capacity_reservation_group_id
-    enable_host_encryption        = var.default_node_pool.enable_host_encryption
-    enable_node_public_ip         = var.default_node_pool.enable_node_public_ip
+    host_encryption_enabled       = var.default_node_pool.host_encryption_enabled
+    node_public_ip_enabled        = var.default_node_pool.node_public_ip_enabled
     fips_enabled                  = var.default_node_pool.fips_enabled
     kubelet_disk_type             = var.default_node_pool.kubelet_disk_type
-    message_of_the_day            = var.default_node_pool.message_of_the_day
     node_public_ip_prefix_id      = var.default_node_pool.node_public_ip_prefix_id
     node_labels                   = var.default_node_pool.node_labels
-    node_taints                   = var.default_node_pool.node_taints
     only_critical_addons_enabled  = var.default_node_pool.only_critical_addons_enabled
     os_disk_size_gb               = var.default_node_pool.os_disk_size_gb
     os_disk_type                  = var.default_node_pool.os_disk_type
@@ -138,13 +134,9 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 
   azure_active_directory_role_based_access_control {
-    managed                = var.aad_rbac.managed
     tenant_id              = var.aad_rbac.tenant_id
     admin_group_object_ids = var.aad_rbac.admin_group_object_ids
     azure_rbac_enabled     = var.aad_rbac.azure_rbac_enabled
-    client_app_id          = var.aad_rbac.client_app_id
-    server_app_id          = var.aad_rbac.server_app_id
-    server_app_secret      = var.aad_rbac.server_app_secret
   }
 
   dynamic "identity" {
@@ -191,14 +183,12 @@ resource "azurerm_kubernetes_cluster" "main" {
     load_balancer_sku   = var.network_profile.load_balancer_sku
     outbound_type       = var.network_profile.outbound_type
     dns_service_ip      = var.network_profile.dns_service_ip
-    docker_bridge_cidr  = var.network_profile.docker_bridge_cidr
     pod_cidr            = var.network_profile.pod_cidr
     pod_cidrs           = var.network_profile.pod_cidrs
     service_cidr        = var.network_profile.service_cidr
     service_cidrs       = var.network_profile.service_cidrs
     ip_versions         = var.network_profile.ip_versions
     network_mode        = var.network_profile.network_mode
-    ebpf_data_plane     = var.network_profile.ebpf_data_plane
   }
 
   # Storage related settings
@@ -207,7 +197,6 @@ resource "azurerm_kubernetes_cluster" "main" {
     content {
       blob_driver_enabled         = var.storage_profile.blob_driver_enabled
       disk_driver_enabled         = var.storage_profile.disk_driver_enabled
-      disk_driver_version         = var.storage_profile.disk_driver_version
       file_driver_enabled         = var.storage_profile.file_driver_enabled
       snapshot_controller_enabled = var.storage_profile.snapshot_controller_enabled
     }
@@ -348,7 +337,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   priority              = each.value.priority
   spot_max_price        = each.value.spot_max_price
   eviction_policy       = each.value.eviction_policy
-  enable_auto_scaling   = each.value.enable_auto_scaling
+  auto_scaling_enabled  = each.value.auto_scaling_enabled
   min_count             = each.value.min_count
   max_count             = each.value.max_count
   os_disk_size_gb       = each.value.os_disk_size_gb
