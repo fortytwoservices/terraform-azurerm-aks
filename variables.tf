@@ -29,8 +29,8 @@ variable "default_node_pool" {
     vm_size = string
 
     # Autoscale or manual scaling
-    node_count          = optional(number)
-    enable_auto_scaling = optional(bool)
+    node_count           = optional(number)
+    auto_scaling_enabled = optional(bool)
     autoscale = optional(object({
       min_count = number
       max_count = number
@@ -39,14 +39,12 @@ variable "default_node_pool" {
     # Optional settings
     max_pods                      = optional(number)
     capacity_reservation_group_id = optional(string)
-    enable_host_encryption        = optional(bool)
-    enable_node_public_ip         = optional(bool)
+    host_encryption_enabled       = optional(bool)
+    node_public_ip_enabled        = optional(bool)
     fips_enabled                  = optional(bool)
     kubelet_disk_type             = optional(string)
-    message_of_the_day            = optional(string)
     node_public_ip_prefix_id      = optional(string)
     node_labels                   = optional(map(string))
-    node_taints                   = optional(list(string))
     only_critical_addons_enabled  = optional(bool)
     orchestrator_version          = optional(string)
     os_disk_size_gb               = optional(number)
@@ -109,7 +107,7 @@ variable "additional_node_pools" {
     os_sku               = optional(string)
     node_labels          = optional(map(string))
     node_count           = optional(number)
-    enable_auto_scaling  = optional(bool, false)
+    auto_scaling_enabled = optional(bool, false)
     min_count            = optional(number)
     max_count            = optional(number)
     vm_size              = optional(string)
@@ -203,16 +201,11 @@ variable "aad_rbac" {
   If managed is set to true, the admin_group_object_ids properties can be specified to a group that will have admin access to the cluster.
   EOT
   type = object({
-    managed                = optional(bool)
     tenant_id              = optional(string)
     admin_group_object_ids = optional(list(string))
     azure_rbac_enabled     = optional(bool)
-    client_app_id          = optional(string)
-    server_app_id          = optional(string)
-    server_app_secret      = optional(string)
   })
   default = {
-    managed                = true
     azure_rbac_enabled     = true
     admin_group_object_ids = null
   }
@@ -245,13 +238,11 @@ variable "network_profile" {
     load_balancer_sku   = optional(string)
     outbound_type       = optional(string)
     dns_service_ip      = optional(string)
-    docker_bridge_cidr  = optional(string)
     service_cidr        = optional(string)
     service_cidrs       = optional(list(string))
     pod_cidr            = optional(string)
     pod_cidrs           = optional(list(string))
     ip_versions         = optional(list(string))
-    ebpf_data_plane     = optional(string)
   })
   default = {
     network_plugin = "azure"
@@ -263,7 +254,6 @@ variable "storage_profile" {
   type = object({
     blob_driver_enabled         = optional(bool)
     disk_driver_enabled         = optional(bool)
-    disk_driver_version         = optional(string)
     file_driver_enabled         = optional(bool)
     snapshot_controller_enabled = optional(bool)
   })
@@ -320,9 +310,7 @@ variable "api_server_authorized_ip_ranges" {
 
 variable "api_server_access_profile" {
   type = object({
-    authorized_ip_ranges     = optional(list(string))
-    subnet_id                = optional(string)
-    vnet_integration_enabled = optional(bool)
+    authorized_ip_ranges = optional(list(string))
   })
   default = null
 }
@@ -392,13 +380,13 @@ variable "sku_tier" {
   }
 }
 
-variable "automatic_channel_upgrade" {
+variable "automatic_upgrade_channel" {
   description = "(Optional) The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable. Omitting this field sets this value to none."
   type        = string
   default     = null
 
   validation {
-    condition     = var.automatic_channel_upgrade == null ? true : contains(["patch", "rapid", "stable", "node-image"], var.automatic_channel_upgrade)
+    condition     = var.automatic_upgrade_channel == null ? true : contains(["patch", "rapid", "stable", "node-image"], var.automatic_upgrade_channel)
     error_message = "Value must be either patch, rapid, stable, node-image, or not defined (null)"
   }
 }
@@ -473,14 +461,14 @@ variable "image_cleaner_interval_hours" {
   default     = 48
 }
 
-variable "node_os_channel_upgrade" {
+variable "node_os_upgrade_channel" {
   type        = string
   default     = "NodeImage"
   description = " (Optional) The upgrade channel for this Kubernetes Cluster Nodes' OS Image. Possible values are `Unmanaged`, `SecurityPatch`, `NodeImage` and `None`. Defaults to `NodeImage`."
 
   validation {
-    condition     = contains(["Unmanaged", "SecurityPatch", "NodeImage", "None"], var.node_os_channel_upgrade)
-    error_message = "`node_os_channel_upgrade` value must be either Unmanaged, SecurityPatch, NodeImage, or None"
+    condition     = contains(["Unmanaged", "SecurityPatch", "NodeImage", "None"], var.node_os_upgrade_channel)
+    error_message = "`node_os_upgrade_channel` value must be either Unmanaged, SecurityPatch, NodeImage, or None"
   }
 }
 

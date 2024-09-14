@@ -119,13 +119,9 @@ Type:
 
 ```hcl
 object({
-    managed                = optional(bool)
     tenant_id              = optional(string)
     admin_group_object_ids = optional(list(string))
     azure_rbac_enabled     = optional(bool)
-    client_app_id          = optional(string)
-    server_app_id          = optional(string)
-    server_app_secret      = optional(string)
   })
 ```
 
@@ -134,8 +130,7 @@ Default:
 ```json
 {
   "admin_group_object_ids": null,
-  "azure_rbac_enabled": true,
-  "managed": true
+  "azure_rbac_enabled": true
 }
 ```
 
@@ -159,7 +154,7 @@ list(object({
     os_sku               = optional(string)
     node_labels          = optional(map(string))
     node_count           = optional(number)
-    enable_auto_scaling  = optional(bool, false)
+    auto_scaling_enabled = optional(bool, false)
     min_count            = optional(number)
     max_count            = optional(number)
     vm_size              = optional(string)
@@ -204,9 +199,7 @@ Type:
 
 ```hcl
 object({
-    authorized_ip_ranges     = optional(list(string))
-    subnet_id                = optional(string)
-    vnet_integration_enabled = optional(bool)
+    authorized_ip_ranges = optional(list(string))
   })
 ```
 
@@ -272,7 +265,7 @@ Default:
 }
 ```
 
-### <a name="input_automatic_channel_upgrade"></a> [automatic\_channel\_upgrade](#input\_automatic\_channel\_upgrade)
+### <a name="input_automatic_upgrade_channel"></a> [automatic\_upgrade\_channel](#input\_automatic\_upgrade\_channel)
 
 Description: (Optional) The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable. Omitting this field sets this value to none.
 
@@ -336,8 +329,8 @@ object({
     vm_size = string
 
     # Autoscale or manual scaling
-    node_count          = optional(number)
-    enable_auto_scaling = optional(bool)
+    node_count           = optional(number)
+    auto_scaling_enabled = optional(bool)
     autoscale = optional(object({
       min_count = number
       max_count = number
@@ -346,14 +339,12 @@ object({
     # Optional settings
     max_pods                      = optional(number)
     capacity_reservation_group_id = optional(string)
-    enable_host_encryption        = optional(bool)
-    enable_node_public_ip         = optional(bool)
+    host_encryption_enabled       = optional(bool)
+    node_public_ip_enabled        = optional(bool)
     fips_enabled                  = optional(bool)
     kubelet_disk_type             = optional(string)
-    message_of_the_day            = optional(string)
     node_public_ip_prefix_id      = optional(string)
     node_labels                   = optional(map(string))
-    node_taints                   = optional(list(string))
     only_critical_addons_enabled  = optional(bool)
     orchestrator_version          = optional(string)
     os_disk_size_gb               = optional(number)
@@ -661,13 +652,11 @@ object({
     load_balancer_sku   = optional(string)
     outbound_type       = optional(string)
     dns_service_ip      = optional(string)
-    docker_bridge_cidr  = optional(string)
     service_cidr        = optional(string)
     service_cidrs       = optional(list(string))
     pod_cidr            = optional(string)
     pod_cidrs           = optional(list(string))
     ip_versions         = optional(list(string))
-    ebpf_data_plane     = optional(string)
   })
 ```
 
@@ -679,7 +668,7 @@ Default:
 }
 ```
 
-### <a name="input_node_os_channel_upgrade"></a> [node\_os\_channel\_upgrade](#input\_node\_os\_channel\_upgrade)
+### <a name="input_node_os_upgrade_channel"></a> [node\_os\_upgrade\_channel](#input\_node\_os\_upgrade\_channel)
 
 Description:  (Optional) The upgrade channel for this Kubernetes Cluster Nodes' OS Image. Possible values are `Unmanaged`, `SecurityPatch`, `NodeImage` and `None`. Defaults to `NodeImage`.
 
@@ -745,7 +734,6 @@ Type:
 object({
     blob_driver_enabled         = optional(bool)
     disk_driver_enabled         = optional(bool)
-    disk_driver_version         = optional(string)
     file_driver_enabled         = optional(bool)
     snapshot_controller_enabled = optional(bool)
   })
