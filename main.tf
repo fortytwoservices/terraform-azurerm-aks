@@ -177,6 +177,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 
   # Network related settings
   network_profile {
+    network_data_plane  = var.network_profile.network_data_plane
     network_plugin      = var.network_profile.network_plugin
     network_policy      = var.network_profile.network_policy
     network_plugin_mode = var.network_profile.network_plugin_mode
