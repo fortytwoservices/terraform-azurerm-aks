@@ -645,6 +645,7 @@ Type:
 ```hcl
 object({
     network_plugin      = string
+    network_data_plane  = optional(string)
     network_plugin_mode = optional(string)
     network_policy      = optional(string)
     network_mode        = optional(string)
