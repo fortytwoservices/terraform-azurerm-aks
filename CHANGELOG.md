@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.0.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.9.0...v4.0.0) (2024-09-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* bump azurerm version requirement to v4 ([#261](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/261))
+
+### Features
+
+* bump azurerm version requirement to v4 ([#261](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/261)) ([2a6fd98](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/2a6fd983dadd9433e022d679319355afd567c29d))
+* update params and variables to azurerm v4 ([#262](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/262)) ([bf0cd27](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/bf0cd279d835c141ad43a7aac616a61bdc91f2d9))
+
+
+### Bug Fixes
+
+* add back renamed variable network_data_plane ([#265](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/265)) ([176a6f7](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/176a6f776cf9f61d543fb4fe805e033193fb75a0))
+* change check of value from managed to azure_rbac_enabled ([#264](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/264)) ([e0f8614](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/e0f86147a623b68952db9e53598d12487004bfa7))
+* set azure_rbac_enabled default true ([#266](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/266)) ([64c52fa](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/64c52fae7fb2acaf166ccf9b7a3868a5258f81c7))
+
 ## [3.9.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.8.0...v3.9.0) (2024-09-11)
 
 
