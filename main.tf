@@ -308,7 +308,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     ]
 
     precondition {
-      condition     = (!(var.local_account_disabled == true && var.aad_rbac.managed == false))
+      condition     = (!(var.local_account_disabled == true && var.aad_rbac.azure_rbac_enabled == false))
       error_message = <<EOF
 If local_account_disabled is set to true, it is required to enable Kubernetes RBAC and AKS-managed Azure AD integration. 
 See the documentation for more information (https://docs.microsoft.com/azure/aks/managed-aad#azure-ad-authentication-overview).
