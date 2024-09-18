@@ -91,6 +91,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     type                          = var.default_node_pool.type
     ultra_ssd_enabled             = var.default_node_pool.ultra_ssd_enabled
     zones                         = var.default_node_pool.zones
+    temporary_name_for_rotation   = var.default_node_pool.temporary_name_for_rotation
 
     dynamic "kubelet_config" {
       for_each = var.default_node_pool.kubelet_config != null ? [1] : []
