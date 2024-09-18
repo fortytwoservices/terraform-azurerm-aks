@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v4.0.0...v4.1.0) (2024-09-18)
+
+
+### Features
+
+* added support for temporary_name_for_rotation ([#268](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/268)) ([a3461cf](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/a3461cf4a3992a1e9e764a2715b848b48fc0bf20))
+
 ## [4.0.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v3.9.0...v4.0.0) (2024-09-14)
 
 
