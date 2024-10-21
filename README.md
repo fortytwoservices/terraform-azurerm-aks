@@ -756,6 +756,21 @@ Type: `map(string)`
 
 Default: `{}`
 
+### <a name="input_workload_autoscaler_profile"></a> [workload\_autoscaler\_profile](#input\_workload\_autoscaler\_profile)
+
+Description: The workload autoscaler profile for the Kubernetes cluster.
+
+Type:
+
+```hcl
+object({
+    keda_enabled                    = optional(bool)
+    vertical_pod_autoscaler_enabled = optional(bool)
+  })
+```
+
+Default: `null`
+
 ### <a name="input_workload_identity_enabled"></a> [workload\_identity\_enabled](#input\_workload\_identity\_enabled)
 
 Description: (Optional) Enable or disable workload identity for the cluster. Enabling this also sets oidc\_issuer\_enabled to true.
