@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.2.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v4.1.0...v4.2.0) (2024-10-21)
+
+
+### Features
+
+* add support for host_encryption_enabled i additional nodepool ([#291](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/291)) ([69492f6](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/69492f6a2295024f327665295831901217f49cee))
+* add support for workload_autoscaler_profile ([#293](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/293)) ([92ec804](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/92ec8044df9ce159134cad98a7bafd4bea26159e))
+
 ## [4.1.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v4.0.0...v4.1.0) (2024-09-18)
 
 
