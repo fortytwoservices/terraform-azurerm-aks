@@ -195,6 +195,15 @@ variable "kubelet_identity" {
   }
 }
 
+variable "workload_autoscaler_profile" {
+  description = "The workload autoscaler profile for the Kubernetes cluster."
+  type = object({
+    keda_enabled                    = optional(bool)
+    vertical_pod_autoscaler_enabled = optional(bool)
+  })
+  default = null
+}
+
 variable "aad_rbac" {
   description = <<EOT
   (Optional) Used to fill the azure_active_directory_role_based_access_control block for the Kubernetes cluster.
