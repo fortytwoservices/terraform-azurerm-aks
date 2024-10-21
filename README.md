@@ -650,10 +650,10 @@ Type:
 
 ```hcl
 object({
-    network_plugin      = string
-    network_data_plane  = optional(string)
+    network_plugin      = optional(string, "azure")
+    network_data_plane  = optional(string, "cilium")
     network_plugin_mode = optional(string)
-    network_policy      = optional(string)
+    network_policy      = optional(string, "cilium")
     network_mode        = optional(string)
     vnet_subnet_id      = optional(string)
     load_balancer_sku   = optional(string)
@@ -671,7 +671,9 @@ Default:
 
 ```json
 {
-  "network_plugin": "azure"
+  "network_data_plane": "cilium",
+  "network_plugin": "azure",
+  "network_policy": "cilium"
 }
 ```
 
