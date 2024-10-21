@@ -324,29 +324,30 @@ See the documentation for more information (https://docs.microsoft.com/azure/aks
 resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   for_each = { for np in var.additional_node_pools : np.name => np }
 
-  name                  = each.value.name
-  os_type               = each.value.os_type
-  os_sku                = each.value.os_sku
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.main.id
-  node_count            = each.value.node_count
-  vm_size               = each.value.vm_size == null ? var.default_node_pool.vm_size : each.value.vm_size
-  vnet_subnet_id        = var.network_profile.vnet_subnet_id
-  pod_subnet_id         = each.value.pod_subnet_id
-  orchestrator_version  = each.value.orchestrator_version == null ? local.kubernetes_version : each.value.orchestrator_version
-  max_pods              = each.value.max_pods
-  node_labels           = each.value.node_labels
-  node_taints           = each.value.node_taints
-  priority              = each.value.priority
-  spot_max_price        = each.value.spot_max_price
-  eviction_policy       = each.value.eviction_policy
-  auto_scaling_enabled  = each.value.auto_scaling_enabled
-  min_count             = each.value.min_count
-  max_count             = each.value.max_count
-  os_disk_size_gb       = each.value.os_disk_size_gb
-  os_disk_type          = each.value.os_disk_type
-  kubelet_disk_type     = each.value.kubelet_disk_type
-  ultra_ssd_enabled     = each.value.ultra_ssd_enabled
-  zones                 = each.value.zones
+  name                    = each.value.name
+  os_type                 = each.value.os_type
+  os_sku                  = each.value.os_sku
+  kubernetes_cluster_id   = azurerm_kubernetes_cluster.main.id
+  host_encryption_enabled = each.value.host_encryption_enabled
+  node_count              = each.value.node_count
+  vm_size                 = each.value.vm_size == null ? var.default_node_pool.vm_size : each.value.vm_size
+  vnet_subnet_id          = var.network_profile.vnet_subnet_id
+  pod_subnet_id           = each.value.pod_subnet_id
+  orchestrator_version    = each.value.orchestrator_version == null ? local.kubernetes_version : each.value.orchestrator_version
+  max_pods                = each.value.max_pods
+  node_labels             = each.value.node_labels
+  node_taints             = each.value.node_taints
+  priority                = each.value.priority
+  spot_max_price          = each.value.spot_max_price
+  eviction_policy         = each.value.eviction_policy
+  auto_scaling_enabled    = each.value.auto_scaling_enabled
+  min_count               = each.value.min_count
+  max_count               = each.value.max_count
+  os_disk_size_gb         = each.value.os_disk_size_gb
+  os_disk_type            = each.value.os_disk_type
+  kubelet_disk_type       = each.value.kubelet_disk_type
+  ultra_ssd_enabled       = each.value.ultra_ssd_enabled
+  zones                   = each.value.zones
 
   dynamic "linux_os_config" {
     for_each = each.value.linux_os_config != null ? [1] : []
