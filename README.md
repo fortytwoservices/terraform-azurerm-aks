@@ -24,11 +24,16 @@ The following requirements are needed by this module:
 #trivy:ignore:avd-azu-0041
 module "kubernetes" {
   source  = "fortytwoservices/aks/azurerm"
-  version = "3.5.0"
+  version = "4.2.0"
 
   name                = "demo-prod-westeu"
   resource_group_name = azurerm_resource_group.demo.name
   location            = azurerm_resource_group.demo.location
+
+  network_profile = {
+    network_plugin = "azure"
+    network_policy = "azure"
+  }
 
   tags = {
     environment = "production"
@@ -42,21 +47,16 @@ module "kubernetes" {
 #trivy:ignore:avd-azu-0041
 module "kubernetes" {
   source  = "fortytwoservices/aks/azurerm"
-  version = "3.5.0"
+  version = "4.2.0"
 
   name                = "demo-prod-westeu"
   resource_group_name = azurerm_resource_group.demo.name
   location            = azurerm_resource_group.demo.location
 
-  service_principal = {
-    client_id     = "00000000-0000-0000-0000-000000000000"
-    client_secret = "client_secret_value"
-  }
-
-  automatic_bump_kubernetes_version = {
-    enabled         = true
-    version_prefix  = "1.23"
-    include_preview = false
+  network_profile = {
+    network_plugin     = "azure"
+    network_policy     = "cilium"
+    network_data_plane = "cilium"
   }
 
   additional_node_pools = [
