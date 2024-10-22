@@ -151,31 +151,32 @@ Type:
 
 ```hcl
 list(object({
-    name                 = string
-    mode                 = optional(string)
-    orchestrator_version = optional(string)
-    os_type              = optional(string)
-    os_sku               = optional(string)
-    node_labels          = optional(map(string))
-    node_count           = optional(number)
-    auto_scaling_enabled = optional(bool, false)
-    min_count            = optional(number)
-    max_count            = optional(number)
-    vm_size              = optional(string)
-    os_disk_size_gb      = optional(number)
-    os_disk_type         = optional(string)
-    vnet_subnet_id       = optional(string)
-    pod_subnet_id        = optional(string)
-    max_pods             = optional(number)
-    zones                = optional(list(string))
-    scale_down_mode      = optional(string)
-    ultra_ssd_enabled    = optional(bool)
-    kubelet_disk_type    = optional(string)
-    node_taints          = optional(list(string))
-    tags                 = optional(map(string))
-    priority             = optional(string)
-    spot_max_price       = optional(string)
-    eviction_policy      = optional(string)
+    name                    = string
+    mode                    = optional(string)
+    orchestrator_version    = optional(string)
+    os_type                 = optional(string)
+    os_sku                  = optional(string)
+    host_encryption_enabled = optional(bool)
+    node_labels             = optional(map(string))
+    node_count              = optional(number)
+    auto_scaling_enabled    = optional(bool, false)
+    min_count               = optional(number)
+    max_count               = optional(number)
+    vm_size                 = optional(string)
+    os_disk_size_gb         = optional(number)
+    os_disk_type            = optional(string)
+    vnet_subnet_id          = optional(string)
+    pod_subnet_id           = optional(string)
+    max_pods                = optional(number)
+    zones                   = optional(list(string))
+    scale_down_mode         = optional(string)
+    ultra_ssd_enabled       = optional(bool)
+    kubelet_disk_type       = optional(string)
+    node_taints             = optional(list(string))
+    tags                    = optional(map(string))
+    priority                = optional(string)
+    spot_max_price          = optional(string)
+    eviction_policy         = optional(string)
 
     linux_os_config = optional(object({
       swap_file_size_mb             = optional(number)
@@ -649,10 +650,10 @@ Type:
 
 ```hcl
 object({
-    network_plugin      = string
-    network_data_plane  = optional(string)
+    network_plugin      = optional(string, "azure")
+    network_data_plane  = optional(string, "cilium")
     network_plugin_mode = optional(string)
-    network_policy      = optional(string)
+    network_policy      = optional(string, "cilium")
     network_mode        = optional(string)
     vnet_subnet_id      = optional(string)
     load_balancer_sku   = optional(string)
@@ -670,7 +671,9 @@ Default:
 
 ```json
 {
-  "network_plugin": "azure"
+  "network_data_plane": "cilium",
+  "network_plugin": "azure",
+  "network_policy": "cilium"
 }
 ```
 
@@ -754,6 +757,21 @@ Description: (Optional) A mapping of tags to assign to the resources
 Type: `map(string)`
 
 Default: `{}`
+
+### <a name="input_workload_autoscaler_profile"></a> [workload\_autoscaler\_profile](#input\_workload\_autoscaler\_profile)
+
+Description: The workload autoscaler profile for the Kubernetes cluster.
+
+Type:
+
+```hcl
+object({
+    keda_enabled                    = optional(bool)
+    vertical_pod_autoscaler_enabled = optional(bool)
+  })
+```
+
+Default: `null`
 
 ### <a name="input_workload_identity_enabled"></a> [workload\_identity\_enabled](#input\_workload\_identity\_enabled)
 

@@ -101,31 +101,32 @@ variable "additional_node_pools" {
   vm_size - (optional) The size of the virtual machines to use for the node pool, defaults to the same as the default node pool.
   EOT
   type = list(object({
-    name                 = string
-    mode                 = optional(string)
-    orchestrator_version = optional(string)
-    os_type              = optional(string)
-    os_sku               = optional(string)
-    node_labels          = optional(map(string))
-    node_count           = optional(number)
-    auto_scaling_enabled = optional(bool, false)
-    min_count            = optional(number)
-    max_count            = optional(number)
-    vm_size              = optional(string)
-    os_disk_size_gb      = optional(number)
-    os_disk_type         = optional(string)
-    vnet_subnet_id       = optional(string)
-    pod_subnet_id        = optional(string)
-    max_pods             = optional(number)
-    zones                = optional(list(string))
-    scale_down_mode      = optional(string)
-    ultra_ssd_enabled    = optional(bool)
-    kubelet_disk_type    = optional(string)
-    node_taints          = optional(list(string))
-    tags                 = optional(map(string))
-    priority             = optional(string)
-    spot_max_price       = optional(string)
-    eviction_policy      = optional(string)
+    name                    = string
+    mode                    = optional(string)
+    orchestrator_version    = optional(string)
+    os_type                 = optional(string)
+    os_sku                  = optional(string)
+    host_encryption_enabled = optional(bool)
+    node_labels             = optional(map(string))
+    node_count              = optional(number)
+    auto_scaling_enabled    = optional(bool, false)
+    min_count               = optional(number)
+    max_count               = optional(number)
+    vm_size                 = optional(string)
+    os_disk_size_gb         = optional(number)
+    os_disk_type            = optional(string)
+    vnet_subnet_id          = optional(string)
+    pod_subnet_id           = optional(string)
+    max_pods                = optional(number)
+    zones                   = optional(list(string))
+    scale_down_mode         = optional(string)
+    ultra_ssd_enabled       = optional(bool)
+    kubelet_disk_type       = optional(string)
+    node_taints             = optional(list(string))
+    tags                    = optional(map(string))
+    priority                = optional(string)
+    spot_max_price          = optional(string)
+    eviction_policy         = optional(string)
 
     linux_os_config = optional(object({
       swap_file_size_mb             = optional(number)
@@ -194,6 +195,15 @@ variable "kubelet_identity" {
   }
 }
 
+variable "workload_autoscaler_profile" {
+  description = "The workload autoscaler profile for the Kubernetes cluster."
+  type = object({
+    keda_enabled                    = optional(bool)
+    vertical_pod_autoscaler_enabled = optional(bool)
+  })
+  default = null
+}
+
 variable "aad_rbac" {
   description = <<EOT
   (Optional) Used to fill the azure_active_directory_role_based_access_control block for the Kubernetes cluster.
@@ -231,10 +241,10 @@ variable "network_profile" {
   If not specified, the network profile will be of type Azure.
   EOT
   type = object({
-    network_plugin      = string
-    network_data_plane  = optional(string)
+    network_plugin      = optional(string, "azure")
+    network_data_plane  = optional(string, "cilium")
     network_plugin_mode = optional(string)
-    network_policy      = optional(string)
+    network_policy      = optional(string, "cilium")
     network_mode        = optional(string)
     vnet_subnet_id      = optional(string)
     load_balancer_sku   = optional(string)
@@ -247,7 +257,24 @@ variable "network_profile" {
     ip_versions         = optional(list(string))
   })
   default = {
-    network_plugin = "azure"
+    network_plugin     = "azure"
+    network_policy     = "cilium"
+    network_data_plane = "cilium"
+  }
+
+  validation {
+    condition     = var.network_profile.network_policy == "azure" && var.network_profile.network_plugin == "azure"
+    error_message = "When network_policy is set to azure, the network_plugin field can only be set to azure."
+  }
+
+  validation {
+    condition     = var.network_profile.network_policy == "cilium" && var.network_profile.network_data_plane == "cilium"
+    error_message = "When network_policy is set to cilium, the network_data_plane field must be set to cilium."
+  }
+
+  validation {
+    condition     = var.network_profile.network_data_plane == "cilium" && var.network_profile.network_plugin == "azure"
+    error_message = "When network_data_plane is set to cilium, the network_plugin field can only be set to azure."
   }
 }
 
@@ -260,11 +287,6 @@ variable "storage_profile" {
     snapshot_controller_enabled = optional(bool)
   })
   default = null
-
-  validation {
-    condition     = var.storage_profile == null || try(var.storage_profile.disk_driver_version == null, true) || can(regex("^(v1|v2)$", var.storage_profile.disk_driver_version))
-    error_message = "Value can only be 'v1' or 'v2'."
-  }
 }
 
 variable "ingress_application_gateway" {
