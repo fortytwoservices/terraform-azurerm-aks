@@ -244,10 +244,10 @@ variable "network_profile" {
   If not specified, the network profile will be of type Azure.
   EOT
   type = object({
-    network_plugin      = string
-    network_data_plane  = optional(string)
+    network_plugin      = optional(string, "azure")
+    network_data_plane  = optional(string, "cilium")
     network_plugin_mode = optional(string)
-    network_policy      = optional(string)
+    network_policy      = optional(string, "cilium")
     network_mode        = optional(string)
     vnet_subnet_id      = optional(string)
     load_balancer_sku   = optional(string)
@@ -260,7 +260,24 @@ variable "network_profile" {
     ip_versions         = optional(list(string))
   })
   default = {
-    network_plugin = "azure"
+    network_plugin     = "azure"
+    network_policy     = "cilium"
+    network_data_plane = "cilium"
+  }
+
+  validation {
+    condition     = var.network_profile.network_policy == "azure" && var.network_profile.network_plugin == "azure"
+    error_message = "When network_policy is set to azure, the network_plugin field can only be set to azure."
+  }
+
+  validation {
+    condition     = var.network_profile.network_policy == "cilium" && var.network_profile.network_data_plane == "cilium"
+    error_message = "When network_policy is set to cilium, the network_data_plane field must be set to cilium."
+  }
+
+  validation {
+    condition     = var.network_profile.network_data_plane == "cilium" && var.network_profile.network_plugin == "azure"
+    error_message = "When network_data_plane is set to cilium, the network_plugin field can only be set to azure."
   }
 }
 
@@ -273,11 +290,6 @@ variable "storage_profile" {
     snapshot_controller_enabled = optional(bool)
   })
   default = null
-
-  validation {
-    condition     = var.storage_profile == null || try(var.storage_profile.disk_driver_version == null, true) || can(regex("^(v1|v2)$", var.storage_profile.disk_driver_version))
-    error_message = "Value can only be 'v1' or 'v2'."
-  }
 }
 
 variable "ingress_application_gateway" {
