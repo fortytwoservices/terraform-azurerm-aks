@@ -126,6 +126,13 @@ resource "azurerm_kubernetes_cluster" "main" {
         transparent_huge_page_enabled = var.default_node_pool.linux_os_config.transparent_huge_page_enabled
         transparent_huge_page_defrag  = var.default_node_pool.linux_os_config.transparent_huge_page_defrag
 
+        dynamic "sysctl_config" {
+          for_each = var.default_node_pool.linux_os_config.sysctl_config != null ? [1] : []
+          content {
+            vm_max_map_count = var.default_node_pool.linux_os_config.sysctl_config.vm_max_map_count
+          }
+        }
+
       }
     }
 
