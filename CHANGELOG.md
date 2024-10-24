@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.0.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v4.2.0...v5.0.0) (2024-10-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* set cilium as default network_policy ([#294](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/294))
+
+### Features
+
+* added sysctl_config ([#298](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/298)) ([d27328b](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/d27328b57438a474058252cef4be847765021f54))
+* set cilium as default network_policy ([#294](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/294)) ([6992767](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/6992767233f1f19841167f180a910a7a83de8644))
+
 ## [4.2.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v4.1.0...v4.2.0) (2024-10-21)
 
 
