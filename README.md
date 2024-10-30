@@ -548,6 +548,22 @@ Type: `bool`
 
 Default: `true`
 
+### <a name="input_log_analytics_workspace_retention"></a> [log\_analytics\_workspace\_retention](#input\_log\_analytics\_workspace\_retention)
+
+Description: (Optional) The retention period in days for the default Log Analytics Workspace. Defaults to 30.
+
+Type: `string`
+
+Default: `"30"`
+
+### <a name="input_log_analytics_workspace_sku"></a> [log\_analytics\_workspace\_sku](#input\_log\_analytics\_workspace\_sku)
+
+Description: (Optional) The SKU of the default Log Analytics Workspace. Defaults to PerGB2018.
+
+Type: `string`
+
+Default: `"PerGB2018"`
+
 ### <a name="input_maintenance_window"></a> [maintenance\_window](#input\_maintenance\_window)
 
 Description: (Optional) Maintenance windows allowed and not allowed configuration of the managed cluster.

@@ -428,6 +428,18 @@ variable "default_log_analytics_workspace_id" {
   default     = null
 }
 
+variable "log_analytics_workspace_retention" {
+  description = "(Optional) The retention period in days for the default Log Analytics Workspace. Defaults to 30."
+  type        = string
+  default     = "30"
+}
+
+variable "log_analytics_workspace_sku" {
+  description = "(Optional) The SKU of the default Log Analytics Workspace. Defaults to PerGB2018."
+  type        = string
+  default     = "PerGB2018"
+}
+
 variable "key_vault_secrets_provider" {
   description = "(Optional) Enable or disable Azure Key Vault Secret Providers for the cluster. Defaults to false."
   type = object({
