@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.0.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v4.2.0...v5.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* set cilium as default network_policy ([#294](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/294))
+
+### Features
+
+* added sysctl_config ([#298](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/298)) ([d27328b](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/d27328b57438a474058252cef4be847765021f54))
+* allow changing sku and retention of default log workspace ([#301](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/301)) ([11e4c73](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/11e4c73a7b0fce0f0a9fa3636a8e2811596c63d7))
+* set cilium as default network_policy ([#294](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/294)) ([6992767](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/6992767233f1f19841167f180a910a7a83de8644))
+* update automation workflow ([#300](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/300)) ([d8c224b](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/d8c224b49daa1ebb400a606bb158c9f5a967b7a1))
+
 ## [4.2.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v4.1.0...v4.2.0) (2024-10-21)
 
 
