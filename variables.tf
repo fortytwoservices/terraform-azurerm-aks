@@ -265,20 +265,20 @@ variable "network_profile" {
     network_data_plane = "cilium"
   }
 
-  validation {
-    condition     = var.network_profile.network_policy == "azure" && var.network_profile.network_plugin == "azure"
-    error_message = "When network_policy is set to azure, the network_plugin field can only be set to azure."
-  }
+  # validation {
+  #   condition     = var.network_profile.network_policy == "azure" && var.network_profile.network_plugin == "azure"
+  #   error_message = "When network_policy is set to azure, the network_plugin field can only be set to azure."
+  # }
 
-  validation {
-    condition     = var.network_profile.network_policy == "cilium" && var.network_profile.network_data_plane == "cilium"
-    error_message = "When network_policy is set to cilium, the network_data_plane field must be set to cilium."
-  }
+  # validation {
+  #   condition     = var.network_profile.network_policy == "cilium" && var.network_profile.network_data_plane == "cilium"
+  #   error_message = "When network_policy is set to cilium, the network_data_plane field must be set to cilium."
+  # }
 
-  validation {
-    condition     = var.network_profile.network_data_plane == "cilium" && var.network_profile.network_plugin == "azure"
-    error_message = "When network_data_plane is set to cilium, the network_plugin field can only be set to azure."
-  }
+  # validation {
+  #   condition     = var.network_profile.network_data_plane == "cilium" && var.network_profile.network_plugin == "azure"
+  #   error_message = "When network_data_plane is set to cilium, the network_plugin field can only be set to azure."
+  # }
 }
 
 variable "storage_profile" {
