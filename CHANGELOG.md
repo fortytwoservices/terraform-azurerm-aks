@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.0.0...v5.0.1) (2024-11-01)
+
+
+### Bug Fixes
+
+* correct failed validation logic for network profile ([#303](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/303)) ([4ecef4f](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/4ecef4f14696118786c0e42931acffaab7a51750))
+
 ## [5.0.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v4.2.0...v5.0.0) (2024-10-30)
 
 
