@@ -663,7 +663,8 @@ Default:
 ### <a name="input_network_profile"></a> [network\_profile](#input\_network\_profile)
 
 Description:   (Optional) The network profile block for the Kubernetes cluster.  
-  If not specified, the network profile will be of type Azure.
+  If not specified, the network plugin will be of type Azure, and network data plane and network policy of type Cilium.
+  "network\_policy": Supports the values "calico", "azure", "cilium", and "none". Set this to "none", if you previously had this unset or "null". "cilium" is the default value.
 
 Type:
 

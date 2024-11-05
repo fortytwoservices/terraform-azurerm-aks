@@ -241,7 +241,8 @@ variable "service_principal" {
 variable "network_profile" {
   description = <<EOT
   (Optional) The network profile block for the Kubernetes cluster.
-  If not specified, the network profile will be of type Azure.
+  If not specified, the network plugin will be of type Azure, and network data plane and network policy of type Cilium.
+  "network_policy": Supports the values "calico", "azure", "cilium", and "none". Set this to "none", if you previously had this unset or "null". "cilium" is the default value.
   EOT
   type = object({
     network_plugin      = optional(string, "azure")
