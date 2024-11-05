@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.0.1...v5.0.2) (2024-11-05)
+
+
+### Bug Fixes
+
+* add support for none for network_policy ([#305](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/305)) ([37b7d0d](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/37b7d0d41f520e2a3b522f352df8042389ebc7f2))
+
 ## [5.0.1](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.0.0...v5.0.1) (2024-11-01)
 
 
