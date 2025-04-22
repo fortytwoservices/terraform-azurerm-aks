@@ -189,7 +189,9 @@ list(object({
     }))
 
     upgrade_settings = optional(object({
-      max_surge = optional(string)
+      max_surge                     = optional(string)
+      drain_timeout_in_minutes      = optional(number)
+      node_soak_duration_in_minutes = optional(number)
     }))
   }))
 ```
@@ -389,7 +391,9 @@ object({
     }))
 
     upgrade_settings = optional(object({
-      max_surge = optional(string)
+      max_surge                     = optional(string)
+      drain_timeout_in_minutes      = optional(number)
+      node_soak_duration_in_minutes = optional(number)
     }))
   })
 ```
@@ -777,6 +781,21 @@ Description: (Optional) A mapping of tags to assign to the resources
 Type: `map(string)`
 
 Default: `{}`
+
+### <a name="input_upgrade_override"></a> [upgrade\_override](#input\_upgrade\_override)
+
+Description: (Optional) Upgrade override for the managed AKS cluster.
+
+Type:
+
+```hcl
+object({
+    force_upgrade_enabled = optional(bool)
+    effective_until       = optional(string)
+  })
+```
+
+Default: `null`
 
 ### <a name="input_workload_autoscaler_profile"></a> [workload\_autoscaler\_profile](#input\_workload\_autoscaler\_profile)
 

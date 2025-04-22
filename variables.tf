@@ -84,7 +84,9 @@ variable "default_node_pool" {
     }))
 
     upgrade_settings = optional(object({
-      max_surge = optional(string)
+      max_surge                     = optional(string)
+      drain_timeout_in_minutes      = optional(number)
+      node_soak_duration_in_minutes = optional(number)
     }))
   })
   default = {
@@ -142,7 +144,9 @@ variable "additional_node_pools" {
     }))
 
     upgrade_settings = optional(object({
-      max_surge = optional(string)
+      max_surge                     = optional(string)
+      drain_timeout_in_minutes      = optional(number)
+      node_soak_duration_in_minutes = optional(number)
     }))
   }))
   default = []
@@ -265,21 +269,6 @@ variable "network_profile" {
     network_policy     = "cilium"
     network_data_plane = "cilium"
   }
-
-  # validation {
-  #   condition     = var.network_profile.network_policy == "azure" && var.network_profile.network_plugin == "azure"
-  #   error_message = "When network_policy is set to azure, the network_plugin field can only be set to azure."
-  # }
-
-  # validation {
-  #   condition     = var.network_profile.network_policy == "cilium" && var.network_profile.network_data_plane == "cilium"
-  #   error_message = "When network_policy is set to cilium, the network_data_plane field must be set to cilium."
-  # }
-
-  # validation {
-  #   condition     = var.network_profile.network_data_plane == "cilium" && var.network_profile.network_plugin == "azure"
-  #   error_message = "When network_data_plane is set to cilium, the network_plugin field can only be set to azure."
-  # }
 }
 
 variable "storage_profile" {
@@ -565,4 +554,13 @@ variable "maintenance_window_node_os" {
   })
   default     = null
   description = "(Optional) Maintenance window for auto upgrade of the managed AKS cluster nodes OS."
+}
+
+variable "upgrade_override" {
+  type = object({
+    force_upgrade_enabled = optional(bool)
+    effective_until       = optional(string)
+  })
+  default     = null
+  description = "(Optional) Upgrade override for the managed AKS cluster."
 }
