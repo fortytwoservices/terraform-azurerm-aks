@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.0.2...v5.1.0) (2025-04-22)
+
+
+### Features
+
+* add upgrade_override parameter and update upgrade_settings ([#321](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/321)) ([3784704](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/378470480fd542a70a55b27ac75943a13205ea4e))
+
 ## [5.0.2](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.0.1...v5.0.2) (2024-11-05)
 
 
