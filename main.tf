@@ -139,7 +139,9 @@ resource "azurerm_kubernetes_cluster" "main" {
     dynamic "upgrade_settings" {
       for_each = var.default_node_pool.upgrade_settings != null ? ["upgrade_settings"] : []
       content {
-        max_surge = var.default_node_pool.upgrade_settings.max_surge
+        max_surge                     = var.default_node_pool.upgrade_settings.max_surge
+        drain_timeout_in_minutes      = var.default_node_pool.upgrade_settings.drain_timeout_in_minutes
+        node_soak_duration_in_minutes = var.default_node_pool.upgrade_settings.node_soak_duration_in_minutes
       }
     }
 
@@ -319,6 +321,14 @@ resource "azurerm_kubernetes_cluster" "main" {
     }
   }
 
+  dynamic "upgrade_override" {
+    for_each = var.upgrade_override != null ? [1] : []
+    content {
+      force_upgrade_enabled = var.upgrade_override.force_upgrade_enabled
+      effective_until       = var.upgrade_override.effective_until
+    }
+  }
+
   lifecycle {
     ignore_changes = [
       microsoft_defender # Allow Azure Policy to control this value in an Enterprise-Scale setup
@@ -385,7 +395,9 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   dynamic "upgrade_settings" {
     for_each = each.value.upgrade_settings != null ? ["upgrade_settings"] : []
     content {
-      max_surge = each.value.upgrade_settings.max_surge
+      max_surge                     = each.value.upgrade_settings.max_surge
+      drain_timeout_in_minutes      = each.value.upgrade_settings.drain_timeout_in_minutes
+      node_soak_duration_in_minutes = each.value.upgrade_settings.node_soak_duration_in_minutes
     }
   }
 
