@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.2.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.1.0...v5.2.0) (2025-05-14)
+
+
+### Features
+
+* support native k8s garbage collection in additional nodepools ([426300f](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/426300f7326f2ceeb5da314815450fe051334d4b))
+* support native k8s garbage collection in additional nodepools ([e67ddba](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/e67ddba61a12e60c6d24da63049236a5c2cb6118))
+* update placement of block + readme ([4c40b11](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/4c40b11966f8cc1c457aefd4de6cc0d308df8de6))
+
 ## [5.1.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.0.2...v5.1.0) (2025-04-22)
 
 
