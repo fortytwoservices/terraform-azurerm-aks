@@ -389,6 +389,15 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
           vm_max_map_count = each.value.linux_os_config.sysctl_config.vm_max_map_count
         }
       }
+
+      dynamic "kubelet_config" {
+        for_each = each.value.linux_os_config.kubelet_config != null ? [1] : []
+
+        content {
+          image_gc_high_threshold = each.value.linux_os_config.kubelet_config.image_gc_high_threshold
+          image_gc_low_threshold  = each.value.linux_os_config.kubelet_config.image_gc_low_threshold
+        }
+      }
     }
   }
 
