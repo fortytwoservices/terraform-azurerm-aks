@@ -186,12 +186,11 @@ list(object({
       sysctl_config = optional(object({
         vm_max_map_count = optional(number)
       }))
-
-      kubelet_config = optional(object({
-        image_gc_high_threshold = optional(number)
-        image_gc_low_threshold  = optional(number)
-      }))
     }))
+
+    kubelet_config = optional(object({
+      image_gc_high_threshold = optional(number)
+      image_gc_low_threshold  = optional(number)
     }))
 
     upgrade_settings = optional(object({
