@@ -392,6 +392,15 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
     }
   }
 
+  dynamic "kubelet_config" {
+    for_each = each.value.kubelet_config != null ? [1] : []
+
+    content {
+      image_gc_high_threshold = each.value.kubelet_config.image_gc_high_threshold
+      image_gc_low_threshold  = each.value.kubelet_config.image_gc_low_threshold
+    }
+  }
+
   dynamic "upgrade_settings" {
     for_each = each.value.upgrade_settings != null ? ["upgrade_settings"] : []
     content {

@@ -143,6 +143,11 @@ variable "additional_node_pools" {
       }))
     }))
 
+    kubelet_config = optional(object({
+      image_gc_high_threshold = optional(number)
+      image_gc_low_threshold  = optional(number)
+    }))
+
     upgrade_settings = optional(object({
       max_surge                     = optional(string)
       drain_timeout_in_minutes      = optional(number)
