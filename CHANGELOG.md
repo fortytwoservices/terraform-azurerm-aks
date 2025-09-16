@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.1](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.3.0...v5.3.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* correct placement of monitor_metrics ([#363](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/363)) ([48f4565](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/48f45659f5e6b029cddb95d217e2dcf3a0908c6a))
+
 ## [5.3.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.2.0...v5.3.0) (2025-09-16)
 
 
