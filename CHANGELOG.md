@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.2.0...v5.3.0) (2025-09-16)
+
+
+### Features
+
+* add monitor_metrics parameter ([#361](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/361)) ([f3c39d6](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/f3c39d628657eb4a3782575a90b2918b07bcf3e8))
+
 ## [5.2.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.1.0...v5.2.0) (2025-05-14)
 
 
