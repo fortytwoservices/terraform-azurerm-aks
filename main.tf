@@ -145,14 +145,6 @@ resource "azurerm_kubernetes_cluster" "main" {
       }
     }
 
-    dynamic "monitor_metrics" {
-      for_each = lookup(var.monitor_metrics, "annotations_allowed", null) != null || lookup(var.monitor_metrics, "labels_allowed", null) != null ? [1] : []
-      content {
-        annotations_allowed = lookup(var.monitor_metrics, "annotations_allowed", null)
-        labels_allowed      = lookup(var.monitor_metrics, "labels_allowed", null)
-      }
-    }
-
     tags = merge(
       local.tags,
       var.default_node_pool.tags,
@@ -249,6 +241,14 @@ resource "azurerm_kubernetes_cluster" "main" {
     content {
       log_analytics_workspace_id      = var.azure_monitor.log_analytics_workspace_id != null ? var.azure_monitor.log_analytics_workspace_id : var.default_log_analytics_workspace_id != null ? var.default_log_analytics_workspace_id : azurerm_log_analytics_workspace.main[0].id
       msi_auth_for_monitoring_enabled = var.azure_monitor.msi_auth_for_monitoring_enabled
+    }
+  }
+
+  dynamic "monitor_metrics" {
+    for_each = lookup(var.monitor_metrics, "annotations_allowed", null) != null || lookup(var.monitor_metrics, "labels_allowed", null) != null ? [1] : []
+    content {
+      annotations_allowed = lookup(var.monitor_metrics, "annotations_allowed", null)
+      labels_allowed      = lookup(var.monitor_metrics, "labels_allowed", null)
     }
   }
 
