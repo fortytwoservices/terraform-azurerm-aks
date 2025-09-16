@@ -569,3 +569,12 @@ variable "upgrade_override" {
   default     = null
   description = "(Optional) Upgrade override for the managed AKS cluster."
 }
+
+variable "monitor_metrics" {
+  description = "(Optional) Enable or disable monitoring of metrics for the cluster."
+  type = object({
+    annotations_allowed = optional(string)
+    labels_allowed      = optional(string)
+  })
+  default = null
+}

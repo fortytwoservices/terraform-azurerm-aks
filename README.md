@@ -669,6 +669,21 @@ Default:
 }
 ```
 
+### <a name="input_monitor_metrics"></a> [monitor\_metrics](#input\_monitor\_metrics)
+
+Description: (Optional) Enable or disable monitoring of metrics for the cluster.
+
+Type:
+
+```hcl
+object({
+    annotations_allowed = optional(string)
+    labels_allowed      = optional(string)
+  })
+```
+
+Default: `null`
+
 ### <a name="input_network_profile"></a> [network\_profile](#input\_network\_profile)
 
 Description:   (Optional) The network profile block for the Kubernetes cluster.  
