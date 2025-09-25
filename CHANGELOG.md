@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.2](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.3.1...v5.3.2) (2025-09-25)
+
+
+### Bug Fixes
+
+* correct metric lookup ([#366](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/366)) ([d8891be](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/d8891be515cce3d8869d8b6cca436aba023f15ac))
+
 ## [5.3.1](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.3.0...v5.3.1) (2025-09-16)
 
 
