@@ -245,10 +245,10 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 
   dynamic "monitor_metrics" {
-    for_each = lookup(var.monitor_metrics, "annotations_allowed", null) != null || lookup(var.monitor_metrics, "labels_allowed", null) != null ? [1] : []
+    for_each = try(lookup(var.monitor_metrics, "annotations_allowed", null), null) != null || try(lookup(var.monitor_metrics, "labels_allowed", null), null) != null ? [1] : []
     content {
-      annotations_allowed = lookup(var.monitor_metrics, "annotations_allowed", null)
-      labels_allowed      = lookup(var.monitor_metrics, "labels_allowed", null)
+      annotations_allowed = try(lookup(var.monitor_metrics, "annotations_allowed", null), null)
+      labels_allowed      = try(lookup(var.monitor_metrics, "labels_allowed", null), null)
     }
   }
 
