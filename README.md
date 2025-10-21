@@ -880,6 +880,10 @@ Description: The raw kube admin config, used with kubectl and other tools.
 
 Description: The raw kubelet identity. Used for Azure role assignments.
 
+### <a name="output_node_resource_group_id"></a> [node\_resource\_group\_id](#output\_node\_resource\_group\_id)
+
+Description: The Kubernetes Node Resource Group ID.
+
 ### <a name="output_oidc_issuer_url"></a> [oidc\_issuer\_url](#output\_oidc\_issuer\_url)
 
 Description: The OIDC issuer URL that is associated with the cluster.
