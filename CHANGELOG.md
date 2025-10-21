@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.3.2...v5.4.0) (2025-10-21)
+
+
+### Features
+
+* add node_resource_group_id as output ([#376](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/376)) ([ea6e848](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/ea6e84894386588870cb2751ea2ad5620b20d2ce))
+
 ## [5.3.2](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.3.1...v5.3.2) (2025-09-25)
 
 
