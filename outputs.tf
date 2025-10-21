@@ -3,6 +3,11 @@ output "aks_id" {
   value       = azurerm_kubernetes_cluster.main.id
 }
 
+output "node_resource_group_id" {
+  description = "The Kubernetes Node Resource Group ID."
+  value       = azurerm_kubernetes_cluster.main.node_resource_group_id
+}
+
 output "oidc_issuer_url" {
   description = "The OIDC issuer URL that is associated with the cluster."
   value       = azurerm_kubernetes_cluster.main.oidc_issuer_url
