@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.1](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.4.0...v5.4.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* correct issue with maintenance windows ([#379](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/379)) ([c2c5da9](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/c2c5da9e5ca0b7016964777a78c458a3cfe817a9))
+
 ## [5.4.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.3.2...v5.4.0) (2025-10-21)
 
 
