@@ -336,7 +336,9 @@ variable "api_server_authorized_ip_ranges" {
 
 variable "api_server_access_profile" {
   type = object({
-    authorized_ip_ranges = optional(list(string))
+    authorized_ip_ranges                = optional(list(string))
+    virtual_network_integration_enabled = optional(bool)
+    subnet_id                           = optional(string)
   })
   default = null
 }

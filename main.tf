@@ -39,6 +39,8 @@ resource "azurerm_kubernetes_cluster" "main" {
     for_each = var.api_server_authorized_ip_ranges != null || var.api_server_access_profile != null ? [1] : []
     content {
       authorized_ip_ranges = var.api_server_authorized_ip_ranges != null ? var.api_server_authorized_ip_ranges : var.api_server_access_profile.authorized_ip_ranges
+      virtual_network_integration_enabled = var.api_server_access_profile != null && var.api_server_access_profile.virtual_network_integration_enabled != null ? var.api_server_access_profile.virtual_network_integration_enabled : null
+      subnet_id = var.api_server_access_profile != null && var.api_server_access_profile.subnet_id != null ? var.api_server_access_profile.subnet_id : null
     }
   }
 
