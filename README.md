@@ -203,6 +203,21 @@ list(object({
 
 Default: `[]`
 
+### <a name="input_advanced_networking"></a> [advanced\_networking](#input\_advanced\_networking)
+
+Description:   (Optional) The advanced networking block for the Kubernetes cluster.
+
+Type:
+
+```hcl
+object({
+    observability_enabled = optional(bool, false)
+    security_enabled      = optional(bool, false)
+  })
+```
+
+Default: `null`
+
 ### <a name="input_api_server_access_profile"></a> [api\_server\_access\_profile](#input\_api\_server\_access\_profile)
 
 Description: n/a
