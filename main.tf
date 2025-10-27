@@ -122,9 +122,9 @@ resource "azurerm_kubernetes_cluster" "main" {
       for_each = var.default_node_pool.linux_os_config != null ? [1] : []
 
       content {
-        swap_file_size_mb             = var.default_node_pool.linux_os_config.swap_file_size_mb
-        transparent_huge_page_enabled = var.default_node_pool.linux_os_config.transparent_huge_page_enabled
-        transparent_huge_page_defrag  = var.default_node_pool.linux_os_config.transparent_huge_page_defrag
+        swap_file_size_mb            = var.default_node_pool.linux_os_config.swap_file_size_mb
+        transparent_huge_page        = var.default_node_pool.linux_os_config.transparent_huge_page
+        transparent_huge_page_defrag = var.default_node_pool.linux_os_config.transparent_huge_page_defrag
 
         dynamic "sysctl_config" {
           for_each = var.default_node_pool.linux_os_config.sysctl_config != null ? [1] : []
@@ -386,9 +386,9 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
     for_each = each.value.linux_os_config != null ? [1] : []
 
     content {
-      swap_file_size_mb             = each.value.linux_os_config.swap_file_size_mb
-      transparent_huge_page_enabled = each.value.linux_os_config.transparent_huge_page_enabled
-      transparent_huge_page_defrag  = each.value.linux_os_config.transparent_huge_page_defrag
+      swap_file_size_mb            = each.value.linux_os_config.swap_file_size_mb
+      transparent_huge_page        = each.value.linux_os_config.transparent_huge_page
+      transparent_huge_page_defrag = each.value.linux_os_config.transparent_huge_page_defrag
 
       dynamic "sysctl_config" {
         for_each = each.value.linux_os_config.sysctl_config != null ? [1] : []
