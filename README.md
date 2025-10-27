@@ -179,9 +179,9 @@ list(object({
     eviction_policy         = optional(string)
 
     linux_os_config = optional(object({
-      swap_file_size_mb             = optional(number)
-      transparent_huge_page_enabled = optional(bool)
-      transparent_huge_page_defrag  = optional(string)
+      swap_file_size_mb            = optional(number)
+      transparent_huge_page        = optional(string)
+      transparent_huge_page_defrag = optional(string)
 
       sysctl_config = optional(object({
         vm_max_map_count = optional(number)
@@ -386,10 +386,9 @@ object({
     ))
 
     linux_os_config = optional(object({
-      # sysctl will not be implemented, until someone needs it
-      swap_file_size_mb             = optional(number)
-      transparent_huge_page_enabled = optional(bool)
-      transparent_huge_page_defrag  = optional(string)
+      swap_file_size_mb            = optional(number)
+      transparent_huge_page        = optional(string)
+      transparent_huge_page_defrag = optional(string)
       sysctl_config = optional(object({
         vm_max_map_count = optional(number)
       }))
