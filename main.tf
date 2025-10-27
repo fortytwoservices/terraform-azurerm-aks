@@ -208,13 +208,13 @@ resource "azurerm_kubernetes_cluster" "main" {
     service_cidrs       = var.network_profile.service_cidrs
     ip_versions         = var.network_profile.ip_versions
     network_mode        = var.network_profile.network_mode
-  }
 
-  dynamic "advanced_networking" {
-    for_each = var.advanced_networking != null ? [1] : []
-    content {
-      observability_enabled = var.advanced_networking.observability_enabled
-      security_enabled      = var.advanced_networking.security_enabled
+    dynamic "advanced_networking" {
+      for_each = var.network_profile.advanced_networking != null ? [1] : []
+      content {
+        observability_enabled = var.network_profile.advanced_networking.observability_enabled
+        security_enabled      = var.network_profile.advanced_networking.security_enabled
+      }
     }
   }
 

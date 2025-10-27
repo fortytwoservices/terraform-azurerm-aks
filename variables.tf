@@ -267,23 +267,17 @@ variable "network_profile" {
     pod_cidr            = optional(string)
     pod_cidrs           = optional(list(string))
     ip_versions         = optional(list(string))
+
+    advanced_networking = optional(object({
+      observability_enabled = optional(bool, false)
+      security_enabled      = optional(bool, false)
+    }))
   })
   default = {
     network_plugin     = "azure"
     network_policy     = "cilium"
     network_data_plane = "cilium"
   }
-}
-
-variable "advanced_networking" {
-  description = <<EOT
-  (Optional) The advanced networking block for the Kubernetes cluster.
-  EOT
-  type = object({
-    observability_enabled = optional(bool, false)
-    security_enabled      = optional(bool, false)
-  })
-  default = null
 }
 
 variable "storage_profile" {
