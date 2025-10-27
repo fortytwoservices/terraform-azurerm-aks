@@ -210,6 +210,14 @@ resource "azurerm_kubernetes_cluster" "main" {
     network_mode        = var.network_profile.network_mode
   }
 
+  dynamic "advanced_networking" {
+    for_each = var.advanced_networking != null ? [1] : []
+    content {
+      observability_enabled = var.advanced_networking.observability_enabled
+      security_enabled      = var.advanced_networking.security_enabled
+    }
+  }
+
   # Storage related settings
   dynamic "storage_profile" {
     for_each = var.storage_profile != null ? [1] : []

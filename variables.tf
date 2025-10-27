@@ -276,6 +276,17 @@ variable "network_profile" {
   }
 }
 
+variable "advanced_networking" {
+  description = <<EOT
+  (Optional) The advanced networking block for the Kubernetes cluster.
+  EOT
+  type = object({
+    observability_enabled = optional(bool, false)
+    security_enabled      = optional(bool, false)
+  })
+  default = null
+}
+
 variable "storage_profile" {
   description = "(Optional) The storage profile block for the Kubernetes cluster."
   type = object({
