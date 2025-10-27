@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.5.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.4.1...v5.5.0) (2025-10-27)
+
+
+### Features
+
+* add support for advanced networking ([#383](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/383)) ([c1b179a](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/c1b179a859e77dc786995c8c115bcaaeba894532))
+* remove transparent_huge_page_enabled and add transparent_huge_page ([#385](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/385)) ([2ee2cb0](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/2ee2cb0e810c229957987317a5baa20ced92740a))
+
 ## [5.4.1](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.4.0...v5.4.1) (2025-10-24)
 
 
