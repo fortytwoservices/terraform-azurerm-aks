@@ -211,7 +211,9 @@ Type:
 
 ```hcl
 object({
-    authorized_ip_ranges = optional(list(string))
+    authorized_ip_ranges                = optional(list(string))
+    virtual_network_integration_enabled = optional(bool)
+    subnet_id                           = optional(string)
   })
 ```
 
