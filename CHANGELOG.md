@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.6.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.5.0...v5.6.0) (2025-10-27)
+
+
+### Features
+
+* add vnet integration support ([#388](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/388)) ([b7497c3](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/b7497c3115bfa40f0e6eef39c79c11148450f8a7))
+
+
+### Bug Fixes
+
+* correct bug with advanced_networking ([#386](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/386)) ([f2292f1](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/f2292f11ad9167765a3856f8abd166718572895f))
+
 ## [5.5.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.4.1...v5.5.0) (2025-10-27)
 
 
