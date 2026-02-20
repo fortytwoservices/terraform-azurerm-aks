@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.6.0...v5.7.0) (2026-02-20)
+
+
+### Features
+
+* fix trivy config scans ([#419](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/419)) ([dd98188](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/dd98188b56c13928b806012cc24d058939620fdb))
+
 ## [5.6.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.5.0...v5.6.0) (2025-10-27)
 
 
