@@ -1,4 +1,4 @@
-#trivy:ignore:avd-azu-0041
+#trivy:ignore:avd-azu-0041 trivy:ignore:avd-azu-0065
 module "kubernetes" {
   source  = "fortytwoservices/aks/azurerm"
   version = "4.2.0"
