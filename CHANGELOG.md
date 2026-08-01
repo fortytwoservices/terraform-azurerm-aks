@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.7.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.6.0...v5.7.0) (2026-08-01)
+
+
+### Features
+
+* add tests, fix retention number type and autoscaler profile values ([#452](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/452)) ([d86d912](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/d86d912af5be4bff8b1829d4e73ae745193f5cf5))
+* fix trivy config scans ([#419](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/419)) ([dd98188](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/dd98188b56c13928b806012cc24d058939620fdb))
+
 ## [5.6.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.5.0...v5.6.0) (2025-10-27)
 
 
