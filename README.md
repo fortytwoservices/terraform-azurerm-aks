@@ -172,21 +172,26 @@ Type:
 
 ```hcl
 object({
-    balance_similar_node_groups      = optional(bool)
-    expander                         = optional(string)
-    max_graceful_termination_sec     = optional(number)
-    max_node_provisioning_time       = optional(string)
-    max_unready_nodes                = optional(number)
-    new_pod_scale_up_delay           = optional(string)
-    scale_down_delay_after_add       = optional(string)
-    scale_down_delay_after_delete    = optional(string)
-    scale_down_delay_after_failure   = optional(string)
-    scale_down_unneeded              = optional(string)
-    scale_down_unready               = optional(string)
-    scale_down_utilization_threshold = optional(string)
-    empty_bulk_delete_max            = optional(number)
-    skip_nodes_with_local_storage    = optional(bool)
-    skip_nodes_with_system_pods      = optional(bool)
+    balance_similar_node_groups                   = optional(bool)
+    daemonset_eviction_for_empty_nodes_enabled    = optional(bool)
+    daemonset_eviction_for_occupied_nodes_enabled = optional(bool)
+    expander                                      = optional(string)
+    ignore_daemonsets_utilization_enabled         = optional(bool)
+    max_graceful_termination_sec                  = optional(number)
+    max_node_provisioning_time                    = optional(string)
+    max_unready_nodes                             = optional(number)
+    max_unready_percentage                        = optional(number)
+    new_pod_scale_up_delay                        = optional(string)
+    scale_down_delay_after_add                    = optional(string)
+    scale_down_delay_after_delete                 = optional(string)
+    scale_down_delay_after_failure                = optional(string)
+    scale_down_unneeded                           = optional(string)
+    scale_down_unready                            = optional(string)
+    scale_down_utilization_threshold              = optional(string)
+    scan_interval                                 = optional(string)
+    empty_bulk_delete_max                         = optional(number)
+    skip_nodes_with_local_storage                 = optional(bool)
+    skip_nodes_with_system_pods                   = optional(bool)
   })
 ```
 
@@ -499,9 +504,9 @@ Default: `true`
 
 Description: (Optional) The retention period in days for the default Log Analytics Workspace. Defaults to 30.
 
-Type: `string`
+Type: `number`
 
-Default: `"30"`
+Default: `30`
 
 ### <a name="input_log_analytics_workspace_sku"></a> [log\_analytics\_workspace\_sku](#input\_log\_analytics\_workspace\_sku)
 
