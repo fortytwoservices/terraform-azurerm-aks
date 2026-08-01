@@ -56,21 +56,26 @@ resource "azurerm_kubernetes_cluster" "main" {
   dynamic "auto_scaler_profile" {
     for_each = var.auto_scaler_profile != null ? [1] : []
     content {
-      balance_similar_node_groups      = var.auto_scaler_profile.balance_similar_node_groups
-      expander                         = var.auto_scaler_profile.expander
-      max_graceful_termination_sec     = var.auto_scaler_profile.max_graceful_termination_sec
-      max_node_provisioning_time       = var.auto_scaler_profile.max_node_provisioning_time
-      max_unready_nodes                = var.auto_scaler_profile.max_unready_nodes
-      new_pod_scale_up_delay           = var.auto_scaler_profile.new_pod_scale_up_delay
-      scale_down_delay_after_add       = var.auto_scaler_profile.scale_down_delay_after_add
-      scale_down_delay_after_delete    = var.auto_scaler_profile.scale_down_delay_after_delete
-      scale_down_delay_after_failure   = var.auto_scaler_profile.scale_down_delay_after_failure
-      scale_down_unneeded              = var.auto_scaler_profile.scale_down_unneeded
-      scale_down_unready               = var.auto_scaler_profile.scale_down_unready
-      scale_down_utilization_threshold = var.auto_scaler_profile.scale_down_utilization_threshold
-      empty_bulk_delete_max            = var.auto_scaler_profile.empty_bulk_delete_max
-      skip_nodes_with_local_storage    = var.auto_scaler_profile.skip_nodes_with_local_storage
-      skip_nodes_with_system_pods      = var.auto_scaler_profile.skip_nodes_with_system_pods
+      balance_similar_node_groups                   = var.auto_scaler_profile.balance_similar_node_groups
+      daemonset_eviction_for_empty_nodes_enabled    = var.auto_scaler_profile.daemonset_eviction_for_empty_nodes_enabled
+      daemonset_eviction_for_occupied_nodes_enabled = var.auto_scaler_profile.daemonset_eviction_for_occupied_nodes_enabled
+      expander                                      = var.auto_scaler_profile.expander
+      ignore_daemonsets_utilization_enabled         = var.auto_scaler_profile.ignore_daemonsets_utilization_enabled
+      max_graceful_termination_sec                  = var.auto_scaler_profile.max_graceful_termination_sec
+      max_node_provisioning_time                    = var.auto_scaler_profile.max_node_provisioning_time
+      max_unready_nodes                             = var.auto_scaler_profile.max_unready_nodes
+      max_unready_percentage                        = var.auto_scaler_profile.max_unready_percentage
+      new_pod_scale_up_delay                        = var.auto_scaler_profile.new_pod_scale_up_delay
+      scale_down_delay_after_add                    = var.auto_scaler_profile.scale_down_delay_after_add
+      scale_down_delay_after_delete                 = var.auto_scaler_profile.scale_down_delay_after_delete
+      scale_down_delay_after_failure                = var.auto_scaler_profile.scale_down_delay_after_failure
+      scale_down_unneeded                           = var.auto_scaler_profile.scale_down_unneeded
+      scale_down_unready                            = var.auto_scaler_profile.scale_down_unready
+      scale_down_utilization_threshold              = var.auto_scaler_profile.scale_down_utilization_threshold
+      scan_interval                                 = var.auto_scaler_profile.scan_interval
+      empty_bulk_delete_max                         = var.auto_scaler_profile.empty_bulk_delete_max
+      skip_nodes_with_local_storage                 = var.auto_scaler_profile.skip_nodes_with_local_storage
+      skip_nodes_with_system_pods                   = var.auto_scaler_profile.skip_nodes_with_system_pods
     }
   }
 
@@ -82,7 +87,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     max_count            = var.default_node_pool.autoscale != null ? var.default_node_pool.autoscale.max_count : null
     vm_size              = var.default_node_pool.vm_size
     vnet_subnet_id       = var.network_profile.vnet_subnet_id
-    orchestrator_version = lookup(var.default_node_pool, "orchestration_version", false) ? var.default_node_pool.orchestration_version : local.kubernetes_version
+    orchestrator_version = var.default_node_pool.orchestrator_version != null ? var.default_node_pool.orchestrator_version : local.kubernetes_version
 
     # Optional settings
     max_pods                      = var.default_node_pool.max_pods
@@ -109,7 +114,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 
       content {
         cpu_manager_policy        = var.default_node_pool.kubelet_config.cpu_manager_policy
-        cpu_cfs_quota_enabled     = var.default_node_pool.kubelet_config.cpu_cfs_quota
+        cpu_cfs_quota_enabled     = var.default_node_pool.kubelet_config.cpu_cfs_quota_enabled
         cpu_cfs_quota_period      = var.default_node_pool.kubelet_config.cpu_cfs_quota_period
         image_gc_high_threshold   = var.default_node_pool.kubelet_config.image_gc_high_threshold
         image_gc_low_threshold    = var.default_node_pool.kubelet_config.image_gc_low_threshold
@@ -117,7 +122,7 @@ resource "azurerm_kubernetes_cluster" "main" {
         allowed_unsafe_sysctls    = var.default_node_pool.kubelet_config.allowed_unsafe_sysctls
         container_log_max_size_mb = var.default_node_pool.kubelet_config.container_log_max_size_mb
         container_log_max_line    = var.default_node_pool.kubelet_config.container_log_max_line
-        pod_max_pid               = var.default_node_pool.kubelet_config.pod_max_pids
+        pod_max_pid               = var.default_node_pool.kubelet_config.pod_max_pid
       }
     }
 
@@ -150,7 +155,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 
     tags = merge(
       local.tags,
-      var.default_node_pool.tags,
+      coalesce(var.default_node_pool.tags, {}),
     )
   }
 
@@ -375,8 +380,9 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   host_encryption_enabled = each.value.host_encryption_enabled
   node_count              = each.value.node_count
   vm_size                 = each.value.vm_size == null ? var.default_node_pool.vm_size : each.value.vm_size
-  vnet_subnet_id          = var.network_profile.vnet_subnet_id
+  vnet_subnet_id          = each.value.vnet_subnet_id != null ? each.value.vnet_subnet_id : var.network_profile.vnet_subnet_id
   pod_subnet_id           = each.value.pod_subnet_id
+  mode                    = each.value.mode
   orchestrator_version    = each.value.orchestrator_version == null ? local.kubernetes_version : each.value.orchestrator_version
   max_pods                = each.value.max_pods
   node_labels             = each.value.node_labels
@@ -429,5 +435,5 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
     }
   }
 
-  tags = merge(local.tags, each.value.tags)
+  tags = merge(local.tags, coalesce(each.value.tags, {}))
 }
