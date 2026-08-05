@@ -128,8 +128,8 @@ resource "azurerm_kubernetes_cluster" "main" {
         image_gc_low_threshold    = var.default_node_pool.kubelet_config.image_gc_low_threshold
         topology_manager_policy   = var.default_node_pool.kubelet_config.topology_manager_policy
         allowed_unsafe_sysctls    = var.default_node_pool.kubelet_config.allowed_unsafe_sysctls
+        container_log_max_files   = var.default_node_pool.kubelet_config.container_log_max_files
         container_log_max_size_mb = var.default_node_pool.kubelet_config.container_log_max_size_mb
-        container_log_max_line    = var.default_node_pool.kubelet_config.container_log_max_line
         pod_max_pid               = var.default_node_pool.kubelet_config.pod_max_pid
       }
     }

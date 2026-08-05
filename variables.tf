@@ -67,8 +67,8 @@ variable "default_node_pool" {
         image_gc_low_threshold    = optional(number)
         topology_manager_policy   = optional(string)
         allowed_unsafe_sysctls    = optional(list(string))
+        container_log_max_files   = optional(number)
         container_log_max_size_mb = optional(number)
-        container_log_max_line    = optional(number)
         pod_max_pid               = optional(number)
       }
     ))

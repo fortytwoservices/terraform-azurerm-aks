@@ -11,7 +11,7 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (>= 1.0.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 4.0.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (>= 4.71.0)
 
 ## Resources
 
@@ -323,8 +323,8 @@ object({
         image_gc_low_threshold    = optional(number)
         topology_manager_policy   = optional(string)
         allowed_unsafe_sysctls    = optional(list(string))
+        container_log_max_files   = optional(number)
         container_log_max_size_mb = optional(number)
-        container_log_max_line    = optional(number)
         pod_max_pid               = optional(number)
       }
     ))
