@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.8.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.7.0...v5.8.0) (2026-08-05)
+
+
+### Features
+
+* add support for node_provisioning_profile ([#453](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/453)) ([e99e51a](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/e99e51a6a875d65d8270ade9501855c7826cb9db))
+
+
+### Bug Fixes
+
+* correct container_log_max_lines to container_log_max_files ([#455](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/455)) ([2102363](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/2102363939153af70bed57663b8872c53d48fbf5))
+
 ## [5.7.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.6.0...v5.7.0) (2026-08-01)
 
 
