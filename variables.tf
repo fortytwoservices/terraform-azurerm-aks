@@ -517,6 +517,15 @@ variable "node_os_upgrade_channel" {
   }
 }
 
+variable "node_provisioning_profile" {
+  description = "(Optional) The node provisioning profile for the Kubernetes cluster."
+  type = object({
+    default_node_pools = optional(string)
+    mode               = optional(string)
+  })
+  default = null
+}
+
 variable "maintenance_window" {
   type = object({
     allowed = optional(list(object({
