@@ -36,6 +36,14 @@ resource "azurerm_kubernetes_cluster" "main" {
   image_cleaner_interval_hours = var.image_cleaner_interval_hours
   node_os_upgrade_channel      = var.node_os_upgrade_channel
 
+  dynamic "node_provisioning_profile" {
+    for_each = var.node_provisioning_profile != null ? [1] : []
+    content {
+      default_node_pools = var.node_provisioning_profile.default_node_pools
+      mode               = var.node_provisioning_profile.mode
+    }
+  }
+
   dynamic "api_server_access_profile" {
     for_each = var.api_server_authorized_ip_ranges != null || var.api_server_access_profile != null ? [1] : []
     content {

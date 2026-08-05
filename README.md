@@ -677,6 +677,21 @@ Type: `string`
 
 Default: `"NodeImage"`
 
+### <a name="input_node_provisioning_profile"></a> [node\_provisioning\_profile](#input\_node\_provisioning\_profile)
+
+Description: (Optional) The node provisioning profile for the Kubernetes cluster.
+
+Type:
+
+```hcl
+object({
+    default_node_pools = optional(string)
+    mode               = optional(string)
+  })
+```
+
+Default: `null`
+
 ### <a name="input_private_cluster"></a> [private\_cluster](#input\_private\_cluster)
 
 Description: (Optional) Enable or disable private cluster for the cluster. Defaults to false.
