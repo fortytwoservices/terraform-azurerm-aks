@@ -4,6 +4,8 @@ terraform {
       source = "hashicorp/azurerm"
     }
   }
+
+  required_version = ">= 1.0.0"
 }
 
 variable "cost_analysis_enabled" {
