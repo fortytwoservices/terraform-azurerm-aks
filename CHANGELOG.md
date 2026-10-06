@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.9.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.8.0...v5.9.0) (2026-10-06)
+
+
+### Features
+
+* add cost analysis feature and update SKU tier options ([#459](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/459)) ([2afad36](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/2afad366918a47b9442a168999586ca8e44bc768))
+
 ## [5.8.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.7.0...v5.8.0) (2026-08-05)
 
 
