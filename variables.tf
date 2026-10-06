@@ -403,7 +403,7 @@ variable "kms_key_vault_network_access" {
 }
 
 variable "sku_tier" {
-  description = "(Optional) The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, and Standard (which includes the Uptime SLA). Defaults to Free."
+  description = "(Optional) The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, Standard (which includes the Uptime SLA), and Premium. Defaults to Free."
   type        = string
   default     = "Free"
 
@@ -411,6 +411,13 @@ variable "sku_tier" {
     condition     = contains(["Free", "Standard", "Premium"], var.sku_tier)
     error_message = "Value must be Free, Standard, or Premium"
   }
+}
+
+variable "cost_analysis_enabled" {
+  description = "(Optional) Should cost analysis be enabled for this Kubernetes Cluster? Defaults to false. The sku_tier must be set to Standard or Premium to enable this feature. Enabling this will add Kubernetes Namespace and Deployment details to the Cost Analysis views in the Azure portal."
+  type        = bool
+  default     = false
+  nullable    = false
 }
 
 variable "automatic_upgrade_channel" {

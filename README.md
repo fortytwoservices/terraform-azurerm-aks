@@ -262,6 +262,14 @@ Type: `bool`
 
 Default: `true`
 
+### <a name="input_cost_analysis_enabled"></a> [cost\_analysis\_enabled](#input\_cost\_analysis\_enabled)
+
+Description: (Optional) Should cost analysis be enabled for this Kubernetes Cluster? Defaults to false. The sku\_tier must be set to Standard or Premium to enable this feature. Enabling this will add Kubernetes Namespace and Deployment details to the Cost Analysis views in the Azure portal.
+
+Type: `bool`
+
+Default: `false`
+
 ### <a name="input_default_log_analytics_workspace_id"></a> [default\_log\_analytics\_workspace\_id](#input\_default\_log\_analytics\_workspace\_id)
 
 Description:   (Optional) The id of the Log Analytics Workspace to use as default for Defender and Azure Monitor.  
@@ -734,7 +742,7 @@ Default: `null`
 
 ### <a name="input_sku_tier"></a> [sku\_tier](#input\_sku\_tier)
 
-Description: (Optional) The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, and Standard (which includes the Uptime SLA). Defaults to Free.
+Description: (Optional) The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, Standard (which includes the Uptime SLA), and Premium. Defaults to Free.
 
 Type: `string`
 
