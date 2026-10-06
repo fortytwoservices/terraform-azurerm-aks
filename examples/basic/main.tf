@@ -10,6 +10,10 @@ module "kubernetes" {
     tenant_id = "00000000-0000-0000-0000-000000000000"
   }
 
+  node_provisioning_profile = {
+    mode = "Manual"
+  }
+
   network_profile = {
     network_plugin = "azure"
     network_policy = "azure"

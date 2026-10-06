@@ -29,6 +29,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   private_dns_zone_id          = var.private_dns_zone_id
   local_account_disabled       = var.local_account_disabled
   sku_tier                     = var.sku_tier
+  cost_analysis_enabled        = var.cost_analysis_enabled
   automatic_upgrade_channel    = var.automatic_upgrade_channel
   disk_encryption_set_id       = var.disk_encryption_set_id
   run_command_enabled          = var.run_command_enabled
@@ -365,6 +366,11 @@ resource "azurerm_kubernetes_cluster" "main" {
     ignore_changes = [
       microsoft_defender # Allow Azure Policy to control this value in an Enterprise-Scale setup
     ]
+
+    precondition {
+      condition     = !var.cost_analysis_enabled || contains(["Standard", "Premium"], var.sku_tier)
+      error_message = "sku_tier must be Standard or Premium when cost_analysis_enabled is true."
+    }
 
     precondition {
       condition     = (!(var.local_account_disabled == true && var.aad_rbac.azure_rbac_enabled == false))
