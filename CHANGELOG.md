@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.10.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.9.0...v5.10.0) (2026-10-21)
+
+
+### Features
+
+* allow null aks version to accomodate for fleet ([#461](https://github.com/fortytwoservices/terraform-azurerm-aks/issues/461)) ([d66990b](https://github.com/fortytwoservices/terraform-azurerm-aks/commit/d66990b9ccb96d034e3903dbc397c3c52738ed56))
+
 ## [5.9.0](https://github.com/fortytwoservices/terraform-azurerm-aks/compare/v5.8.0...v5.9.0) (2026-10-06)
 
 
