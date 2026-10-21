@@ -313,6 +313,17 @@ variable "kubernetes_version" {
   default     = null
 }
 
+variable "manage_kubernetes_version" {
+  description = <<EOF
+Whether Terraform manages the Kubernetes version of the cluster and its node pools. Set to false when the version is
+upgraded outside of Terraform, for example by Azure Kubernetes Fleet Manager or the AKS auto-upgrade channel. The
+version is then not sent to Azure, so Terraform neither sets it on creation (AKS picks its default version) nor
+reverts upgrades made elsewhere. An explicit `orchestrator_version` on a node pool is still applied.
+EOF
+  type        = bool
+  default     = true
+}
+
 variable "automatic_bump_kubernetes_version" {
   description = "Automatically bump the Kubernetes version to the latest available version"
   type = object({
