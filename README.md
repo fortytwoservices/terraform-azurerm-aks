@@ -597,6 +597,17 @@ object({
 
 Default: `null`
 
+### <a name="input_manage_kubernetes_version"></a> [manage\_kubernetes\_version](#input\_manage\_kubernetes\_version)
+
+Description: Whether Terraform manages the Kubernetes version of the cluster and its node pools. Set to false when the version is  
+upgraded outside of Terraform, for example by Azure Kubernetes Fleet Manager or the AKS auto-upgrade channel. The  
+version is then not sent to Azure, so Terraform neither sets it on creation (AKS picks its default version) nor  
+reverts upgrades made elsewhere. An explicit `orchestrator_version` on a node pool is still applied.
+
+Type: `bool`
+
+Default: `true`
+
 ### <a name="input_microsoft_defender"></a> [microsoft\_defender](#input\_microsoft\_defender)
 
 Description:   (Optional) Enable or disable Microsoft Defender (Security profile) for the cluster. Defaults to false.  
